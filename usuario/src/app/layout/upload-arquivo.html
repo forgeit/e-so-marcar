@@ -1,0 +1,80 @@
+<div class="row" style="margin-bottom: 5px;">
+	<div class="col-md-12">
+		<button type="button" class="btn btn-primary btn-flat" ng-click="vm.habilitarDesabilitar()" ng-bind="vm.uploadHabilitado ? 'Desabilitar Envio de Arquivos' : 'Habilitar Envio de Arquivos'"></button>
+	</div>
+</div>
+
+<div class="row" ng-show="vm.uploadHabilitado">
+	<div class="col-md-6">
+		<div nv-file-drop="" uploader="vm.uploader" >
+			<div nv-file-over="" uploader="vm.uploader" over-class="another-file-over-class" class="well my-drop-zone">
+				Arraste os arquivos desejados
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-1 text-center">
+		<div class="text-center file-uploader-ou">OU</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="arquivos">Arquivos: </label>
+			<input type="file" id="arquivos" nv-file-select="" uploader="vm.uploader" multiple />
+			<p class="help-block">Você pode selecionar diversos arquivos.</p>
+		</div>
+	</div>
+
+</div>
+
+<div class="row" ng-show="vm.uploadHabilitado">
+	<div class="col-md-12">
+		<table class="table">
+			<thead>
+				<tr>
+					<th width="40%">Nome</th>
+					<th ng-show="vm.uploader.isHTML5">Tamanho</th>
+					<th ng-show="vm.uploader.isHTML5">Progresso</th>
+					<th>Status</th>
+					<th style="width: 20%;">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-show="vm.uploader.queue.length === 0">
+					<td colspan="vm.uploader.isHTML5 ? 5 : 3">Nenhum arquivo selecionado</td>
+				</tr>
+				<tr ng-repeat="item in vm.uploader.queue">
+					<td><strong>{{ item.file.name }}</strong></td>
+					<td ng-show="vm.uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+					<td ng-show="vm.uploader.isHTML5">
+						<div class="progress" style="margin-bottom: 0;">
+							<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+						</div>
+					</td>
+					<td class="text-center">
+						<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+						<span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+						<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+					</td>
+					<td nowrap>
+						<button type="button" class="btn btn-success btn-xs btn-flat" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">Enviar</button>
+						<button type="button" class="btn btn-warning btn-xs btn-flat" ng-click="item.cancel()" ng-disabled="!item.isUploading">Cancelar</button>
+						<button type="button" class="btn btn-danger btn-xs btn-flat" ng-click="item.remove()">Remover</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<div>
+				Progresso da Fila de Arquivos:
+				<div class="progress" style="">
+					<div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-success btn-s btn-flat" ng-click="vm.uploader.uploadAll()" ng-disabled="!vm.uploader.getNotUploadedItems().length">Enviar Todos</button>
+			<button type="button" class="btn btn-warning btn-s btn-flat" ng-click="vm.uploader.cancelAll()" ng-disabled="!vm.uploader.isUploading">Cancelar Todos</button>
+			<button type="button" class="btn btn-danger btn-s btn-flat" ng-click="vm.uploader.clearQueue()" ng-disabled="!vm.uploader.queue.length">Remover Todos</button>
+		</div>
+	</div>
+</div>

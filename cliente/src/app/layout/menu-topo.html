@@ -1,0 +1,41 @@
+<header class="main-header" ng-controller="MenuTopoController as vm" ng-show="vm.isLogged()">
+    <a href="/somarcar" class="logo">
+        <span class="logo-lg"><b>Só Marcar</b></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pessoa">Pessoa</a></li>
+                        <li><a href="tipo-demanda">Tipo de Demanda</a></li>
+                        <li><a href="demanda">Demanda</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img ng-src="{{ usuarioLogado.imagem }}" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{ usuarioLogado.nome }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img ng-src="{{ usuarioLogado.imagem }}" class="img-circle" alt="Imagem do Usuário">
+                            <p>{{ usuarioLogado.nome + ' - ' + usuarioLogado.cargo }}</p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="alterar-senha" class="btn btn-default btn-flat">Alterar Senha</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat" ng-click="vm.sair()">Sair do Sistema</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

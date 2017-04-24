@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-strict-di>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+	<meta http-equiv="CACHE-CONTROL" content="NO-STORE">
+
+	<title>Só Marcar</title>
+    <base href="/">
+    
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
+	<link rel="stylesheet" href="bower_components/AdminLTE/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="bower_components/AdminLTE/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="bower_components/AdminLTE/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" type="text/css" href="src/app/layout/kopp.css">
+	<link rel="stylesheet" type="text/css" href="vendor/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-loading-bar/src/loading-bar.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div id="loading-bar-container"></div>	
+	<div class="wrapper">
+		<menu-topo></menu-topo>
+		<div class="content-wrapper">
+			<cabecalho></cabecalho>
+			<section class="content" ng-view></section>
+		</div>
+		<rodape></rodape>
+	</div>
+
+	<!-- vendor -->
+	<script src="bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="bower_components/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+	<script src="bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+	<script src="bower_components/AdminLTE/plugins/fastclick/fastclick.js"></script>
+	<script src="bower_components/AdminLTE/dist/js/app.min.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-confirm/jquery.confirm.min.js"></script>
+	<script type="text/javascript" src="bower_components/toastr/toastr.min.js"></script>
+	<!-- fim vendor -->
+
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/cpf_cnpj/build/cpf_cnpj.min.js"></script>
+	<script type="text/javascript" src="bower_components/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.min.js"></script>
+	<script type="text/javascript" src="vendor/angular-datatables/dist/angular-datatables.js"></script>
+	<script type="text/javascript" src="vendor/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-ui/ui/widgets/datepicker.js"></script>
+	<script type="text/javascript" src="bower_components/angular-loading-bar/src/loading-bar.js"></script>	
+	<script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+	<script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+
+
+	<script type="text/javascript" src="build/all-25d6880c96.min.js"></script>
+
+</body>
+</html>

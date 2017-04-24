@@ -1,0 +1,90 @@
+.content-wrapper, .right-side, .main-footer {
+    margin-left: 0px;
+}
+
+.skin-blue .main-header .logo {
+	background-color: #3c8dbc;	
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.btn-table {
+    width: 45px;
+    height: 25px;
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+table tr td:last-child {
+    width: 150px;
+}
+
+.my-drop-zone {
+    border: 3px solid #ccc;
+    text-align: center;
+}
+
+.another-file-over-class {
+    border: 3px dashed #000;
+    font-weight: bold;
+}
+
+.file-uploader-ou {
+    margin-top: 5px; 
+    width: 50px; 
+    height: 50px; 
+    border: 3px solid #ccc; 
+    border-radius: 50%; 
+    padding-top: 11px; 
+    font-weight: bold;
+}

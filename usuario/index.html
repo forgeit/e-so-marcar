@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="usuario" ng-strict-di>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+        <meta http-equiv="CACHE-CONTROL" content="NO-STORE">
+
+        <title>Só Marcar</title>
+        <base href="/somarcar/">
+
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
+        <link rel="stylesheet" href="bower_components/AdminLTE/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="bower_components/AdminLTE/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="bower_components/AdminLTE/dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" type="text/css" href="src/app/layout/kopp.css">
+        <link rel="stylesheet" type="text/css" href="vendor/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-loading-bar/src/loading-bar.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css">
+
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div id="loading-bar-container"></div>	
+        <div class="wrapper">
+            <menu-topo></menu-topo>
+            <div class="content-wrapper">
+                <cabecalho></cabecalho>
+                <section class="content" ng-view></section>
+            </div>
+            <rodape></rodape>
+        </div>
+
+        <!-- vendor -->
+        <script src="bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower_components/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="bower_components/AdminLTE/plugins/fastclick/fastclick.js"></script>
+        <script src="bower_components/AdminLTE/dist/js/app.min.js"></script>
+        <script type="text/javascript" src="bower_components/jquery-confirm/jquery.confirm.min.js"></script>
+        <script type="text/javascript" src="bower_components/toastr/toastr.min.js"></script>
+        <!-- fim vendor -->
+
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+        <script type="text/javascript" src="bower_components/cpf_cnpj/build/cpf_cnpj.min.js"></script>
+        <script type="text/javascript" src="bower_components/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
+        <script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-datatables/dist/angular-datatables.js"></script>
+        <script type="text/javascript" src="vendor/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+        <script type="text/javascript" src="bower_components/jquery-ui/ui/widgets/datepicker.js"></script>
+        <script type="text/javascript" src="bower_components/angular-loading-bar/src/loading-bar.js"></script>	
+        <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+        <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/app.module.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/layout/layout.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/rodape.directive.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/menu-topo.directive.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/cabecalho.directive.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/lista.directive.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/btn-remover.directive.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/btn-editar.directive.js"></script>
+        <script type="text/javascript" src="usuario/src/app/layout/upload-arquivo.directive.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/core/core.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/config.route.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/constants.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/utils.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/getdata.factory.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/tabela.factory.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/message.constants.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/message.factory.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/multi-promise.factory.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/promise.factory.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/utils/controller.factory.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/core/auth/auth.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/auth/auth-token.factory.js"></script>
+        <script type="text/javascript" src="usuario/src/app/core/auth/auth-interceptor.factory.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/layout/menu-topo.controller.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/login/login.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/login/login.route.js"></script>
+        <script type="text/javascript" src="usuario/src/app/login/login.rest.js"></script>
+        <script type="text/javascript" src="usuario/src/app/login/login.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/home/home.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/home/home.rest.js"></script>
+        <script type="text/javascript" src="usuario/src/app/home/home.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/logradouro/logradouro.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/logradouro/logradouro.rest.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/pessoa/pessoa.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/pessoa/pessoa.route.js"></script>
+        <script type="text/javascript" src="usuario/src/app/pessoa/pessoa.rest.js"></script>
+        <script type="text/javascript" src="usuario/src/app/pessoa/pessoa.dto.js"></script>
+        <script type="text/javascript" src="usuario/src/app/pessoa/pessoa-lista.js"></script>
+        <script type="text/javascript" src="usuario/src/app/pessoa/pessoa-form.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/tipo-demanda/tipo-demanda.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/tipo-demanda/tipo-demanda.route.js"></script>
+        <script type="text/javascript" src="usuario/src/app/tipo-demanda/tipo-demanda.rest.js"></script>
+        <script type="text/javascript" src="usuario/src/app/tipo-demanda/tipo-demanda-lista.js"></script>
+        <script type="text/javascript" src="usuario/src/app/tipo-demanda/tipo-demanda-form.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/situacao/situacao.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/situacao/situacao.rest.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/demanda/demanda.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/demanda/demanda.route.js"></script>
+        <script type="text/javascript" src="usuario/src/app/demanda/demanda.rest.js"></script>
+        <script type="text/javascript" src="usuario/src/app/demanda/demanda-lista.js"></script>
+        <script type="text/javascript" src="usuario/src/app/demanda/demanda-form.js"></script>
+        <script type="text/javascript" src="usuario/src/app/demanda/demanda-visualizar.js"></script>
+
+        <script type="text/javascript" src="usuario/src/app/usuario/usuario.module.js"></script>
+        <script type="text/javascript" src="usuario/src/app/usuario/usuario.route.js"></script>
+        <script type="text/javascript" src="usuario/src/app/usuario/usuario.rest.js"></script>
+        <script type="text/javascript" src="usuario/src/app/usuario/alterar-senha.js"></script>
+    </body>
+</html>
