@@ -1,6 +1,6 @@
 <?php
 
-class ClienteModel extends MY_Model {
+class LoginModel extends MY_Model {
 
     function __construct() {
         parent::__construct();

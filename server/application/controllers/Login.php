@@ -15,7 +15,7 @@ class Login extends MY_Controller {
             die();
         }
 
-        $usuario = $this->ClienteModel->verificarLogin($usuario->login, md5($usuario->senha));
+        $usuario = $this->LoginModel->verificarLogin($usuario->login, md5($usuario->senha));
         if ($usuario) {
             $array = $this->gerarRetorno(TRUE, "Sucesso ao autenticar, redirecionando.");
             $array['data'] = array('token' => $this->generate_token($usuario[0]));
@@ -39,20 +39,6 @@ class Login extends MY_Controller {
                     'dtBegin' => strtotime("now"),
                     'ttl' => $CONSUMER_TTL
                         ), $CONSUMER_SECRET);
-    }
-
-    private function gerarRetorno($response, $mensagem) {
-        $message = array();
-        $message[] = $response == TRUE ?
-                array('tipo' => 'success', 'mensagem' => $mensagem) :
-                array('tipo' => 'error', 'mensagem' => $mensagem);
-
-        $array = array(
-            'message' => $message,
-            'status' => $response == TRUE ? 'true' : 'false'
-        );
-
-        return $array;
     }
 
 }

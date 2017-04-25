@@ -15,8 +15,8 @@
 
         return service;
 
-        function salvar(id, data) {
-            return $http.post(configuracaoREST.url + configuracaoREST.dados + id, data);
+        function salvar(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.dados + "salvar", data);
         }
 
         function buscar() {

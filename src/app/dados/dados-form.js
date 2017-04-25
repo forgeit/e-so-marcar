@@ -6,14 +6,29 @@
     DadosForm.$inject = [
         'controllerUtils',
         'dadosRest',
+        'FileUploader',
         'configuracaoREST'];
-    function DadosForm(controllerUtils, dataservice) {
+    function DadosForm(controllerUtils, dataservice, FileUploader, configuracaoREST) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.dados = {};
         vm.salvar = salvar;
         vm.voltar = voltar;
+        vm.uploader = new FileUploader({url: configuracaoREST.url + 'upload'});
+
+        vm.uploader.onAfterAddingFile = function (fileItem) {
+            vm.uploader.uploadAll();
+        };
+
+        vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            if (response.exec) {
+                controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
+            } else {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
+            }
+            vm.dados.logo = response.nome;
+        };
 
         buscar();
 
@@ -32,17 +47,17 @@
 
         function salvar() {
 
+            console.log(vm.uploader.queue);
+
             dataservice.salvar(vm.dados).then(success).catch(error);
 
             function error(response) {
-                console.log(response);
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao salvar od dados.');
             }
 
             function success(response) {
-                console.log(response);
                 controllerUtils.feedMessage(response);
-                if (response.data.status == 'true') {
+                if (response.data.status === 'true') {
                     voltar();
                 }
             }

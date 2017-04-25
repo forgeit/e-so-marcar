@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
 
+    protected $jwtController;
+
     public function __construct() {
         parent::__construct();
 
@@ -13,7 +15,7 @@ class MY_Controller extends CI_Controller {
             $seguro = false;
         }
 
-        $seguro = false;
+        //$seguro = false;
 
         if ($seguro) {
             if ($this->input->get_request_header('Authorization')) {
@@ -36,6 +38,8 @@ class MY_Controller extends CI_Controller {
                             die();
                         }
                     }
+
+                    $this->jwtController = $retorno;
                 } catch (Exception $ex) {
                     header('HTTP/1.1 401 Unauthorized', true, 401);
                     die();
@@ -45,6 +49,25 @@ class MY_Controller extends CI_Controller {
                 die();
             }
         }
+    }
+
+    protected function gerarRetorno($response, $mensagem) {
+        $message = array();
+        $message[] = $response == TRUE ?
+                array('tipo' => 'success', 'mensagem' => $mensagem) :
+                array('tipo' => 'error', 'mensagem' => $mensagem);
+
+        $array = array(
+            'message' => $message,
+            'status' => $response == TRUE ? 'true' : 'false'
+        );
+
+        return $array;
+    }
+
+    protected function startsWith($haystack, $needle) {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
     }
 
 }
