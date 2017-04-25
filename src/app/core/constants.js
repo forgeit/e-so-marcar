@@ -4,7 +4,8 @@
     var core = angular.module('app.core');
 
     var configuracaoREST = {
-        url: 'http://localhost/mathias/server/'
+        url: 'http://localhost/somarcar/server/',
+        dados: 'dados/'
     };
 
     var datepicker = {

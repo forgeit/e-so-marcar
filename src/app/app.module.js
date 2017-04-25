@@ -6,6 +6,8 @@
         'app.core',
         'app.home',
         'app.layout',
+        'app.login',
+        'app.dados',
         'angularFileUpload']);
 
 })();

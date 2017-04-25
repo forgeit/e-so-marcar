@@ -23,7 +23,7 @@
             if (!next.notSecured) {
                 if (!AuthToken.ler()) {
                     $rootScope.$evalAsync(function () {
-                        // redirect if necessary
+                        $location.path('/login');
                     });
                 }
             }

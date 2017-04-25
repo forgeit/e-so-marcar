@@ -1,6 +1,6 @@
 <header class="main-header" ng-controller="MenuTopoController as vm" ng-show="vm.isLogged()">
-    <a href="/mathias" class="logo">
-        <span class="logo-lg"><b>Mathias</b></span>
+    <a href="/somarcar" class="logo">
+        <span class="logo-lg"><b>Sistrak</b></span>
     </a>
     <nav class="navbar navbar-static-top">
         <div class="container-fluid">
@@ -8,7 +8,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="pessoa">Pessoa</a></li>
+                        <li><a href="dados">Dados do Cliente</a></li>
                         <li><a href="tipo-demanda">Tipo de Demanda</a></li>
                         <li><a href="demanda">Demanda</a></li>
                     </ul>
@@ -18,12 +18,12 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img ng-src="{{ usuarioLogado.imagem }}" class="user-image" alt="User Image">
-                        <span class="hidden-xs">{{ usuarioLogado.nome }}</span>
+                        <span class="hidden-xs" style="text-transform: capitalize">{{ usuarioLogado.nome }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <img ng-src="{{ usuarioLogado.imagem }}" class="img-circle" alt="Imagem do Usuário">
-                            <p>{{ usuarioLogado.nome + ' - ' + usuarioLogado.cargo }}</p>
+                            <p style="text-transform: capitalize">{{ usuarioLogado.nome }}</p>
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">

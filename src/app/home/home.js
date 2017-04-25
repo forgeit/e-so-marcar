@@ -1,26 +1,26 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('app.home')
-		.controller('Home', Home);
+    angular
+            .module('app.home')
+            .controller('Home', Home);
 
-	Home.$inject = ['homeRest'];
+    Home.$inject = ['homeRest'];
 
-	function Home(homeRest) {
+    function Home(homeRest) {
 
-		var vm = this;
-		vm.cartoes = [];
+        var vm = this;
+        vm.cartoes = [];
 
-		homeRest.buscar().then(success).catch(error);
+        homeRest.buscar().then(success).catch(error);
 
-		function error(response) {
-			console.log(response);
-		}
+        function error(response) {
+            console.log(response);
+        }
 
-		function success(response) {
-			vm.cartoes = response.data;
-		}
+        function success(response) {
+            vm.cartoes = response.data;
+        }
 
-	}
+    }
 })();
