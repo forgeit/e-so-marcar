@@ -58,7 +58,7 @@ class MY_Model extends CI_Model {
         }
     }
 
-    function atualizar($id, $data, $idNome) {
+    function atualizar($id, $data, $idNome = 'id') {
         if (is_null($id) || !isset($data)) {
             return false;
         }

@@ -6,133 +6,21 @@ class Anuncio extends MY_Controller {
 
     public function atualizar() {
         $data = $this->security->xss_clean($this->input->raw_input_stream);
-        $pessoa = json_decode($data);
-        $pessoaModel = array();
+        $anuncio = json_decode($data);
+        $anuncioBanco = $this->AnuncioModel->buscarPorId($this->uri->segment(3));
 
-        $pessoaModel['id_pessoa'] = $this->uri->segment(3);
+        $this->validaDados($anuncio);
 
-        if (isset($pessoa->nome)) {
-            if (!trim($pessoa->nome)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "O campo nome é obrigatório.")));
-                die();
-            } else {
-                $pessoaModel['nome'] = $pessoa->nome;
-            }
-        } else {
-            print_r(json_encode($this->gerarRetorno(FALSE, "O campo nome é obrigatório.")));
-            die();
+        if ($anuncioBanco['id_cliente'] != $this->jwtController->id) {
+            $this->gerarErro("Você não pode alterar este registro.");
         }
 
-        $pessoaModel['email'] = null;
-
-        if (isset($pessoa->email)) {
-            if ($pessoa->email) {
-                $pessoaModel['email'] = $pessoa->email;
-
-                if ($this->AnuncioModel->buscarPorEmailId($pessoaModel['email'], $pessoaModel['id_pessoa'])) {
-                    print_r(json_encode($this->gerarRetorno(FALSE, "O e-mail informado já está registrado.")));
-                    die();
-                }
-            }
+        $anuncio->id = $anuncioBanco['id'];
+        if ($anuncioBanco['imagem'] != $anuncio->imagem) {
+            $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
         }
 
-        if (isset($pessoa->tipoPessoa)) {
-            if (!trim($pessoa->tipoPessoa)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo pessoa é obrigatório.")));
-                die();
-            } else {
-                $pessoaModel['id_tipo_pessoa'] = $pessoa->tipoPessoa;
-            }
-        } else {
-            print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo pessoa é obrigatório.")));
-            die();
-        }
-
-        if (isset($pessoa->fgTipoPessoa)) {
-            if (!trim($pessoa->fgTipoPessoa)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo é obrigatório.")));
-                die();
-            } else {
-                $pessoaModel['fg_tipo_pessoa'] = $pessoa->fgTipoPessoa === "F" ? true : false;
-            }
-        } else {
-            print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo pessoa é obrigatório.")));
-            die();
-        }
-
-        $pessoaModel['cpf_cnpj'] = null;
-
-        if ($pessoa->fgTipoPessoa === "J") {
-            if (isset($pessoa->cnpj)) {
-                if ($pessoa->cnpj) {
-                    $pessoaModel['cpf_cnpj'] = $pessoa->cnpj;
-                }
-            }
-        } else {
-            if (isset($pessoa->cpf)) {
-                if ($pessoa->cpf) {
-                    $pessoaModel['cpf_cnpj'] = $pessoa->cpf;
-                }
-            }
-        }
-
-        $pessoaModel['telefone'] = null;
-
-        if (isset($pessoa->telefone)) {
-            if ($pessoa->telefone) {
-                $pessoaModel['telefone'] = $pessoa->telefone;
-            }
-        }
-
-        $pessoaModel['numero'] = null;
-
-        if (isset($pessoa->numero)) {
-            if ($pessoa->numero) {
-                $pessoaModel['numero'] = $pessoa->numero;
-            }
-        }
-
-        $pessoaModel['celular'] = null;
-
-        if (isset($pessoa->celular)) {
-            if ($pessoa->celular) {
-                $pessoaModel['celular'] = $pessoa->celular;
-            }
-        }
-
-        $pessoaModel['observacao'] = null;
-
-        if (isset($pessoa->observacao)) {
-            if ($pessoa->observacao) {
-                $pessoaModel['observacao'] = $pessoa->observacao;
-            }
-        }
-
-        $pessoaModel['id_logradouro'] = null;
-
-        if (isset($pessoa->logradouro)) {
-            if ($pessoa->logradouro) {
-                $pessoaModel['id_logradouro'] = $pessoa->logradouro;
-            }
-        }
-
-        $pessoaModel['id_bairro'] = null;
-
-        if (isset($pessoa->bairro)) {
-            if ($pessoa->bairro) {
-                $pessoaModel['id_bairro'] = $pessoa->bairro;
-            }
-        }
-
-        $pessoaModel['id_cidade'] = null;
-
-        if (isset($pessoa->cidade)) {
-            if ($pessoa->cidade) {
-                $pessoaModel['id_cidade'] = $pessoa->cidade;
-            }
-        }
-
-        $response = array('exec' => $this->AnuncioModel->atualizar($pessoaModel['id_pessoa'], $pessoaModel, 'id_pessoa'));
+        $response = array('exec' => $this->AnuncioModel->atualizar($anuncio->id, $anuncio));
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao atualizar o registro." : "Erro ao atualizar o registro.");
 
@@ -156,19 +44,6 @@ class Anuncio extends MY_Controller {
         }
 
         print_r(json_encode(array('data' => array('datatables' => $lista ? $lista : array()))));
-    }
-
-    public function buscarCombo() {
-        $lista = $this->AnuncioModel->buscarCombo();
-        print_r(json_encode(array('data' => array('ArrayList' => $lista ? $lista : array()))));
-    }
-
-    public function buscarComboFiltro() {
-        $data = $this->security->xss_clean($this->input->raw_input_stream);
-        $filtro = json_decode($data);
-
-        $lista = $this->AnuncioModel->buscarComboFiltro($filtro->filtro);
-        print_r(json_encode(array('data' => array('ArrayList' => $lista ? $lista : array()))));
     }
 
     public function excluir() {
@@ -204,120 +79,47 @@ class Anuncio extends MY_Controller {
 
     public function salvar() {
         $data = $this->security->xss_clean($this->input->raw_input_stream);
-        $pessoa = json_decode($data);
-        $pessoaModel = array();
+        $anuncio = json_decode($data);
 
-        if (isset($pessoa->nome)) {
-            if (!trim($pessoa->nome)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "O campo nome é obrigatório.")));
-                die();
-            } else {
-                $pessoaModel['nome'] = $pessoa->nome;
-            }
-        } else {
-            print_r(json_encode($this->gerarRetorno(FALSE, "O campo nome é obrigatório.")));
-            die();
+        $this->validaDados($anuncio);
+
+        if (empty($anuncio->imagem)) {
+            $this->gerarErro("Imagem é obrigatório.");
         }
 
-        $pessoaModel['email'] = null;
+        $anuncio->id_cliente = $this->jwtController->id;
+        $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
 
-        if (isset($pessoa->email)) {
-            if ($pessoa->email) {
-                $pessoaModel['email'] = $pessoa->email;
-
-                if ($this->AnuncioModel->buscarPorEmail($pessoaModel['email'])) {
-                    print_r(json_encode($this->gerarRetorno(FALSE, "O e-mail informado já está registrado.")));
-                    die();
-                }
-            }
-        }
-
-        if (isset($pessoa->tipoPessoa)) {
-            if (!trim($pessoa->tipoPessoa)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo pessoa é obrigatório.")));
-                die();
-            } else {
-                $pessoaModel['id_tipo_pessoa'] = $pessoa->tipoPessoa;
-            }
-        } else {
-            print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo pessoa é obrigatório.")));
-            die();
-        }
-
-        if (isset($pessoa->fgTipoPessoa)) {
-            if (!trim($pessoa->fgTipoPessoa)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo é obrigatório.")));
-                die();
-            } else {
-                $pessoaModel['fg_tipo_pessoa'] = $pessoa->fgTipoPessoa === "F" ? true : false;
-            }
-        } else {
-            print_r(json_encode($this->gerarRetorno(FALSE, "O campo tipo pessoa é obrigatório.")));
-            die();
-        }
-
-        if ($pessoa->fgTipoPessoa === "J") {
-            if (isset($pessoa->cnpj)) {
-                if ($pessoa->cnpj) {
-                    $pessoaModel['cpf_cnpj'] = $pessoa->cnpj;
-                }
-            }
-        } else {
-            if (isset($pessoa->cpf)) {
-                if ($pessoa->cpf) {
-                    $pessoaModel['cpf_cnpj'] = $pessoa->cpf;
-                }
-            }
-        }
-
-        if (isset($pessoa->telefone)) {
-            if ($pessoa->telefone) {
-                $pessoaModel['telefone'] = $pessoa->telefone;
-            }
-        }
-
-
-        if (isset($pessoa->numero)) {
-            if ($pessoa->numero) {
-                $pessoaModel['numero'] = $pessoa->numero;
-            }
-        }
-
-        if (isset($pessoa->celular)) {
-            if ($pessoa->celular) {
-                $pessoaModel['celular'] = $pessoa->celular;
-            }
-        }
-
-        if (isset($pessoa->observacao)) {
-            if ($pessoa->observacao) {
-                $pessoaModel['observacao'] = $pessoa->observacao;
-            }
-        }
-
-        if (isset($pessoa->logradouro)) {
-            if ($pessoa->logradouro) {
-                $pessoaModel['id_logradouro'] = $pessoa->logradouro;
-            }
-        }
-
-        if (isset($pessoa->bairro)) {
-            if ($pessoa->bairro) {
-                $pessoaModel['id_bairro'] = $pessoa->bairro;
-            }
-        }
-
-        if (isset($pessoa->cidade)) {
-            if ($pessoa->cidade) {
-                $pessoaModel['id_cidade'] = $pessoa->cidade;
-            }
-        }
-
-        $response = array('exec' => $this->AnuncioModel->inserir($pessoaModel));
+        $response = array('exec' => $this->AnuncioModel->inserir($anuncio));
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
-
         print_r(json_encode($array));
+    }
+
+    private function validaDados($anuncio) {
+        if (empty($anuncio->id_tipo_anuncio)) {
+            $this->gerarErro("Tipo Anúncio é obrigatório.");
+        }
+
+        if (empty($anuncio->titulo)) {
+            $this->gerarErro("Título é obrigatório.");
+        }
+
+        if (empty($anuncio->data_inicial)) {
+            $this->gerarErro("Data Inicial é obrigatório.");
+        }
+
+        if (empty($anuncio->data_final)) {
+            $this->gerarErro("Data Final é obrigatório.");
+        }
+
+        if (!isset($anuncio->valor) && !$anuncio->valor) {
+            $this->gerarErro("Valor é obrigatório.");
+        }
+
+        if (!isset($anuncio->ativo) && !$anuncio->ativo) {
+            $this->gerarErro("Flag Ativo é obrigatório.");
+        }
     }
 
 }

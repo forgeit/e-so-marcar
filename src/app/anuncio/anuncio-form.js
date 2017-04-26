@@ -43,8 +43,8 @@
 
         function atualizar(formulario) {
             vm.anuncio.id_tipo_anuncio = vm.tipoAnuncio.id;
-            
-            dataservice.atualizar(vm.anuncio.id_anuncio, vm.anuncio).then(success).catch(error);
+
+            dataservice.atualizar(vm.anuncio.id, vm.anuncio).then(success).catch(error);
 
             function error(response) {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao atualizar a anuncio.');

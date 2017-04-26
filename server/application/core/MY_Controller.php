@@ -66,6 +66,11 @@ class MY_Controller extends CI_Controller {
         return $array;
     }
 
+    protected function gerarErro($mensagem) {
+        print_r(json_encode($this->gerarRetorno(FALSE, $mensagem)));
+        die();
+    }
+
     protected function startsWith($haystack, $needle) {
         $length = strlen($needle);
         return (substr($haystack, 0, $length) === $needle);
@@ -80,6 +85,11 @@ class MY_Controller extends CI_Controller {
             die();
         }
 
+        if (!file_exists($diretorio) && !mkdir($diretorio)) {
+            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho raiz.")));
+            die();
+        }
+
         $novoDiretorio = $diretorio . date('Ymd');
         if (!file_exists($novoDiretorio) && !mkdir($novoDiretorio)) {
             print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho.")));
@@ -87,7 +97,7 @@ class MY_Controller extends CI_Controller {
         }
 
         if (!is_dir($novoDiretorio)) {
-            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho.")));
+            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar diretório.")));
             die();
         }
 

@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group" ng-class="formulario.tipoAnuncio.$dirty && formulario.tipoAnuncio.$invalid ? 'has-error' : ''">
-                                <label for="tipoAnuncio">Tipo da Anúncio: *</label>
+                                <label for="tipoAnuncio">Tipo Anúncio: *</label>
                                 <select class="form-control" id="tipoAnuncio" name="tipoAnuncio" ng-options="tipoAnuncio.nome for tipoAnuncio in vm.tipoAnuncioList track by tipoAnuncio.id" ng-model="vm.tipoAnuncio" required>
                                     <option value="">Selecione</option> 	
                                 </select>

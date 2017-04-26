@@ -8,7 +8,7 @@ class AnuncioModel extends MY_Model {
     }
 
     function buscarTodosNativo($idCliente, $id = null) {
-        $sql = "SELECT p.id, p.titulo, p.data_inicial, p.data_final, t.nome as tipo
+        $sql = "SELECT p.id, p.titulo, p.data_inicial, p.data_final, CASE WHEN p.ativo THEN 'Ativo' ELSE 'Desativo' END as ativo, t.nome as tipo
                 FROM anuncio p
 		LEFT JOIN tipo_anuncio t ON t.id = p.id_tipo_anuncio 
                 WHERE p.id_cliente = ?";

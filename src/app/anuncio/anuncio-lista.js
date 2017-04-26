@@ -57,12 +57,13 @@
                     ['data_inicial', 'Data Inicial'],
                     ['data_final', 'Data Final'],
                     ['tipo', 'Tipo'],
+                    ['ativo', 'Situação'],
                     ['id', 'Ações', tabelaUtils.criarBotaoPadrao]
                 ]);
             }
 
             function criarOpcoesTabela() {
-                vm.tabela.opcoes = tabelaUtils.criarTabela(ajax, vm, remover, 'data', carregarObjeto);
+                vm.tabela.opcoes = tabelaUtils.criarTabela(ajax, vm, remover, 'data', carregarObjeto, [1, 'desc']);
                 criarColunasTabela();
 
                 function ajax(data, callback, settings) {
