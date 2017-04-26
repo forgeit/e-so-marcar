@@ -55,7 +55,7 @@
                         h1: 'Cadastro de Anúncio',
                         breadcrumbs: [
                             {
-                                nome: 'Anúncio',
+                                nome: 'Anúncios',
                                 link: 'anuncio'
                             },
                             {

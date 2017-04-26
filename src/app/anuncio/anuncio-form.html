@@ -31,14 +31,24 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="data_inicial">Data Inicial: *</label>
-                                <input id="data_inicial" type="text" name="data_inicial" class="form-control" ng-model="vm.anuncio.data_inicial" placeholder="Informe a data inicial" required>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input id="data_inicial" type="text" name="data_inicial" class="form-control" ng-model="vm.anuncio.data_inicial" placeholder="Informe a data inicial" required>
+                                </div>
                                 <span class="help-block" style="color: #dd4b39;" ng-show="formulario.data_inicial.$dirty && formulario.data_inicial.$invalid">O campo é obrigatório</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="data_final">Data Final: *</label>
-                                <input id="data_final" type="text" name="data_final" class="form-control" ng-model="vm.anuncio.data_final" placeholder="Informe a data final" required>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input id="data_final" type="text" name="data_final" class="form-control" ng-model="vm.anuncio.data_final" placeholder="Informe a data final" required>
+                                </div>
                                 <span class="help-block" style="color: #dd4b39;" ng-show="formulario.data_final.$dirty && formulario.data_final.$invalid">O campo é obrigatório</span>
                             </div>
                         </div>

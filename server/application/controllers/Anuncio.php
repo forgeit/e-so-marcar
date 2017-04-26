@@ -19,6 +19,8 @@ class Anuncio extends MY_Controller {
         if ($anuncioBanco['imagem'] != $anuncio->imagem) {
             $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
         }
+        $anuncio->data_inicial = $this->toDate($anuncio->data_inicial);
+        $anuncio->data_final = $this->toDate($anuncio->data_final);
 
         $response = array('exec' => $this->AnuncioModel->atualizar($anuncio->id, $anuncio));
 
@@ -30,7 +32,7 @@ class Anuncio extends MY_Controller {
     public function buscar() {
 
         $array = array('data' =>
-            array('dto' => $this->AnuncioModel->buscarPorId($this->uri->segment(2))));
+            array('dto' => $this->AnuncioModel->buscarPorIdNativo($this->uri->segment(2))));
 
         print_r(json_encode($array));
     }
@@ -89,6 +91,8 @@ class Anuncio extends MY_Controller {
 
         $anuncio->id_cliente = $this->jwtController->id;
         $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
+        $anuncio->data_inicial = $this->toDate($anuncio->data_inicial);
+        $anuncio->data_final = $this->toDate($anuncio->data_final);
 
         $response = array('exec' => $this->AnuncioModel->inserir($anuncio));
 

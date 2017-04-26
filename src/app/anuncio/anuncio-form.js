@@ -8,12 +8,11 @@
     AnuncioForm.$inject = [
         'controllerUtils',
         'anuncioRest',
-        'datepicker',
         'FileUploader',
         '$scope',
         'configuracaoREST'];
 
-    function AnuncioForm(controllerUtils, dataservice, datepicker, FileUploader, $scope, configuracaoREST) {
+    function AnuncioForm(controllerUtils, dataservice, FileUploader, $scope, configuracaoREST) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -115,8 +114,8 @@
         }
 
         function iniciar() {
-            $('#data_inicial').datepicker(datepicker);
-            $('#data_final').datepicker(datepicker);
+            $('#data_inicial').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
+            $('#data_final').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
 
             var promises = [];
 

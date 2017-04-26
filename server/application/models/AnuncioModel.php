@@ -8,7 +8,13 @@ class AnuncioModel extends MY_Model {
     }
 
     function buscarTodosNativo($idCliente, $id = null) {
-        $sql = "SELECT p.id, p.titulo, p.data_inicial, p.data_final, CASE WHEN p.ativo THEN 'Ativo' ELSE 'Desativo' END as ativo, t.nome as tipo
+        $sql = "SELECT 
+                    p.id, 
+                    p.titulo, 
+                    DATE_FORMAT(p.data_inicial,'%d/%m/%Y') AS data_inicial,
+                    DATE_FORMAT(p.data_final,'%d/%m/%Y') AS data_final,
+                    CASE WHEN p.ativo THEN 'Ativo' ELSE 'Desativo' END as ativo, 
+                    t.nome as tipo
                 FROM anuncio p
 		LEFT JOIN tipo_anuncio t ON t.id = p.id_tipo_anuncio 
                 WHERE p.id_cliente = ?";
@@ -30,40 +36,18 @@ class AnuncioModel extends MY_Model {
         }
     }
 
-    function buscarCombo() {
-        $sql = "SELECT id_pessoa, nome AS nome FROM pessoa ORDER BY 2";
-
-        $query = $this->db->query($sql);
-
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
-        } else {
-            return null;
-        }
-    }
-
-    function buscarComboFiltro($filtro) {
-        $sql = "SELECT id_pessoa, concat(nome, ' <', email, '>') AS nome FROM pessoa WHERE nome LIKE ? ORDER BY 2";
-
-        $query = $this->db->query($sql, array('%' . $filtro . '%'));
-
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
-        } else {
-            return null;
-        }
-    }
-
-    function buscarPorEmail($email) {
+    function buscarPorIdNativo($id) {
         $sql = "SELECT 
-				nome
-				FROM pessoa p
-				WHERE email = ?";
+                    p.*, 
+                    DATE_FORMAT(p.data_inicial,'%d/%m/%Y') AS data_inicial,
+                    DATE_FORMAT(p.data_final,'%d/%m/%Y') AS data_final
+                FROM anuncio p
+                WHERE p.id = ?";
 
-        $query = $this->db->query($sql, array($email));
+        $query = $this->db->query($sql, array($id));
 
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            return $query->row_array();
         } else {
             return null;
         }

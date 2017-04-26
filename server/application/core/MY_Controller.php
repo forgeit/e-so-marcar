@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller {
 
         //$seguro = false;
 
-        if ($seguro) {            
+        if ($seguro) {
             if ($this->input->get_request_header('Authorization')) {
                 $code = str_replace("Bearer ", "", $this->input->get_request_header('Authorization'));
                 $this->load->library("JWT");
@@ -114,6 +114,11 @@ class MY_Controller extends CI_Controller {
         }
 
         return $this->ArquivoModel->inserirRetornaId($novo);
+    }
+
+    protected function toDate($dateString) {
+        $data = explode("/", $dateString);
+        return $data[2] . '-' . $data[1] . '-' . $data[0];
     }
 
 }
