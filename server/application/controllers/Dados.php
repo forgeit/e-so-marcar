@@ -48,13 +48,13 @@ class Dados extends MY_Controller {
         }
 
         $tel = new ValidaTelefone($dados->tel);
-        if (!$tel->valida()) {
+        if (!empty($dados->tel) && !$tel->valida()) {
             print_r(json_encode($this->gerarRetorno(FALSE, "Telefone Residêncial é inválido.")));
             die();
         }
 
-        $cel = new ValidaTelefone($dados->tel);
-        if (!$cel->valida()) {
+        $cel = new ValidaTelefone($dados->cel);
+        if (!empty($dados->cel) && !$cel->valida()) {
             print_r(json_encode($this->gerarRetorno(FALSE, "Telefone Celular é inválido.")));
             die();
         }

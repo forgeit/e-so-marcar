@@ -47,8 +47,6 @@
 
         function salvar() {
 
-            console.log(vm.uploader.queue);
-
             dataservice.salvar(vm.dados).then(success).catch(error);
 
             function error(response) {

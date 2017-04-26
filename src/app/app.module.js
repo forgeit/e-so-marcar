@@ -8,6 +8,7 @@
         'app.layout',
         'app.login',
         'app.dados',
+        'app.anuncio',
         'angularFileUpload']);
 
 })();

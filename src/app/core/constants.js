@@ -5,7 +5,9 @@
 
     var configuracaoREST = {
         url: 'http://localhost/somarcar/server/',
-        dados: 'dados/'
+        dados: 'dados/',
+        anuncio: 'anuncio/',
+        quadra: 'anuncio/'
     };
 
     var datepicker = {
@@ -17,7 +19,7 @@
         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
         nextText: 'Próximo',
         prevText: 'Anterior',
-        maxDate: "-0D"
+        minDate: "-0D"
     };
 
     var datepickerSemLimite = {

@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form novalidate name="formulario" ng-submit="vm.editar ? vm.atualizar(formulario) : vm.salvar(formulario)">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="formulario.tipoAnuncio.$dirty && formulario.tipoAnuncio.$invalid ? 'has-error' : ''">
+                                <label for="tipoAnuncio">Tipo da Anúncio: *</label>
+                                <select class="form-control" id="tipoAnuncio" name="tipoAnuncio" ng-options="tipoAnuncio.nome for tipoAnuncio in vm.tipoAnuncioList track by tipoAnuncio.id" ng-model="vm.anuncio.tipoAnuncio" required>
+                                    <option value="">Selecione</option> 	
+                                </select>
+                                <span class="help-block" ng-show="formulario.tipoAnuncio.$dirty && formulario.tipoAnuncio.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="formulario.titulo.$dirty && formulario.titulo.$invalid ? 'has-error' : ''">
+                                <label for="titulo">Título: *</label>
+                                <input id="titulo" type="text" name="titulo" class="form-control" placeholder="Informe o título da anúncio" ng-model="vm.anuncio.titulo" required>
+                                <span class="help-block" ng-show="formulario.titulo.$dirty && formulario.titulo.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="url_direcionamento">URL Direcionamento:</label>
+                                <input id="url_direcionamento" type="text" name="url_direcionamento" class="form-control" ng-model="vm.dados.url_direcionamento" placeholder="URL de direcionamento (ex.: http://facebook.com/forgeit)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="data_inicial">Data Inicial: *</label>
+                                <input id="data_inicial" type="text" name="data_inicial" class="form-control" ng-model="vm.anuncio.data_inicial" placeholder="Informe a data inicial" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="data_final">Data Final: *</label>
+                                <input id="data_final" type="text" name="data_final" class="form-control" ng-model="vm.anuncio.data_final" placeholder="Informe a data final" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="formulario.valor.$dirty && formulario.valor.$invalid ? 'has-error' : ''">
+                                <label for="valor">Valor: *</label>
+                                <input id="valor" type="text" name="valor" class="form-control" placeholder="Informe o valor da anúncio" ng-model="vm.anuncio.valor" required>
+                                <span class="help-block" ng-show="formulario.valor.$dirty && formulario.valor.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="data_inicial">Flag Ativo: *</label>
+                                <input id="data_inicial" type="text" name="data_inicial" class="form-control" ng-model="vm.anuncio.data_inicial" placeholder="Informe a data inicial" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="imagem">Imagem: </label>
+                                <input id="imagem" type="file" nv-file-select="" uploader="vm.uploader" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar">Atualizar</button>
+                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid">Salvar</button>
+                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
