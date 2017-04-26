@@ -17,12 +17,12 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img ng-src="{{ usuarioLogado.imagem }}" class="user-image" alt="User Image">
+                        <img ng-show="usuarioLogado.imagem" ng-src="server/arquivo/buscar/{{ usuarioLogado.imagem }}" class="user-image" alt="User Image">
                         <span class="hidden-xs" style="text-transform: capitalize">{{ usuarioLogado.nome }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img ng-src="{{ usuarioLogado.imagem }}" class="img-circle" alt="Imagem do Usuário">
+                            <img ng-show="usuarioLogado.imagem" ng-src="server/arquivo/buscar/{{ usuarioLogado.imagem }}" class="img-circle" alt="Imagem do Usuário">
                             <p style="text-transform: capitalize">{{ usuarioLogado.nome }}</p>
                         </li>
                         <li class="user-footer">

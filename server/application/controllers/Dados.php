@@ -85,38 +85,7 @@ class Dados extends MY_Controller {
         }
 
         if (isset($dados->logo)) {
-            $arquivo = $dados->logo;
-            $temporario = 'application/views/upload/arquivos/tmp/';
-            $diretorio = 'application/views/upload/arquivos/logo/';
-
-            if (!file_exists($temporario . $arquivo)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao efetuar o upload.")));
-                die();
-            }
-            
-            $novoDiretorio = $diretorio . date('Ymd');
-            if (!file_exists($novoDiretorio)) {
-                if (!mkdir($novoDiretorio)) {
-                    print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho.")));
-                    die();
-                }
-            }
-
-            if (!is_dir($novoDiretorio)) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho.")));
-                die();
-            }
-
-            $novo = array(
-                'arquivo' => $novoDiretorio . "/" . date('YmdHis-') . rand(1001, 9999) . "-" . $arquivo,
-                'nome' => $arquivo);
-
-            if (!copy($temporario . $arquivo, $novo['arquivo'])) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao efetuar o upload.")));
-                die();
-            }
-
-            $dados->logo = $novo['arquivo'];
+            $dados->logo = $this->uploadArquivo($dados->logo, 'logo');
         }
 
         if ($this->DadosModel->atualizar($dados->id, $dados, 'id')) {

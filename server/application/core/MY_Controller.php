@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
 
+    private $temporario = 'application/views/upload/arquivos/tmp/';
     protected $jwtController;
 
     public function __construct() {
@@ -11,7 +12,7 @@ class MY_Controller extends CI_Controller {
 
         $seguro = true;
 
-        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'upload' || (0 === strrpos($this->uri->uri_string, 'ver-arquivo/demanda'))) {
+        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'upload' || (0 === strrpos($this->uri->uri_string, 'arquivo/buscar'))) {
             $seguro = false;
         }
 
@@ -68,6 +69,38 @@ class MY_Controller extends CI_Controller {
     protected function startsWith($haystack, $needle) {
         $length = strlen($needle);
         return (substr($haystack, 0, $length) === $needle);
+    }
+
+    protected function uploadArquivo($arquivo, $pasta = 'sempasta') {
+
+        $diretorio = 'application/views/upload/arquivos/' . $pasta . '/';
+
+        if (!file_exists($this->temporario . $arquivo)) {
+            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao efetuar o upload.")));
+            die();
+        }
+
+        $novoDiretorio = $diretorio . date('Ymd');
+        if (!file_exists($novoDiretorio) && !mkdir($novoDiretorio)) {
+            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho.")));
+            die();
+        }
+
+        if (!is_dir($novoDiretorio)) {
+            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao criar o caminho.")));
+            die();
+        }
+
+        $novo = array(
+            'caminho' => $novoDiretorio . "/" . date('YmdHis-') . rand(1001, 9999) . "-" . $arquivo,
+            'nome' => $arquivo);
+
+        if (!copy($this->temporario . $arquivo, $novo['caminho'])) {
+            print_r(json_encode($this->gerarRetorno(FALSE, "Ocorreu um erro ao copiar arquivo.")));
+            die();
+        }
+
+        return $this->ArquivoModel->inserirRetornaId($novo);
     }
 
 }

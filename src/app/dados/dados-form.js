@@ -52,7 +52,7 @@
             dataservice.salvar(vm.dados).then(success).catch(error);
 
             function error(response) {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao salvar od dados.');
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao salvar os dados.');
             }
 
             function success(response) {
