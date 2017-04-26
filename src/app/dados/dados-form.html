@@ -33,7 +33,7 @@
                             <div class="form-group" ng-class="formulario.cpf_cnpj.$dirty && formulario.cpf_cnpj.$invalid ? 'has-error' : ''">
                                 <div class="form-group">
                                     <label for="cpf_cnpj">CPF/CNPJ: *</label>
-                                    <input id="cpf_cnpj" type="text" name="cpf_cnpj" class="form-control" ng-model="vm.dados.cpf_cnpj" required>
+                                    <input id="cpf_cnpj" type="text" name="cpf_cnpj" class="form-control" ng-model="vm.dados.cpf_cnpj" required ui-br-cpfcnpj-mask>
                                 </div>
                             </div>
                         </div>
@@ -63,13 +63,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="latitude">Latitude:</label>
-                                <input id="latitude" type="text" name="latitude" class="form-control" ng-model="vm.dados.latitude" placeholder="Informe a latitude">
+                                <input id="latitude" type="text" name="latitude" class="form-control" ng-model="vm.dados.latitude" placeholder="Informe a latitude" ui-number-mask="5" ui-negative-number>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="longitude">Longitude:</label>
-                                <input id="longitude" type="text" name="longitude" class="form-control" ng-model="vm.dados.longitude" placeholder="Informe a longitude">
+                                <input id="longitude" type="text" name="longitude" class="form-control" ng-model="vm.dados.longitude" placeholder="Informe a longitude" ui-number-mask="5" ui-negative-number>
                             </div>
                         </div>
                     </div>

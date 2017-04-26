@@ -4,11 +4,11 @@ class AnuncioModel extends MY_Model {
 
     function __construct() {
         parent::__construct();
-        $this->table = 'pessoa';
+        $this->table = 'anuncio';
     }
 
     function buscarTodosNativo($idCliente, $id = null) {
-        $sql = "SELECT p.titulo, p.data_inicial, p.data_final, t.nome as tipo
+        $sql = "SELECT p.id, p.titulo, p.data_inicial, p.data_final, t.nome as tipo
                 FROM anuncio p
 		LEFT JOIN tipo_anuncio t ON t.id = p.id_tipo_anuncio 
                 WHERE p.id_cliente = ?";

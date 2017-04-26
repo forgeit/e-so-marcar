@@ -142,7 +142,7 @@ class Anuncio extends MY_Controller {
     public function buscar() {
 
         $array = array('data' =>
-            array('PessoaDto' => $this->AnuncioModel->buscarPorId($this->uri->segment(2), 'id_pessoa')));
+            array('dto' => $this->AnuncioModel->buscarPorId($this->uri->segment(2))));
 
         print_r(json_encode($array));
     }

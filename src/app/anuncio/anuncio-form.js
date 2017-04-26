@@ -18,7 +18,7 @@
         var vm = this;
 
         vm.atualizar = atualizar;
-        vm.anuncio = {};
+        vm.anuncio = {valor: 0, ativo: false};
         vm.editar = false;
         vm.filtrar = null;
         vm.tipoAnuncioList = [];
@@ -42,6 +42,8 @@
         iniciar();
 
         function atualizar(formulario) {
+            vm.anuncio.id_tipo_anuncio = vm.tipoAnuncio.id;
+            
             dataservice.atualizar(vm.anuncio.id_anuncio, vm.anuncio).then(success).catch(error);
 
             function error(response) {
@@ -61,41 +63,28 @@
             return dataservice.buscar(data).then(success).catch(error);
 
             function error(response) {
-                console.log(response);
                 return controllerUtils.promise.criar(false, {});
             }
 
             function success(response) {
-                var departamento = controllerUtils.getData(response, 'AnuncioDto');
-                var retorno = departamento;
+                vm.anuncio = controllerUtils.getData(response, 'dto');
+                vm.anuncio.ativo = vm.anuncio.ativo === '1';
 
-
-                $scope.$watch('vm.cidadeList', function () {
-                    if (vm.cidadeList.length > 0) {
-                        angular.forEach(vm.cidadeList, function (value, index) {
-                            if (retorno.cidade) {
-                                if (value.id_cidade === retorno.cidade.id_cidade) {
-                                    vm.carregarBairroList(vm.anuncio.cidade.id_cidade);
+                if (vm.anuncio.id_tipo_anuncio) {
+                    $scope.$watch('vm.tipoAnuncioList', function () {
+                        if (vm.tipoAnuncioList.length > 0) {
+                            angular.forEach(vm.tipoAnuncioList, function (value, index) {
+                                if (value.id === vm.anuncio.id_tipo_anuncio) {
+                                    vm.tipoAnuncio = value;
                                 }
-                            }
-                        });
-                    }
-                });
-
-                $scope.$watch('vm.bairroList', function () {
-                    if (vm.bairroList.length > 0) {
-                        angular.forEach(vm.bairroList, function (value, index) {
-                            if (retorno.bairro) {
-                                if (value.id_bairro === retorno.bairro.id_bairro) {
-                                    vm.carregarLogradouroList(vm.anuncio.bairro.id_bairro);
-                                }
-                            }
-                        });
-                    }
-                });
+                            });
+                        }
+                    });
+                }
 
 
-                return controllerUtils.promise.criar(true, retorno);
+
+                return controllerUtils.promise.criar(true, response);
             }
         }
 
@@ -123,14 +112,6 @@
             } else {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os tipos.');
             }
-
-            if (editarObjeto()) {
-                if (values[2].exec) {
-                    vm.anuncio = values[2].objeto;
-                } else {
-                    controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os dados da anuncio.');
-                }
-            }
         }
 
         function iniciar() {
@@ -146,12 +127,13 @@
             }
 
             return controllerUtils.ready(promises).then(function (values) {
-                vm.anuncio.fgTipoAnuncio = "F";
                 inicializarObjetos(values);
             });
         }
 
         function salvar(formulario) {
+            vm.anuncio.id_tipo_anuncio = vm.tipoAnuncio.id;
+
             if (formulario.$valid) {
                 dataservice.salvar(vm.anuncio).then(success).catch(error);
             } else {
@@ -163,10 +145,9 @@
             }
 
             function success(response) {
-                console.log(response);
                 controllerUtils.feedMessage(response);
 
-                if (response.data.status == 'true') {
+                if (response.data.status === 'true') {
                     voltar();
                 }
             }

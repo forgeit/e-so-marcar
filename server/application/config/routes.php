@@ -64,6 +64,7 @@ $route['pessoa/atualizar/(:num)'] = 'pessoa/atualizar/$1';
 
 $route['tipo-anuncio'] = 'anuncioTipo/buscarTodos';
 $route['anuncio'] = 'anuncio/buscarTodos';
+$route['anuncio/(:num)'] = 'anuncio/buscar/$1';
 
 $route['upload'] = 'upload/processar';
 $route['login/entrar'] = 'login/entrar';

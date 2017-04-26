@@ -5,7 +5,9 @@
     angular.module('app.core', [
         'ngRoute',
         'ngCpfCnpj',
+        'ui.toggle',
         'ui.mask',
+        'ui.utils.masks',
         'datatables',
         'datatables.bootstrap',
         'core.utils',

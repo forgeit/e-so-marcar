@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('novo-anuncio/' + aData.id_anuncio);
+                controllerUtils.$location.path('novo-anuncio/' + aData.id);
                 $scope.$apply();
             }
 
@@ -57,7 +57,7 @@
                     ['data_inicial', 'Data Inicial'],
                     ['data_final', 'Data Final'],
                     ['tipo', 'Tipo'],
-                    ['id_anuncio', 'Ações', tabelaUtils.criarBotaoPadrao]
+                    ['id', 'Ações', tabelaUtils.criarBotaoPadrao]
                 ]);
             }
 
