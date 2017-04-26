@@ -4,7 +4,7 @@
     var core = angular.module('app.core');
 
     var configuracaoREST = {
-        url: 'http://localhost:3334/server/',
+        url: window.location.origin + '/server/',
         dados: 'dados/',
         anuncio: 'anuncio/',
         quadra: 'anuncio/'
