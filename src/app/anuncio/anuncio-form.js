@@ -9,9 +9,11 @@
         'controllerUtils',
         'anuncioRest',
         'datepicker',
-        '$scope'];
+        'FileUploader',
+        '$scope',
+        'configuracaoREST'];
 
-    function AnuncioForm(controllerUtils, dataservice, datepicker, $scope) {
+    function AnuncioForm(controllerUtils, dataservice, datepicker, FileUploader, $scope, configuracaoREST) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -22,7 +24,20 @@
         vm.tipoAnuncioList = [];
         vm.salvar = salvar;
         vm.voltar = voltar;
-        vm.logradouro = {};
+        vm.uploader = new FileUploader({url: configuracaoREST.url + 'upload'});
+
+        vm.uploader.onAfterAddingFile = function (fileItem) {
+            vm.uploader.uploadAll();
+        };
+
+        vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            if (response.exec) {
+                controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
+            } else {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
+            }
+            vm.anuncio.imagem = response.nome;
+        };
 
         iniciar();
 
@@ -121,7 +136,7 @@
         function iniciar() {
             $('#data_inicial').datepicker(datepicker);
             $('#data_final').datepicker(datepicker);
-            
+
             var promises = [];
 
             promises.push(carregarTipoAnuncioList());

@@ -2,30 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="FORGE">
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/core/MY_Controller.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio.module.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Dados.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/dados/dados-form.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/config/autoload.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/layout/menu-topo.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-lista.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio.route.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/core.module.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Anuncio.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/app.module.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/dados/dados.route.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio.rest.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-lista.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/core/MY_Model.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/AnuncioTipo.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/constants.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/config/routes.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/models/AnuncioModel.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio.dto.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-form.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-form.html</file>
-        </group>
+        <group name="FORGE"/>
     </open-files>
 </project-private>
