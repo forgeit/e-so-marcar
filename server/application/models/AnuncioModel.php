@@ -65,12 +65,25 @@ class AnuncioModel extends MY_Model {
                     (data_final >= ? AND data_final <= ?)
                 )";
 
-        $query = $this->db->query($sql, array($idCliente,
-            $anuncio->id_tipo_anuncio,
-            $anuncio->data_inicial,
-            $anuncio->data_final,
-            $anuncio->data_inicial,
-            $anuncio->data_final));
+        if (isset($anuncio->id)) {
+            $sql .= " AND id <> ?";
+            $query = $this->db->query($sql, array($idCliente,
+                $anuncio->id_tipo_anuncio,
+                $anuncio->data_inicial,
+                $anuncio->data_final,
+                $anuncio->data_inicial,
+                $anuncio->data_final,
+                $anuncio->id
+            ));
+        } else {
+            $query = $this->db->query($sql, array($idCliente,
+                $anuncio->id_tipo_anuncio,
+                $anuncio->data_inicial,
+                $anuncio->data_final,
+                $anuncio->data_inicial,
+                $anuncio->data_final
+            ));
+        }
 
         if ($query->num_rows() > 0) {
             return $query->row_array()['retorno'];

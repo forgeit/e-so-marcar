@@ -116,6 +116,13 @@ class MY_Controller extends CI_Controller {
         return $this->ArquivoModel->inserirRetornaId($novo);
     }
 
+    protected function deletarArquivo($idArquivo) {
+        $arquivo = $this->ArquivoModel->buscarPorId($idArquivo);
+        if (!unlink($arquivo['caminho'])) {
+            
+        }
+    }
+
     protected function toDate($dateString) {
         $data = explode("/", $dateString);
         return $data[2] . '-' . $data[1] . '-' . $data[0];

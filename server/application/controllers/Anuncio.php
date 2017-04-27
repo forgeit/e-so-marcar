@@ -9,13 +9,13 @@ class Anuncio extends MY_Controller {
         $anuncio = json_decode($data);
         $anuncioBanco = $this->AnuncioModel->buscarPorId($this->uri->segment(3));
 
+        $anuncio->id = $anuncioBanco['id'];
         $this->validaDados($anuncio);
 
         if ($anuncioBanco['id_cliente'] != $this->jwtController->id) {
             $this->gerarErro("Você não pode alterar este registro.");
         }
 
-        $anuncio->id = $anuncioBanco['id'];
         if ($anuncioBanco['imagem'] != $anuncio->imagem) {
             $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
         }
@@ -54,7 +54,16 @@ class Anuncio extends MY_Controller {
             $this->gerarErro("Você não pode alterar este registro.");
         }
 
+        if (date('Y-m-d') >= $anuncioBanco['data_inicial'] && date('Y-m-d') <= $anuncioBanco['data_final']) {
+            $this->gerarErro("Anúncio em período exibição não pode ser removido.");
+        }
+
+        if ($anuncioBanco['ativo']) {
+            $this->gerarErro("Somente registros desativos podem ser removidos.");
+        }
+
         $response = $this->AnuncioModel->excluir($anuncioBanco['id']);
+        $this->deletarArquivo($anuncioBanco['imagem']);
 
         $message = array();
         $message[] = $response == TRUE ?
