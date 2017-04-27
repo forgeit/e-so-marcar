@@ -17,19 +17,19 @@
         var vm = this;
 
         vm.atualizar = atualizar;
-        vm.anuncio = {valor: 0, ativo: false};
+        vm.anuncio = {valor: 0, ativo: true};
+        vm.preview = 0;
         vm.editar = false;
         vm.filtrar = null;
         vm.tipoAnuncioList = [];
         vm.salvar = salvar;
         vm.voltar = voltar;
-        vm.uploader = new FileUploader({url: configuracaoREST.url + 'upload'});
+        vm.uploader = new FileUploader({
+            url: configuracaoREST.url + 'upload',
+            queueLimit: 1
+        });
 
-        vm.uploader.onAfterAddingFile = function (fileItem) {
-            vm.uploader.uploadAll();
-        };
-
-        vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        vm.uploader.onCompleteItem = function (fileItem, response, status, headers) {
             if (response.exec) {
                 controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
             } else {
@@ -68,6 +68,7 @@
             function success(response) {
                 vm.anuncio = controllerUtils.getData(response, 'dto');
                 vm.anuncio.ativo = vm.anuncio.ativo === '1';
+                vm.preview = vm.anuncio.imagem;
 
                 if (vm.anuncio.id_tipo_anuncio) {
                     $scope.$watch('vm.tipoAnuncioList', function () {
@@ -114,7 +115,13 @@
         }
 
         function iniciar() {
-            $('#data_inicial').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
+            $('#data_inicial').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR', startDate: "dateToday"})
+                    .on('changeDate', function (e) {
+                        var dt = new Date(e.date);
+                        dt.setDate(dt.getDate() + 30);
+                        $('#data_final').datepicker('update', dt);
+                        $('#data_final').datepicker('setStartDate', e.date);
+                    });
             $('#data_final').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
 
             var promises = [];
@@ -132,6 +139,9 @@
 
         function salvar(formulario) {
             vm.anuncio.id_tipo_anuncio = vm.tipoAnuncio.id;
+            if (vm.uploader.queue.length === 0) {
+                vm.anuncio.imagem = '';
+            }
 
             if (formulario.$valid) {
                 dataservice.salvar(vm.anuncio).then(success).catch(error);

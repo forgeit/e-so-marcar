@@ -3,7 +3,7 @@
 }
 
 .skin-blue .main-header .logo {
-	background-color: #3c8dbc;	
+    background-color: #3c8dbc;	
 }
 
 
@@ -87,4 +87,15 @@ table tr td:last-child {
     border-radius: 50%; 
     padding-top: 11px; 
     font-weight: bold;
+}
+
+canvas {
+    background-color: #f3f3f3;
+    -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    box-shadow: 3px 3px 3px 0 #e3e3e3;
+    border: 1px solid #c3c3c3;
+    height: 100px;
+    width: 100px;
+    margin: 6px 0 0 0;
 }

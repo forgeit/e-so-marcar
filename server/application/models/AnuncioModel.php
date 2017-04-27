@@ -53,16 +53,27 @@ class AnuncioModel extends MY_Model {
         }
     }
 
-    function buscarPorEmailId($email, $id) {
+    function anuncioNaoUnico($idCliente, $anuncio) {
         $sql = "SELECT 
-				nome
-				FROM pessoa p
-				WHERE email = ? AND id_pessoa <> ?";
+                    COUNT(*) > 0 as retorno
+		FROM anuncio p
+		WHERE id_cliente = ?
+                AND id_tipo_anuncio = ?
+                AND (
+                    (data_inicial >= ? AND data_inicial <= ?)
+                    OR 
+                    (data_final >= ? AND data_final <= ?)
+                )";
 
-        $query = $this->db->query($sql, array($email, $id));
+        $query = $this->db->query($sql, array($idCliente,
+            $anuncio->id_tipo_anuncio,
+            $anuncio->data_inicial,
+            $anuncio->data_final,
+            $anuncio->data_inicial,
+            $anuncio->data_final));
 
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            return $query->row_array()['retorno'];
         } else {
             return null;
         }

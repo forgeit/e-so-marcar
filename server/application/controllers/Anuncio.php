@@ -19,8 +19,6 @@ class Anuncio extends MY_Controller {
         if ($anuncioBanco['imagem'] != $anuncio->imagem) {
             $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
         }
-        $anuncio->data_inicial = $this->toDate($anuncio->data_inicial);
-        $anuncio->data_final = $this->toDate($anuncio->data_final);
 
         $response = array('exec' => $this->AnuncioModel->atualizar($anuncio->id, $anuncio));
 
@@ -50,21 +48,13 @@ class Anuncio extends MY_Controller {
 
     public function excluir() {
 
-        $dados = $this->DemandaModel->buscarPorPessoa($this->uri->segment(3));
+        $anuncioBanco = $this->AnuncioModel->buscarPorId($this->uri->segment(3));
 
-        if (count($dados) > 0) {
-            print_r(json_encode($this->gerarRetorno(FALSE, "Não é possível remover a pessoa, a mesma possui demandas no sistema.")));
-            die();
+        if ($anuncioBanco['id_cliente'] != $this->jwtController->id) {
+            $this->gerarErro("Você não pode alterar este registro.");
         }
 
-        $dados = $this->DemandaFluxoModel->buscarPorPessoa($this->uri->segment(3));
-
-        if (count($dados) > 0) {
-            print_r(json_encode($this->gerarRetorno(FALSE, "Não é possível remover a pessoa, a mesma faz parte do fluxo de demandas no sistema.")));
-            die();
-        }
-
-        $response = $this->AnuncioModel->excluir($this->uri->segment(3), 'id_pessoa');
+        $response = $this->AnuncioModel->excluir($anuncioBanco['id']);
 
         $message = array();
         $message[] = $response == TRUE ?
@@ -91,8 +81,6 @@ class Anuncio extends MY_Controller {
 
         $anuncio->id_cliente = $this->jwtController->id;
         $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
-        $anuncio->data_inicial = $this->toDate($anuncio->data_inicial);
-        $anuncio->data_final = $this->toDate($anuncio->data_final);
 
         $response = array('exec' => $this->AnuncioModel->inserir($anuncio));
 
@@ -123,6 +111,13 @@ class Anuncio extends MY_Controller {
 
         if (!isset($anuncio->ativo) && !$anuncio->ativo) {
             $this->gerarErro("Flag Ativo é obrigatório.");
+        }
+
+        $anuncio->data_inicial = $this->toDate($anuncio->data_inicial);
+        $anuncio->data_final = $this->toDate($anuncio->data_final);
+
+        if ($this->AnuncioModel->anuncioNaoUnico($this->jwtController->id, $anuncio)) {
+            $this->gerarErro("Já existe anúncio deste tipo para o período selecionado.");
         }
     }
 
