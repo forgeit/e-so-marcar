@@ -7,7 +7,7 @@
         url: window.location.origin + '/server/',
         dados: 'dados/',
         anuncio: 'anuncio/',
-        quadra: 'anuncio/'
+        quadra: 'quadra/'
     };
 
     var datepicker = {

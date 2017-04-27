@@ -66,6 +66,12 @@ $route['tipo-anuncio'] = 'anuncioTipo/buscarTodos';
 $route['anuncio'] = 'anuncio/buscarTodos';
 $route['anuncio/(:num)'] = 'anuncio/buscar/$1';
 
+$route['tipo-local'] = 'localTipo/buscarTodos';
+$route['tipo-esporte'] = 'esporteTipo/buscarTodos';
+$route['tipo-quadra'] = 'quadraTipo/buscarTodos';
+$route['quadra'] = 'quadra/buscarTodos';
+$route['quadra/(:num)'] = 'quadra/buscar/$1';
+
 $route['upload'] = 'upload/processar';
 $route['login/entrar'] = 'login/entrar';
 $route['usuario/alterar-senha/(:num)'] = 'usuario/alterarSenha/$1';

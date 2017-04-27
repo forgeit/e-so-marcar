@@ -9,6 +9,7 @@
         'app.login',
         'app.dados',
         'app.anuncio',
+        'app.quadra',
         'angularFileUpload']);
 
 })();
