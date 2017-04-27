@@ -15,11 +15,11 @@
         vm.dados = {};
         vm.salvar = salvar;
         vm.voltar = voltar;
-        vm.uploader = new FileUploader({url: configuracaoREST.url + 'upload'});
-
-        vm.uploader.onAfterAddingFile = function (fileItem) {
-            vm.uploader.uploadAll();
-        };
+        vm.preview;
+        vm.uploader = new FileUploader({
+            url: configuracaoREST.url + 'upload',
+            queueLimit: 1
+        });
 
         vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
             if (response.exec) {
@@ -37,6 +37,7 @@
 
             function success(response) {
                 vm.dados = controllerUtils.getData(response, 'dto');
+                vm.preview = vm.dados.logo;
             }
 
             function error() {

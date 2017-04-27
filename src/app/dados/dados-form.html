@@ -85,6 +85,28 @@
                             <div class="form-group">
                                 <label for="logo">Logo:</label>
                                 <input id="logo" type="file" nv-file-select="" uploader="vm.uploader" />
+                                <div ng-repeat="item in vm.uploader.queue">
+                                    <div>
+                                        <div ng-show="vm.uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                                    </div>
+                                    <div nowrap>
+                                        <button type="button" class="btn btn-success btn-xs btn-flat" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs btn-flat" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remover
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" ng-show="vm.preview">
+                            <div class="form-group">
+                                <label for="preview">Logo Atual:</label>
+                                <div class="input-group">
+                                    <img ng-src="server/arquivo/buscar/{{vm.preview}}" class="img-lg" alt="Logo Atual">
+                                </div>
                             </div>
                         </div>
                     </div>
