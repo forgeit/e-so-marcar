@@ -29,7 +29,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="formulario.data_inicial.$dirty && formulario.data_inicial.$invalid ? 'has-error' : ''">
                                 <label for="data_inicial">Data Inicial: *</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="formulario.data_final.$dirty && formulario.data_final.$invalid ? 'has-error' : ''">
                                 <label for="data_final">Data Final: *</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ativo">Flag Ativo: *</label>
+                                <label for="ativo">Situação: *</label>
                                 <div class="input-group">
                                     <toggle id="ativo" ng-model="vm.anuncio.ativo" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat"></toggle>
                                 </div>

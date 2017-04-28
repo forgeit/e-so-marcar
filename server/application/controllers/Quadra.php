@@ -98,35 +98,60 @@ class Quadra extends MY_Controller {
     }
 
     private function validaDados($quadra) {
+        if (empty($quadra->id_tipo_local)) {
+            $this->gerarErro("Tipo Local é obrigatório.");
+        }
+
         if (empty($quadra->id_tipo_quadra)) {
-            $this->gerarErro("Tipo Anúncio é obrigatório.");
+            $this->gerarErro("Tipo Quadra é obrigatório.");
+        }
+
+        if (empty($quadra->esportes)) {
+            $this->gerarErro("Esportes são obrigatório.");
         }
 
         if (empty($quadra->titulo)) {
             $this->gerarErro("Título é obrigatório.");
         }
 
-        if (empty($quadra->data_inicial)) {
-            $this->gerarErro("Data Inicial é obrigatório.");
+        if (empty($quadra->descricao)) {
+            $this->gerarErro("Descrição é obrigatório.");
         }
 
-        if (empty($quadra->data_final)) {
-            $this->gerarErro("Data Final é obrigatório.");
+        if (!isset($quadra->valor_bola)) {
+            $quadra->valor_bola = 0;
         }
 
-        if (!isset($quadra->valor) && !$quadra->valor) {
-            $this->gerarErro("Valor é obrigatório.");
+        if (!empty($quadra->largura) && empty($quadra->comprimento)) {
+            $this->gerarErro("Largura e Comprimento devem ser preenchidos.");
         }
 
-        if (!isset($quadra->ativo) && !$quadra->ativo) {
-            $this->gerarErro("Flag Ativo é obrigatório.");
+        if (empty($quadra->largura) && !empty($quadra->comprimento)) {
+            $this->gerarErro("Largura e Comprimento devem ser preenchidos.");
         }
 
-        $quadra->data_inicial = $this->toDate($quadra->data_inicial);
-        $quadra->data_final = $this->toDate($quadra->data_final);
+        if (!empty($quadra->largura) && !is_numeric($quadra->largura)) {
+            $this->gerarErro("Largura deve ser numérico.");
+        }
 
-        if ($this->QuadraModel->quadraNaoUnico($this->jwtController->id, $quadra)) {
-            $this->gerarErro("Já existe anúncio deste tipo para o período selecionado.");
+        if (!empty($quadra->comprimento) && !is_numeric($quadra->comprimento)) {
+            $this->gerarErro("Comprimento deve ser numérico.");
+        }
+
+        if (!isset($quadra->flag_tamanho_oficial) && !$quadra->flag_tamanho_oficial) {
+            $this->gerarErro("Tamanho Oficial é obrigatório.");
+        }
+
+        if (!isset($quadra->flag_dia_chuva) && !$quadra->flag_dia_chuva) {
+            $this->gerarErro("Dia de Chuva é obrigatório.");
+        }
+
+        if (!isset($quadra->flag_marcacao_mensal) && !$quadra->flag_marcacao_mensal) {
+            $this->gerarErro("Marcação Mensal é obrigatório.");
+        }
+
+        if (!isset($quadra->situacao) && !$quadra->situacao) {
+            $this->gerarErro("Situação é obrigatório.");
         }
     }
 

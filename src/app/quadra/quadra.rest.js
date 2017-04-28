@@ -15,6 +15,7 @@
             buscarComboFiltro: buscarComboFiltro,
             buscarComboTipoQuadra: buscarComboTipoQuadra,
             buscarComboTipoLocal: buscarComboTipoLocal,
+            buscarComboTipoEsporte: buscarComboTipoEsporte,
             buscarTodos: buscarTodos,
             remover: remover,
             salvar: salvar
@@ -36,6 +37,10 @@
         
         function buscarComboTipoLocal() {
             return $http.get(configuracaoREST.url + 'tipo-local');
+        }
+        
+        function buscarComboTipoEsporte() {
+            return $http.get(configuracaoREST.url + 'tipo-esporte');
         }
 
         function buscarCombo() {

@@ -13,7 +13,7 @@ class QuadraTipo extends MY_Controller {
     }
 
     public function buscarTodos() {
-        print_r(json_encode(array('data' => array('ArrayList' => $this->LocalTipoModel->buscarTodos('nome')))));
+        print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraTipoModel->buscarTodos('nome')))));
     }
 
     public function excluir() {

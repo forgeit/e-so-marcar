@@ -17,19 +17,37 @@
         var vm = this;
 
         vm.atualizar = atualizar;
-        vm.quadra = {valor: 0, ativo: true};
+        vm.quadra = {
+            situacao: true,
+            flag_dia_chuva: true,
+            flag_marcacao_mensal: true,
+            flag_tamanho_oficial: false
+        };
         vm.preview = 0;
         vm.editar = false;
         vm.filtrar = null;
         vm.tipoQuadraList = [];
         vm.salvar = salvar;
         vm.voltar = voltar;
-        vm.uploader = new FileUploader({
+        vm.uploader1 = new FileUploader({
             url: configuracaoREST.url + 'upload',
             queueLimit: 1
         });
 
-        vm.uploader.onCompleteItem = function (fileItem, response, status, headers) {
+        vm.uploader2 = new FileUploader({
+            url: configuracaoREST.url + 'upload'
+        });
+
+        vm.uploader1.onCompleteItem = function (fileItem, response, status, headers) {
+            if (response.exec) {
+                controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
+            } else {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
+            }
+            vm.quadra.imagem = response.nome;
+        };
+
+        vm.uploader2.onCompleteItem = function (fileItem, response, status, headers) {
             if (response.exec) {
                 controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
             } else {
@@ -52,7 +70,7 @@
             function success(response) {
                 controllerUtils.feedMessage(response);
 
-                if (response.data.status == 'true') {
+                if (response.data.status === 'true') {
                     voltar();
                 }
             }
@@ -67,7 +85,10 @@
 
             function success(response) {
                 vm.quadra = controllerUtils.getData(response, 'dto');
-                vm.quadra.ativo = vm.quadra.ativo === '1';
+                vm.quadra.situacao = vm.quadra.situacao === '1';
+                vm.quadra.flag_tamanho_oficial = vm.quadra.flag_tamanho_oficial === '1';
+                vm.quadra.flag_dia_chuva = vm.quadra.flag_dia_chuva === '1';
+                vm.quadra.flag_marcacao_mensal = vm.quadra.flag_marcacao_mensal === '1';
                 vm.preview = vm.quadra.imagem;
 
                 if (vm.quadra.id_tipo_quadra) {
@@ -76,6 +97,18 @@
                             angular.forEach(vm.tipoQuadraList, function (value, index) {
                                 if (value.id === vm.quadra.id_tipo_quadra) {
                                     vm.tipoQuadra = value;
+                                }
+                            });
+                        }
+                    });
+                }
+
+                if (vm.quadra.id_tipo_local) {
+                    $scope.$watch('vm.tipoQuadraList', function () {
+                        if (vm.tipoLocalList.length > 0) {
+                            angular.forEach(vm.tipoLocalList, function (value, index) {
+                                if (value.id === vm.quadra.id_tipo_local) {
+                                    vm.tipoLocal = value;
                                 }
                             });
                         }
@@ -114,6 +147,19 @@
             }
         }
 
+        function carregarTipoEsporteList() {
+            return dataservice.buscarComboTipoEsporte().then(success).catch(error);
+
+            function error(response) {
+                return controllerUtils.promise.criar(false, []);
+            }
+
+            function success(response) {
+                var array = controllerUtils.getData(response, 'ArrayList');
+                return controllerUtils.promise.criar(true, array);
+            }
+        }
+
         function editarObjeto() {
             vm.editar = !angular.equals({}, controllerUtils.$routeParams);
             return !angular.equals({}, controllerUtils.$routeParams);
@@ -125,28 +171,26 @@
             } else {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os tipos de quadra.');
             }
-            
+
             if (values[1].exec) {
                 vm.tipoLocalList = values[1].objeto;
             } else {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os tipos de local.');
             }
+
+            if (values[2].exec) {
+                vm.tipoEsporteList = values[2].objeto;
+            } else {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os tipos de esporte.');
+            }
         }
 
         function iniciar() {
-            $('#data_inicial').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR', startDate: "dateToday"})
-                    .on('changeDate', function (e) {
-                        var dt = new Date(e.date);
-                        dt.setDate(dt.getDate() + 30);
-                        $('#data_final').datepicker('update', dt);
-                        $('#data_final').datepicker('setStartDate', e.date);
-                    });
-            $('#data_final').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
-
             var promises = [];
 
             promises.push(carregarTipoQuadraList());
             promises.push(carregarTipoLocalList());
+            promises.push(carregarTipoEsporteList());
 
             if (editarObjeto()) {
                 promises.push(carregarQuadra(controllerUtils.$routeParams.id));
@@ -158,9 +202,15 @@
         }
 
         function salvar(formulario) {
-            vm.quadra.id_tipo_quadra = vm.tipoQuadra.id;
-            if (vm.uploader.queue.length === 0) {
+            vm.quadra.id_tipo_quadra = vm.tipoQuadra ? vm.tipoQuadra.id : null;
+            vm.quadra.id_tipo_local = vm.tipoLocal ? vm.tipoLocal.id : null;
+            vm.quadra.esportes = vm.esportes;
+            
+            if (vm.uploader1.queue.length === 0) {
                 vm.quadra.imagem = '';
+            }
+            if (vm.uploader2.queue.length === 0) {
+                //vm.quadra.imagem = '';
             }
 
             if (formulario.$valid) {
