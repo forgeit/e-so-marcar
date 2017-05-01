@@ -140,6 +140,7 @@ $autoload['model'] = array(
     'AnuncioModel',
     'AnuncioTipoModel',
     'QuadraModel',
+    'QuadraEsporteModel',
     'QuadraTipoModel',
     'LocalTipoModel',
     'EsporteTipoModel'

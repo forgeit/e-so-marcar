@@ -23,6 +23,8 @@
             flag_marcacao_mensal: true,
             flag_tamanho_oficial: false
         };
+        vm.esportes = [];
+        vm.esportesAux = [];
         vm.preview = 0;
         vm.editar = false;
         vm.filtrar = null;
@@ -60,6 +62,9 @@
 
         function atualizar(formulario) {
             vm.quadra.id_tipo_quadra = vm.tipoQuadra.id;
+            vm.quadra.id_tipo_quadra = vm.tipoQuadra ? vm.tipoQuadra.id : null;
+            vm.quadra.id_tipo_local = vm.tipoLocal ? vm.tipoLocal.id : null;
+            vm.quadra.esportes = vm.esportes;
 
             dataservice.atualizar(vm.quadra.id, vm.quadra).then(success).catch(error);
 
@@ -104,13 +109,30 @@
                 }
 
                 if (vm.quadra.id_tipo_local) {
-                    $scope.$watch('vm.tipoQuadraList', function () {
+                    $scope.$watch('vm.tipoLocalList', function () {
                         if (vm.tipoLocalList.length > 0) {
                             angular.forEach(vm.tipoLocalList, function (value, index) {
                                 if (value.id === vm.quadra.id_tipo_local) {
                                     vm.tipoLocal = value;
                                 }
                             });
+                        }
+                    });
+                }
+
+                if (vm.quadra.esportes) {
+                    angular.forEach(vm.quadra.esportes, function (value, index) {
+                        vm.esportesAux.push(value.id_esporte);
+                    });
+                    $scope.$watch('vm.tipoEsporteList', function () {
+                        if (vm.tipoEsporteList.length > 0) {
+                            var aux = [];
+                            angular.forEach(vm.tipoEsporteList, function (value, index) {
+                                if (vm.esportesAux.indexOf(value.id) >= 0) {
+                                    aux.push(value);
+                                }
+                            });
+                            vm.esportes = aux;
                         }
                     });
                 }
@@ -186,6 +208,10 @@
         }
 
         function iniciar() {
+//            $('#esportes').select2({
+//                placeholder: 'Selecione'
+//            });
+
             var promises = [];
 
             promises.push(carregarTipoQuadraList());
@@ -205,7 +231,7 @@
             vm.quadra.id_tipo_quadra = vm.tipoQuadra ? vm.tipoQuadra.id : null;
             vm.quadra.id_tipo_local = vm.tipoLocal ? vm.tipoLocal.id : null;
             vm.quadra.esportes = vm.esportes;
-            
+
             if (vm.uploader1.queue.length === 0) {
                 vm.quadra.imagem = '';
             }

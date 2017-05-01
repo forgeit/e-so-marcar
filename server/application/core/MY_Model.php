@@ -58,6 +58,19 @@ class MY_Model extends CI_Model {
         }
     }
 
+    function buscarPorColuna($coluna = null, $value = null) {
+
+        $this->db->where($coluna, $value);
+
+        $query = $this->db->get($this->table);
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+
     function atualizar($id, $data, $idNome = 'id') {
         if (is_null($id) || !isset($data)) {
             return false;

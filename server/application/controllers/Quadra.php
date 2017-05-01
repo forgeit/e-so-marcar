@@ -21,6 +21,14 @@ class Quadra extends MY_Controller {
         }
 
         $response = array('exec' => $this->QuadraModel->atualizar($quadra->id, $quadra));
+        
+        $this->QuadraEsporteModel->removerPorIdQuadra($quadraBanco['id']);
+        foreach ($quadra->esportes as $value) {
+            $quadraEsporte = new stdClass();
+            $quadraEsporte->id_quadra = $quadraBanco['id'];
+            $quadraEsporte->id_esporte = $value->id;
+            $this->QuadraEsporteModel->inserir($quadraEsporte);
+        }
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao atualizar o registro." : "Erro ao atualizar o registro.");
 
@@ -29,8 +37,11 @@ class Quadra extends MY_Controller {
 
     public function buscar() {
 
+        $quadra = $this->QuadraModel->buscarPorId($this->uri->segment(2));
+        $quadra['esportes'] = $this->QuadraEsporteModel->buscarPorColuna('id_quadra', $quadra['id']);
+
         $array = array('data' =>
-            array('dto' => $this->QuadraModel->buscarPorId($this->uri->segment(2))));
+            array('dto' => $quadra));
 
         print_r(json_encode($array));
     }
@@ -91,9 +102,16 @@ class Quadra extends MY_Controller {
         $quadra->id_cliente = $this->jwtController->id;
         $quadra->imagem = $this->uploadArquivo($quadra->imagem, 'quadra');
 
-        $response = array('exec' => $this->QuadraModel->inserir($quadra));
+        $idQuadra = $this->QuadraModel->inserirRetornaId($quadra);
 
-        $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
+        foreach ($quadra->esportes as $value) {
+            $quadraEsporte = new stdClass();
+            $quadraEsporte->id_quadra = $idQuadra;
+            $quadraEsporte->id_esporte = $value->id;
+            $this->QuadraEsporteModel->inserir($quadraEsporte);
+        }
+
+        $array = $this->gerarRetorno(TRUE, "Sucesso ao salvar o registro.");
         print_r(json_encode($array));
     }
 
@@ -107,7 +125,7 @@ class Quadra extends MY_Controller {
         }
 
         if (empty($quadra->esportes)) {
-            $this->gerarErro("Esportes são obrigatório.");
+            $this->gerarErro("Esportes são obrigatórios.");
         }
 
         if (empty($quadra->titulo)) {

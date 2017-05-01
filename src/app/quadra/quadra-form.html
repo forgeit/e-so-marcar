@@ -25,10 +25,8 @@
                         <div class="col-md-4">
                             <div class="form-group" ng-class="formulario.esportes.$dirty && formulario.esportes.$invalid ? 'has-error' : ''">
                                 <label for="esportes">Esportes: *</label>
-                                <select class="form-control" id="esportes" name="esportes" ng-options="esportes.nome for esportes in vm.tipoEsporteList track by esportes.id" ng-model="vm.esportes" required>
-                                    <option value="">Selecione</option> 	
+                                <select class="form-control select2" id="esportes" name="esportes" multiple="multiple" ng-options="esportes.nome for esportes in vm.tipoEsporteList track by esportes.id" ng-model="vm.esportes" required> 	
                                 </select>
-                                <span class="help-block" ng-show="formulario.esportes.$dirty && formulario.esportes.$invalid">O campo é obrigatório</span>
                             </div>
                         </div>
                     </div>
@@ -58,13 +56,13 @@
                         <div class="col-md-4">
                             <div class="form-group" >
                                 <label for="largura">Largura:</label>
-                                <input id="largura" type="text" name="largura" class="form-control" placeholder="Informe o título da anúncio" ng-model="vm.quadra.largura">
+                                <input id="largura" type="text" name="largura" class="form-control" placeholder="Informe o título da anúncio" ng-model="vm.quadra.largura" ui-number-mask="2">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="comprimento">Comprimento:</label>
-                                <input id="comprimento" type="text" name="comprimento" class="form-control" ng-model="vm.quadra.comprimento" placeholder="Informe a descrição da quadra">
+                                <input id="comprimento" type="text" name="comprimento" class="form-control" ng-model="vm.quadra.comprimento" placeholder="Informe a descrição da quadra" ui-number-mask="2">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -160,7 +158,7 @@
                             <div class="form-group">
                                 <label for="preview">Imagem Atual:</label>
                                 <div class="input-group">
-                                    <img ng-src="server/arquivo/buscar/{{vm.preview}}" class="img-lg" alt="Imagem Atual">
+                                    <img ng-src="server/arquivo/buscar/{{vm.preview2}}" class="img-lg" alt="Imagem Atual">
                                 </div>
                             </div>
                         </div>

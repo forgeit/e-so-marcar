@@ -5,8 +5,11 @@
         <group name="FORGE">
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/quadra/quadra-lista.js</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Quadra.php</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Dados.php</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/quadra/quadra.rest.js</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/quadra/quadra-lista.html</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-form.html</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-form.js</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/quadra/quadra-form.js</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/quadra/quadra-form.html</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/models/QuadraTipoModel.php</file>
