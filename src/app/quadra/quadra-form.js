@@ -16,12 +16,30 @@
         /* jshint validthis: true */
         var vm = this;
 
+        vm.funcionamento = [];
         vm.atualizar = atualizar;
         vm.quadra = {
             situacao: true,
             flag_dia_chuva: true,
             flag_marcacao_mensal: true,
             flag_tamanho_oficial: false
+        };
+        vm.range = function (min, max, step) {
+            step = step || 1;
+            var input = [];
+            for (var i = min; i <= max; i += step) {
+                input.push(i);
+            }
+            return input;
+        };
+        vm.toggleHorario = function (ele, dia, hora) {
+            if ($(ele.target).hasClass('btn-success')) {
+                $(ele.target).removeClass('btn-success');
+                vm.funcionamento.splice(vm.funcionamento.indexOf({dia: dia, hora: hora}), 1);
+            } else {
+                $(ele.target).addClass('btn-success');
+                vm.funcionamento.push({dia: dia, hora: hora});
+            }
         };
         vm.esportes = [];
         vm.esportesAux = [];
@@ -89,6 +107,11 @@
             }
 
             function success(response) {
+                if (response.data.status) {
+                    controllerUtils.feedMessage(response);
+                    voltar();
+                }
+
                 vm.quadra = controllerUtils.getData(response, 'dto');
                 vm.quadra.situacao = vm.quadra.situacao === '1';
                 vm.quadra.flag_tamanho_oficial = vm.quadra.flag_tamanho_oficial === '1';
@@ -208,9 +231,9 @@
         }
 
         function iniciar() {
-//            $('#esportes').select2({
-//                placeholder: 'Selecione'
-//            });
+            $('#esportes').select2({
+                placeholder: 'Selecione'
+            });
 
             var promises = [];
 

@@ -71,6 +71,12 @@ $route['tipo-esporte'] = 'esporteTipo/buscarTodos';
 $route['tipo-quadra'] = 'quadraTipo/buscarTodos';
 $route['quadra'] = 'quadra/buscarTodos';
 $route['quadra/(:num)'] = 'quadra/buscar/$1';
+$route['quadra/combo'] = 'quadra/buscarCombo';
+
+$route['usuario/combo'] = 'usuario/buscarCombo';
+
+$route['reserva'] = 'reserva/buscarTodos';
+$route['reserva/(:num)'] = 'reserva/buscar/$1';
 
 $route['upload'] = 'upload/processar';
 $route['login/entrar'] = 'login/entrar';

@@ -21,7 +21,7 @@ class Quadra extends MY_Controller {
         }
 
         $response = array('exec' => $this->QuadraModel->atualizar($quadra->id, $quadra));
-        
+
         $this->QuadraEsporteModel->removerPorIdQuadra($quadraBanco['id']);
         foreach ($quadra->esportes as $value) {
             $quadraEsporte = new stdClass();
@@ -40,6 +40,10 @@ class Quadra extends MY_Controller {
         $quadra = $this->QuadraModel->buscarPorId($this->uri->segment(2));
         $quadra['esportes'] = $this->QuadraEsporteModel->buscarPorColuna('id_quadra', $quadra['id']);
 
+        if ($quadra['id_cliente'] != $this->jwtController->id) {
+            $this->gerarErro("Você não pode alterar este registro.");
+        }
+
         $array = array('data' =>
             array('dto' => $quadra));
 
@@ -55,6 +59,10 @@ class Quadra extends MY_Controller {
         }
 
         print_r(json_encode(array('data' => array('datatables' => $lista ? $lista : array()))));
+    }
+
+    public function buscarCombo() {
+        print_r(json_encode(array('data' => array('ArrayList' => $lista = $this->QuadraModel->buscarTodosNativo($this->jwtController->id)))));
     }
 
     public function excluir() {

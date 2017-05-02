@@ -2,12 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Anuncio extends MY_Controller {
+class Reserva extends MY_Controller {
 
     public function atualizar() {
         $data = $this->security->xss_clean($this->input->raw_input_stream);
         $anuncio = json_decode($data);
-        $anuncioBanco = $this->AnuncioModel->buscarPorId($this->uri->segment(3));
+        $anuncioBanco = $this->ReservaModel->buscarPorId($this->uri->segment(3));
 
         $anuncio->id = $anuncioBanco['id'];
         $this->validaDados($anuncio);
@@ -20,7 +20,7 @@ class Anuncio extends MY_Controller {
             $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
         }
 
-        $response = array('exec' => $this->AnuncioModel->atualizar($anuncio->id, $anuncio));
+        $response = array('exec' => $this->ReservaModel->atualizar($anuncio->id, $anuncio));
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao atualizar o registro." : "Erro ao atualizar o registro.");
 
@@ -29,32 +29,22 @@ class Anuncio extends MY_Controller {
 
     public function buscar() {
 
-        $anuncio = $this->AnuncioModel->buscarPorIdNativo($this->uri->segment(2));
-
-        if ($anuncio['id_cliente'] != $this->jwtController->id) {
-            $this->gerarErro("Você não pode alterar este registro.");
-        }
-
         $array = array('data' =>
-            array('dto' => $anuncio));
+            array('dto' => $this->ReservaModel->buscarPorIdNativo($this->uri->segment(2))));
 
         print_r(json_encode($array));
     }
 
     public function buscarTodos() {
 
-        if ($this->uri->segment(2) == 'tipo-anuncio' && $this->uri->segment(3)) {
-            $lista = $this->AnuncioModel->buscarTodosNativo($this->jwtController->id, $this->uri->segment(3));
-        } else {
-            $lista = $this->AnuncioModel->buscarTodosNativo($this->jwtController->id);
-        }
+        $lista = $this->ReservaModel->buscarTodosNativo($this->jwtController->id);
 
         print_r(json_encode(array('data' => array('datatables' => $lista ? $lista : array()))));
     }
 
     public function excluir() {
 
-        $anuncioBanco = $this->AnuncioModel->buscarPorId($this->uri->segment(3));
+        $anuncioBanco = $this->ReservaModel->buscarPorId($this->uri->segment(3));
 
         if ($anuncioBanco['id_cliente'] != $this->jwtController->id) {
             $this->gerarErro("Você não pode alterar este registro.");
@@ -68,7 +58,7 @@ class Anuncio extends MY_Controller {
             $this->gerarErro("Somente registros desativos podem ser removidos.");
         }
 
-        $response = $this->AnuncioModel->excluir($anuncioBanco['id']);
+        $response = $this->ReservaModel->excluir($anuncioBanco['id']);
         $this->deletarArquivo($anuncioBanco['imagem']);
 
         $message = array();
@@ -97,7 +87,7 @@ class Anuncio extends MY_Controller {
         $anuncio->id_cliente = $this->jwtController->id;
         $anuncio->imagem = $this->uploadArquivo($anuncio->imagem, 'anuncio');
 
-        $response = array('exec' => $this->AnuncioModel->inserir($anuncio));
+        $response = array('exec' => $this->ReservaModel->inserir($anuncio));
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
         print_r(json_encode($array));
@@ -131,7 +121,7 @@ class Anuncio extends MY_Controller {
         $anuncio->data_inicial = $this->toDate($anuncio->data_inicial);
         $anuncio->data_final = $this->toDate($anuncio->data_final);
 
-        if ($this->AnuncioModel->anuncioNaoUnico($this->jwtController->id, $anuncio)) {
+        if ($this->ReservaModel->anuncioNaoUnico($this->jwtController->id, $anuncio)) {
             $this->gerarErro("Já existe anúncio deste tipo para o período selecionado.");
         }
     }

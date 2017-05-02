@@ -16,15 +16,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="bower_components/AdminLTE/plugins/select2/select2.min.css">
-        <link rel="stylesheet" href="bower_components/AdminLTE/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="bower_components/AdminLTE/dist/css/skins/_all-skins.min.css">
-        <link rel="stylesheet" type="text/css" href="src/app/layout/kopp.css">
+        <link rel="stylesheet" href="bower_components/AdminLTE/plugins/fullcalendar/fullcalendar.min.css">
+        <link rel="stylesheet" href="bower_components/AdminLTE/plugins/fullcalendar/fullcalendar.print.css" media="print">
         <link rel="stylesheet" type="text/css" href="vendor/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="bower_components/angular-loading-bar/src/loading-bar.css">
         <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css">
         <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
         <link rel="stylesheet" href="bower_components/AdminLTE/plugins/datepicker/datepicker3.css">
-
+        <link rel="stylesheet" href="bower_components/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
+        <link rel="stylesheet" href="bower_components/AdminLTE/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" type="text/css" href="src/app/layout/kopp.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div id="loading-bar-container"></div>	
@@ -38,6 +40,7 @@
         </div>
 
         <!-- vendor -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <script src="bower_components/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
@@ -58,6 +61,7 @@
         <script type="text/javascript" src="vendor/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
         <script src="bower_components/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="bower_components/AdminLTE/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js" type="text/javascript"></script>
+        <script src="bower_components/AdminLTE/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="bower_components/angular-loading-bar/src/loading-bar.js"></script>	
         <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
         <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
@@ -119,6 +123,12 @@
         <script type="text/javascript" src="src/app/quadra/quadra.rest.js"></script>
         <script type="text/javascript" src="src/app/quadra/quadra-form.js"></script>
         <script type="text/javascript" src="src/app/quadra/quadra-lista.js"></script>
+
+        <script type="text/javascript" src="src/app/reserva/reserva.module.js"></script>
+        <script type="text/javascript" src="src/app/reserva/reserva.route.js"></script>
+        <script type="text/javascript" src="src/app/reserva/reserva.rest.js"></script>
+        <script type="text/javascript" src="src/app/reserva/reserva-form.js"></script>
+        <script type="text/javascript" src="src/app/reserva/reserva-lista.js"></script>
 
     </body>
 </html>

@@ -137,6 +137,8 @@ $autoload['model'] = array(
     'LoginModel',
     'ArquivoModel',
     'DadosModel',
+    'UsuarioModel',
+    'ReservaModel',
     'AnuncioModel',
     'AnuncioTipoModel',
     'QuadraModel',

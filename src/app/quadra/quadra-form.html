@@ -101,7 +101,35 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label for="situacao">Funcionamento:</label>
+                            <table class="table-funcionamento table table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Horário</th>
+                                        <th>Domingo</th>
+                                        <th>Segunda</th>
+                                        <th>Terça</th>
+                                        <th>Quarta</th>
+                                        <th>Quinta</th>
+                                        <th>Sexta</th>
+                                        <th>Sábado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="h in vm.range(6, 23)">
+                                        <td>{{h}}h00</td>
+                                        <td ng-repeat="d in vm.range(1, 7)" ng-click="vm.toggleHorario($event, d, h)">
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {{vm.funcionamento}}
+                    <br>
+
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -163,8 +191,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
 
                 <div class="box-footer">

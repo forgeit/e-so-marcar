@@ -10,6 +10,7 @@
         'app.dados',
         'app.anuncio',
         'app.quadra',
+        'app.reserva',
         'angularFileUpload']);
 
 })();

@@ -7,6 +7,7 @@
         url: window.location.origin + '/server/',
         dados: 'dados/',
         anuncio: 'anuncio/',
+        reserva: 'reserva/',
         quadra: 'quadra/'
     };
 

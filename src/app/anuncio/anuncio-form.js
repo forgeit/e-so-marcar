@@ -66,6 +66,10 @@
             }
 
             function success(response) {
+                if (response.data.status) {
+                    controllerUtils.feedMessage(response);
+                    voltar();
+                }
                 vm.anuncio = controllerUtils.getData(response, 'dto');
                 vm.anuncio.ativo = vm.anuncio.ativo === '1';
                 vm.preview = vm.anuncio.imagem;
