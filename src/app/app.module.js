@@ -11,6 +11,8 @@
         'app.anuncio',
         'app.quadra',
         'app.reserva',
+        'app.horario',
+        'app.excecao',
         'angularFileUpload']);
 
 })();

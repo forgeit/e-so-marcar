@@ -145,5 +145,8 @@ $autoload['model'] = array(
     'QuadraEsporteModel',
     'QuadraTipoModel',
     'LocalTipoModel',
-    'EsporteTipoModel'
+    'EsporteTipoModel',
+    'DiaSemanaModel',
+    'ExcecaoModel',
+    'HorarioModel'
 );

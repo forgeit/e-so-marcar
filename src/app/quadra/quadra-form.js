@@ -16,7 +16,6 @@
         /* jshint validthis: true */
         var vm = this;
 
-        vm.funcionamento = [];
         vm.atualizar = atualizar;
         vm.quadra = {
             situacao: true,
@@ -35,10 +34,10 @@
         vm.toggleHorario = function (ele, dia, hora) {
             if ($(ele.target).hasClass('btn-success')) {
                 $(ele.target).removeClass('btn-success');
-                vm.funcionamento.splice(vm.funcionamento.indexOf({dia: dia, hora: hora}), 1);
+                vm.quadra.funcionamento.splice(vm.quadra.funcionamento.indexOf({dia: dia, hora: hora}), 1);
             } else {
                 $(ele.target).addClass('btn-success');
-                vm.funcionamento.push({dia: dia, hora: hora});
+                vm.quadra.funcionamento.push({dia: dia, hora: hora});
             }
         };
         vm.esportes = [];

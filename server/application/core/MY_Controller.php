@@ -128,4 +128,10 @@ class MY_Controller extends CI_Controller {
         return $data[2] . '-' . $data[1] . '-' . $data[0];
     }
 
+    protected function toDateTime($dateString) {
+        $data = explode(" ", $dateString);
+        $d = $this->toDate($data[0]);
+        return $d . ' ' . $data[1] . ':00';
+    }
+
 }

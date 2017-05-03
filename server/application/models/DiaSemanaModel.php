@@ -1,0 +1,10 @@
+<?php
+
+class DiaSemanaModel extends MY_Model {
+
+    function __construct() {
+        parent::__construct();
+        $this->table = 'dia_semana';
+    }
+
+}

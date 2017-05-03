@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form novalidate name="formulario" ng-submit="vm.editar ? vm.atualizar(formulario) : vm.salvar(formulario)">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group" ng-class="formulario.quadra.$dirty && formulario.quadra.$invalid ? 'has-error' : ''">
+                                <label for="quadra">Quadra: *</label>
+                                <select class="form-control" id="quadra" name="quadra" ng-options="quadra.titulo for quadra in vm.quadraList track by quadra.id" ng-model="vm.quadra" required>
+                                    <option value="">Selecione</option> 	
+                                </select>
+                                <span class="help-block" ng-show="formulario.quadra.$dirty && formulario.quadra.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group" ng-class="formulario.data_hora_inicial.$dirty && formulario.range.$invalid ? 'has-error' : ''">                                
+                                <label>Data Inicial: *</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="data_hora_inicial" class="form-control pull-right" id="data_hora_inicial" ng-model="vm.excecao.data_hora_inicial" required>
+                                    <span class="help-block" ng-show="formulario.data_hora_inicial.$dirty && formulario.data_hora_inicial.$invalid">O campo é obrigatório</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group" ng-class="formulario.data_hora_final.$dirty && formulario.data_hora_final.$invalid ? 'has-error' : ''">                                
+                                <label>Data Final: *</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" name="data_hora_final" class="form-control pull-right" id="data_hora_final" ng-model="vm.excecao.data_hora_final" required>
+                                    <span class="help-block" ng-show="formulario.data_hora_final.$dirty && formulario.data_hora_final.$invalid">O campo é obrigatório</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="flag_pode_jogar">Pode Jogar: *</label>
+                                <div class="input-group">
+                                    <toggle id="flag_pode_jogar" ng-model="vm.excecao.flag_pode_jogar" on="Pode" off="Não Pode" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat" required></toggle>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2" ng-show="vm.excecao.flag_pode_jogar">
+                            <div class="form-group" ng-class="formulario.valor.$dirty && formulario.valor.$invalid ? 'has-error' : ''">
+                                <label for="valor">Valor: *</label>
+                                <input id="valor" type="text" name="valor" class="form-control" placeholder="Informe o valor do horário" ng-model="vm.excecao.valor" ng-required="vm.excecao.flag_pode_jogar" ui-money-mask>
+                                <span class="help-block" ng-show="formulario.valor.$dirty && formulario.valor.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
+                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid">Salvar</button>
+                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

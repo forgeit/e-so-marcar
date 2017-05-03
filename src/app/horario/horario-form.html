@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form novalidate name="formulario" ng-submit="vm.editar ? vm.atualizar(formulario) : vm.salvar(formulario)">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group" ng-class="formulario.quadra.$dirty && formulario.quadra.$invalid ? 'has-error' : ''">
+                                <label for="quadra">Quadra: *</label>
+                                <select class="form-control" id="quadra" name="quadra" ng-options="quadra.titulo for quadra in vm.quadraList track by quadra.id" ng-model="vm.quadra" required>
+                                    <option value="">Selecione</option> 	
+                                </select>
+                                <span class="help-block" ng-show="formulario.quadra.$dirty && formulario.quadra.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group" ng-class="formulario.dia_semana.$dirty && formulario.dia_semana.$invalid ? 'has-error' : ''">
+                                <label for="dia_semana">Dia da Semana: *</label>
+                                <select class="form-control" id="dia_semana" name="dia_semana" ng-options="dia_semana.nome for dia_semana in vm.diaSemanaList track by dia_semana.id" ng-model="vm.dia_semana" required>
+                                    <option value="">Selecione</option> 	
+                                </select>
+                                <span class="help-block" ng-show="formulario.dia_semana.$dirty && formulario.dia_semana.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 bootstrap-timepicker">
+                            <div class="form-group" ng-class="formulario.hora_inicial.$dirty && formulario.hora_inicial.$invalid ? 'has-error' : ''">
+                                <label for="hora_inicial">Hora Inicial: *</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input id="hora_inicial" type="text" class="form-control timepicker" ng-model="vm.horario.hora_inicial" required ui-mask="99:99">
+                                </div>
+                                <span class="help-block" ng-show="formulario.hora_inicial.$dirty && formulario.hora_inicial.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 bootstrap-timepicker">
+                            <div class="form-group" ng-class="formulario.hora_final.$dirty && formulario.hora_final.$invalid ? 'has-error' : ''">
+                                <label for="hora_inicial">Hora Final: *</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input id="hora_final" type="text" class="form-control timepicker" ng-model="vm.horario.hora_final" required ui-mask="99:99">
+                                </div>
+                                <span class="help-block" ng-show="formulario.hora_final.$dirty && formulario.hora_final.$invalid">O campo é obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="valor_bola">Valor: *</label>
+                                <input id="valor_bola" type="text" name="valor_bola" class="form-control" placeholder="Informe o valor do horário" ng-model="vm.horario.valor" required ui-money-mask>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
+                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid">Salvar</button>
+                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

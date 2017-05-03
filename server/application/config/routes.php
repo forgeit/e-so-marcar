@@ -73,10 +73,18 @@ $route['quadra'] = 'quadra/buscarTodos';
 $route['quadra/(:num)'] = 'quadra/buscar/$1';
 $route['quadra/combo'] = 'quadra/buscarCombo';
 
+$route['dia-semana/combo'] = 'diaSemana/buscarCombo';
+
 $route['usuario/combo'] = 'usuario/buscarCombo';
 
 $route['reserva'] = 'reserva/buscarTodos';
 $route['reserva/(:num)'] = 'reserva/buscar/$1';
+
+$route['horario'] = 'horario/buscarTodos';
+$route['horario/(:num)'] = 'horario/buscar/$1';
+
+$route['excecao'] = 'excecao/buscarTodos';
+$route['excecao/(:num)'] = 'excecao/buscar/$1';
 
 $route['upload'] = 'upload/processar';
 $route['login/entrar'] = 'login/entrar';

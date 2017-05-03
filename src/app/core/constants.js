@@ -8,7 +8,9 @@
         dados: 'dados/',
         anuncio: 'anuncio/',
         reserva: 'reserva/',
-        quadra: 'quadra/'
+        quadra: 'quadra/',
+        excecao: 'excecao/',
+        horario: 'horario/'
     };
 
     var datepicker = {
@@ -21,6 +23,20 @@
         nextText: 'Próximo',
         prevText: 'Anterior',
         minDate: "-0D"
+    };
+
+    var dateRangeLocale = {
+        "format": "DD/MM/YYYY HH:mm",
+        "separator": " - ",
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "De",
+        "toLabel": "Até",
+        "customRangeLabel": "Custom",
+        "weekLabel": "S",
+        "daysOfWeek": ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        "monthNames": ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        "firstDay": 1
     };
 
     var datepickerSemLimite = {
@@ -65,4 +81,5 @@
     core.constant('datatables', datatables);
     core.constant('datepicker', datepicker);
     core.constant('datepickerSemLimite', datepickerSemLimite);
+    core.constant('dateRangeLocale', dateRangeLocale);
 })();
