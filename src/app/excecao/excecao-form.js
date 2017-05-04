@@ -66,6 +66,9 @@
                         }
                     });
                 }
+                
+                $('#data_hora_inicial').data('daterangepicker').setStartDate(vm.excecao.data_hora_inicial);
+                $('#data_hora_final').data('daterangepicker').setStartDate(vm.excecao.data_hora_final);
 
                 return controllerUtils.promise.criar(true, response);
             }

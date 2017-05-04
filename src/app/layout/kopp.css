@@ -69,6 +69,10 @@ table tr td:last-child {
     width: 150px;
 }
 
+#calendar table tr td:last-child {
+    width: auto;
+}
+
 .my-drop-zone {
     border: 3px solid #ccc;
     text-align: center;

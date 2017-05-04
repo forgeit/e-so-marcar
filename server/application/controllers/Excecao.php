@@ -28,7 +28,7 @@ class Excecao extends MY_Controller {
 
     public function buscar() {
 
-        $excecao = $this->ExcecaoModel->buscarPorId($this->uri->segment(2));
+        $excecao = $this->ExcecaoModel->buscarPorIdNativo($this->uri->segment(2));
 
         if ($excecao['id_cliente'] != $this->jwtController->id) {
             $this->gerarErro("Você não pode alterar este registro. " . $excecao);

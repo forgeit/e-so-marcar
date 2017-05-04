@@ -84,7 +84,8 @@ class Dados extends MY_Controller {
             die();
         }
 
-        if (isset($dados->logo)) {
+        if (isset($dados->logo) && $dados->logo != $dadosBanco['logo']) {
+            print_r($dados->logo);
             $dados->logo = $this->uploadArquivo($dados->logo, 'logo');
         }
 

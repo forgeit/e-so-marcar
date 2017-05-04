@@ -9,25 +9,28 @@
         'controllerUtils',
         'reservaRest',
         '$scope',
+        'dateRangeLocale',
         'configuracaoREST'];
 
-    function ReservaForm(controllerUtils, dataservice, $scope, configuracaoREST) {
+    function ReservaForm(controllerUtils, dataservice, $scope, dateRangeLocale, configuracaoREST) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.atualizar = atualizar;
-        vm.reserva = {valor: 0, ativo: true};
+        vm.reserva = {};
         vm.preview = 0;
         vm.editar = false;
         vm.filtrar = null;
         vm.quadraList = [];
         vm.salvar = salvar;
         vm.voltar = voltar;
+        vm.buscarValor = buscarValor;
 
         iniciar();
 
         function atualizar(formulario) {
-            vm.reserva.id_tipo_reserva = vm.tipoReserva.id;
+            vm.reserva.id_quadra = vm.quadra.id;
+            vm.reserva.id_usuario = vm.usuario.id;
 
             dataservice.atualizar(vm.reserva.id, vm.reserva).then(success).catch(error);
 
@@ -54,10 +57,10 @@
             function success(response) {
                 vm.reserva = controllerUtils.getData(response, 'dto');
 
-                if (vm.reserva.id_tipo_reserva) {
-                    $scope.$watch('vm.quadraListList', function () {
-                        if (vm.quadraListList.length > 0) {
-                            angular.forEach(vm.tipoReservaList, function (value, index) {
+                if (vm.reserva.id_quadra) {
+                    $scope.$watch('vm.quadraList', function () {
+                        if (vm.quadraList.length > 0) {
+                            angular.forEach(vm.quadraList, function (value, index) {
                                 if (value.id === vm.reserva.id_quadra) {
                                     vm.quadra = value;
                                 }
@@ -66,7 +69,19 @@
                     });
                 }
 
+                if (vm.reserva.id_usuario) {
+                    $scope.$watch('vm.usuarioList', function () {
+                        if (vm.usuarioList.length > 0) {
+                            angular.forEach(vm.usuarioList, function (value, index) {
+                                if (value.id === vm.reserva.id_usuario) {
+                                    vm.usuario = value;
+                                }
+                            });
+                        }
+                    });
+                }
 
+                $('#data_hora_reserva').data('daterangepicker').setStartDate(vm.reserva.data_hora_reserva);
 
                 return controllerUtils.promise.criar(true, response);
             }
@@ -118,11 +133,7 @@
         }
 
         function iniciar() {
-            $('#data_hora').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
-            $("#timepicker").timepicker({
-                showMeridian: false,
-                showInputs: false
-            });
+            $('#data_hora_reserva').daterangepicker({timePicker24Hour: true, singleDatePicker: true, timePicker: true, timePickerIncrement: 30, locale: dateRangeLocale});
 
             var promises = [];
 
@@ -139,10 +150,8 @@
         }
 
         function salvar(formulario) {
-            vm.reserva.id_tipo_reserva = vm.tipoReserva.id;
-            if (vm.uploader.queue.length === 0) {
-                vm.reserva.imagem = '';
-            }
+            vm.reserva.id_quadra = vm.quadra.id;
+            vm.reserva.id_usuario = vm.usuario.id;
 
             if (formulario.$valid) {
                 dataservice.salvar(vm.reserva).then(success).catch(error);
@@ -162,6 +171,29 @@
                 }
             }
         }
+
+        function buscarValor(formulario) {
+            if (vm.quadra && vm.reserva.data_hora_reserva) {
+                vm.reserva.id_quadra = vm.quadra.id;
+                dataservice.buscarValor(vm.reserva).then(success).catch(error);
+            }
+
+            function error(response) {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar valor.');
+                vm.reserva.valor = '';
+            }
+
+            function success(response) {
+                if (response.data.status) {
+                    controllerUtils.feedMessage(response);
+                    vm.reserva.valor = '';
+                } else {
+                    var horario = controllerUtils.getData(response, 'dto');
+                    vm.reserva.valor = horario.valor;
+                }
+            }
+        }
+
 
         function voltar() {
             controllerUtils.$location.path('reserva');

@@ -35,4 +35,61 @@ class ExcecaoModel extends MY_Model {
         }
     }
 
+    function buscarPorIdNativo($id) {
+        $sql = "SELECT 
+                    p.*, 
+                    DATE_FORMAT(p.data_hora_inicial,'%d/%m/%Y %H:%i') AS data_hora_inicial,
+                    DATE_FORMAT(p.data_hora_final,'%d/%m/%Y %H:%i') AS data_hora_final
+                FROM horario_excecao p
+                WHERE p.id = ?";
+
+        $query = $this->db->query($sql, array($id));
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
+
+    function isHorarioNaoJogar($idQuadra, $idCliente, $dataHora) {
+        $sql = "
+            SELECT 
+                *
+            FROM horario_excecao e
+            WHERE data_hora_inicial <= ?
+            AND data_hora_final >= ?
+            AND id_quadra = ?
+            AND id_cliente = ?
+            AND NOT flag_pode_jogar";
+
+        $query = $this->db->query($sql, array($dataHora, $dataHora, $idQuadra, $idCliente));
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
+
+    function buscarHorarioJogar($idQuadra, $idCliente, $dataHora) {
+        $sql = "
+            SELECT 
+                *
+            FROM horario_excecao e
+            WHERE data_hora_inicial >= ?
+            AND data_hora_final <= ?
+            AND id_quadra = ?
+            AND id_cliente = ?
+            AND flag_pode_jogar";
+
+        $query = $this->db->query($sql, array($dataHora, $dataHora, $idQuadra, $idCliente));
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
+
 }

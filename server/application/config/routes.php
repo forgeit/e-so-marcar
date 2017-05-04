@@ -79,6 +79,7 @@ $route['usuario/combo'] = 'usuario/buscarCombo';
 
 $route['reserva'] = 'reserva/buscarTodos';
 $route['reserva/(:num)'] = 'reserva/buscar/$1';
+$route['reserva/buscar-valor'] = 'reserva/buscarHorarioReserva';
 
 $route['horario'] = 'horario/buscarTodos';
 $route['horario/(:num)'] = 'horario/buscar/$1';

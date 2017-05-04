@@ -37,4 +37,23 @@ class HorarioModel extends MY_Model {
         }
     }
 
+    function buscarHorario($idQuadra, $idCliente, $diaSemana, $hora) {
+        $sql = "
+            SELECT 
+                *
+            FROM horario
+            WHERE hora_inicial = ?
+            AND dia_semana = ?
+            AND id_quadra = ?
+            AND id_cliente = ?";
+
+        $query = $this->db->query($sql, array($hora, $diaSemana, $idQuadra, $idCliente));
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
+
 }

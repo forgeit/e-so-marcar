@@ -11,6 +11,7 @@
         var service = {
             atualizar: atualizar,
             buscar: buscar,
+            buscarValor: buscarValor,
             buscarComboUsuario: buscarComboUsuario,
             buscarComboQuadra: buscarComboQuadra,
             buscarTodos: buscarTodos,
@@ -26,6 +27,10 @@
 
         function buscar(data) {
             return $http.get(configuracaoREST.url + configuracaoREST.reserva + data);
+        }
+        
+        function buscarValor(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.reserva + 'buscar-valor', data);
         }
 
         function buscarComboQuadra() {

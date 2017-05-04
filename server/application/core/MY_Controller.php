@@ -134,4 +134,9 @@ class MY_Controller extends CI_Controller {
         return $d . ' ' . $data[1] . ':00';
     }
 
+    protected function validaClienteQuadra($idQuadra) {
+        $quadraBanco = $this->QuadraModel->buscarPorId($idQuadra);
+        return ($quadraBanco['id_cliente'] != $this->jwtController->id);
+    }
+
 }

@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('novo-reserva/' + aData.id);
+                controllerUtils.$location.path('nova-reserva/' + aData.id);
                 $scope.$apply();
             }
 
@@ -55,7 +55,8 @@
                 vm.tabela.colunas = tabelaUtils.criarColunas([
                     ['quadra', 'Quadra'],
                     ['usuario', 'Usuário'],
-                    ['data_hora', 'Data e Hora'],
+                    ['data_hora_reserva', 'Data e Hora'],
+                    ['valor', 'Valor'],
                     ['id', 'Ações', tabelaUtils.criarBotaoPadrao]
                 ]);
             }
