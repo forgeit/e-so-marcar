@@ -12,6 +12,7 @@
         var vm = this;
 
         vm.logar = logar;
+        vm.areaUsuario = areaUsuario;
         vm.usuario = {};
 
         function logar(formulario) {
@@ -35,6 +36,10 @@
                     controllerUtils.$location.path('/');
                 }
             }
+        }
+
+        function areaUsuario() {
+            controllerUtils.$window.location.href = 'index.html';
         }
     }
 

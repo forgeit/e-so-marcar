@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/quadra', {
+                .when('/privado/privado/quadra', {
                     templateUrl: 'src/app/quadra/quadra-lista.html?' + new Date().getTime(),
                     controller: 'QuadraLista',
                     controllerAs: 'vm',
@@ -26,7 +26,7 @@
                         ]
                     }
                 })
-                .when('/nova-quadra', {
+                .when('/privado/nova-quadra', {
                     templateUrl: 'src/app/quadra/quadra-form.html?' + new Date().getTime(),
                     controller: 'QuadraForm',
                     controllerAs: 'vm',
@@ -46,7 +46,7 @@
                         ]
                     }
                 })
-                .when('/nova-quadra/:id', {
+                .when('/privado/nova-quadra/:id', {
                     templateUrl: 'src/app/quadra/quadra-form.html?' + new Date().getTime(),
                     controller: 'QuadraForm',
                     controllerAs: 'vm',

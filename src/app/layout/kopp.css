@@ -103,3 +103,7 @@ canvas {
     width: 100px;
     margin: 6px 0 0 0;
 }
+
+.btn-100 {
+    width: 100px
+}

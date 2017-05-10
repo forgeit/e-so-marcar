@@ -153,7 +153,7 @@
         }
 
         function voltar() {
-            controllerUtils.$location.path('excecao');
+            controllerUtils.$location.path('privado/excecao');
         }
     }
 

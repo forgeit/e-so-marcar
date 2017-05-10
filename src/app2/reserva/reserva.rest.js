@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-            .module('app.dados')
-            .factory('dadosRest', dataservice);
+            .module('app.reserva')
+            .factory('reservaRest', dataservice);
 
     dataservice.$inject = ['$http', '$location', '$q', 'configuracaoREST', '$httpParamSerializer'];
 
@@ -16,11 +16,11 @@
         return service;
 
         function salvar(data) {
-            return $http.post(configuracaoREST.url + configuracaoREST.dados + "salvar", data);
+            return $http.post(configuracaoREST.url + configuracaoREST.reserva + "salvar", data);
         }
 
         function buscar() {
-            return $http.get(configuracaoREST.url + configuracaoREST.dados + "buscar");
+            return $http.get(configuracaoREST.url + configuracaoREST.reserva + "buscar");
         }
 
     }

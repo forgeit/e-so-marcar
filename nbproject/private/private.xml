@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="FORGE">
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/reserva/reserva-form.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Quadra.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/reserva/reserva.rest.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/.htaccess</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/config.route.js</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/reserva/reserva-lista.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/auth/auth.module.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index-cliente.html</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/constants.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/reserva/reserva-form.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Usuario.php</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/auth/auth-token.factory.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/auth/auth-interceptor.factory.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/core/config.route.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/core/core.module.js</file>
         </group>
     </open-files>
 </project-private>

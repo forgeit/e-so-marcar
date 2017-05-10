@@ -167,7 +167,7 @@
         }
 
         function voltar() {
-            controllerUtils.$location.path('horario');
+            controllerUtils.$location.path('privado/horario');
         }
     }
 

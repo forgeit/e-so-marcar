@@ -63,7 +63,7 @@
         }
 
         function voltar() {
-            controllerUtils.$location.path('/');
+            controllerUtils.$location.path('privado//');
         }
     }
 

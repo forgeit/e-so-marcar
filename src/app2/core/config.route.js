@@ -8,7 +8,7 @@
             .config(routes)
             .config(loading);
 
-    appRun.$inject = ['$rootScope', '$location', '$route', 'AuthToken'];
+    appRun.$inject = ['$rootScope', '$location', '$route'];
     loading.$inject = ['cfpLoadingBarProvider'];
     routes.$inject = ['$routeProvider', '$locationProvider'];
 
@@ -21,11 +21,11 @@
 
         function routeChangeStart(event, next, current) {
             if (!next.notSecured) {
-                if (!AuthToken.ler()) {
-                    $rootScope.$evalAsync(function () {
-                        $location.path('/login');
-                    });
-                }
+//                if (!AuthToken.ler()) {
+//                    $rootScope.$evalAsync(function () {
+//                        $location.path('/login');
+//                    });
+//                }
             }
         }
 
@@ -50,7 +50,7 @@
     function routes($routeProvider, $locationProvider) {
         $routeProvider
                 .when('/', {
-                    templateUrl: 'src/app/home/home.html?' + new Date().getTime(),
+                    templateUrl: 'src/app2/home/home.html?' + new Date().getTime(),
                     controller: 'Home',
                     controllerAs: 'vm',
                     titulo: 'Página Inicial',

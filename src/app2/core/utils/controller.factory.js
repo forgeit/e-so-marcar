@@ -11,9 +11,10 @@
 		'multiPromise',
 		'$location',
 		'$q',
+                '$window',
 		'promise'];
 
-	function controllerUtils(getData, messageUtils, $routeParams, multiPromise, $location, $q, promise) {
+	function controllerUtils(getData, messageUtils, $routeParams, multiPromise, $location, $q, $window, promise) {
 		var service = {
 			getData: getData.get,
 			feedMessage: messageUtils.feedMessage,
@@ -24,7 +25,8 @@
 			ready: multiPromise.ready,
 			$q: $q,
 			promise: promise,
-			$location: $location
+			$location: $location,
+			$window: $window
 		};	
 
 		return service;

@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/anuncio', {
+                .when('/privado/anuncio', {
                     templateUrl: 'src/app/anuncio/anuncio-lista.html?' + new Date().getTime(),
                     controller: 'AnuncioLista',
                     controllerAs: 'vm',
@@ -26,7 +26,7 @@
                         ]
                     }
                 })
-                .when('/novo-anuncio', {
+                .when('/privado/novo-anuncio', {
                     templateUrl: 'src/app/anuncio/anuncio-form.html?' + new Date().getTime(),
                     controller: 'AnuncioForm',
                     controllerAs: 'vm',
@@ -46,7 +46,7 @@
                         ]
                     }
                 })
-                .when('/novo-anuncio/:id', {
+                .when('/privado/novo-anuncio/:id', {
                     templateUrl: 'src/app/anuncio/anuncio-form.html?' + new Date().getTime(),
                     controller: 'AnuncioForm',
                     controllerAs: 'vm',

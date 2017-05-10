@@ -23,7 +23,7 @@
             if (!next.notSecured) {
                 if (!AuthToken.ler()) {
                     $rootScope.$evalAsync(function () {
-                        $location.path('/login');
+                        $location.path('/privado/login');
                     });
                 }
             }
@@ -49,7 +49,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/', {
+                .when('/privado/cliente', {
                     templateUrl: 'src/app/home/home.html?' + new Date().getTime(),
                     controller: 'Home',
                     controllerAs: 'vm',
@@ -59,14 +59,14 @@
                         breadcrumbs: [
                             {
                                 nome: 'Página Inicial',
-                                link: '/',
+                                link: '/cliente',
                                 ativo: true
                             }
                         ]
                     }
                 })
                 .otherwise({
-                    redirectTo: '/'
+                    redirectTo: '/privado/cliente'
                 });
 
         $locationProvider.html5Mode(true);

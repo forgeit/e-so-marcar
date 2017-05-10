@@ -196,7 +196,7 @@
 
 
         function voltar() {
-            controllerUtils.$location.path('reserva');
+            controllerUtils.$location.path('privado/reserva');
         }
     }
 

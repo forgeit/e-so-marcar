@@ -16,4 +16,11 @@ RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /#/$1 [L]
+#RewriteRule ^(.*)$ /#/$1 [L]
+RewriteCond %{THE_REQUEST} /privado/
+RewriteRule ^privado/(.*)$ index-cliente.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{THE_REQUEST} /publico/
+RewriteRule ^publico/(.*)$ index.html [L]

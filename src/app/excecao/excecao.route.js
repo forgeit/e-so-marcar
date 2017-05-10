@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/excecao', {
+                .when('/privado/excecao', {
                     templateUrl: 'src/app/excecao/excecao-lista.html?' + new Date().getTime(),
                     controller: 'ExcecaoLista',
                     controllerAs: 'vm',
@@ -26,7 +26,7 @@
                         ]
                     }
                 })
-                .when('/nova-excecao', {
+                .when('/privado/nova-excecao', {
                     templateUrl: 'src/app/excecao/excecao-form.html?' + new Date().getTime(),
                     controller: 'ExcecaoForm',
                     controllerAs: 'vm',
@@ -46,7 +46,7 @@
                         ]
                     }
                 })
-                .when('/nova-excecao/:id', {
+                .when('/privado/nova-excecao/:id', {
                     templateUrl: 'src/app/excecao/excecao-form.html?' + new Date().getTime(),
                     controller: 'ExcecaoForm',
                     controllerAs: 'vm',

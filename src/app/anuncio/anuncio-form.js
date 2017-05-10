@@ -167,7 +167,7 @@
         }
 
         function voltar() {
-            controllerUtils.$location.path('anuncio');
+            controllerUtils.$location.path('privado/anuncio');
         }
     }
 

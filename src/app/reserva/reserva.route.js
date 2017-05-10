@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/reserva', {
+                .when('/privado/reserva', {
                     templateUrl: 'src/app/reserva/reserva-lista.html?' + new Date().getTime(),
                     controller: 'ReservaLista',
                     controllerAs: 'vm',
@@ -26,7 +26,7 @@
                         ]
                     }
                 })
-                .when('/nova-reserva', {
+                .when('/privado/nova-reserva', {
                     templateUrl: 'src/app/reserva/reserva-form.html?' + new Date().getTime(),
                     controller: 'ReservaForm',
                     controllerAs: 'vm',
@@ -46,7 +46,7 @@
                         ]
                     }
                 })
-                .when('/nova-reserva/:id', {
+                .when('/privado/nova-reserva/:id', {
                     templateUrl: 'src/app/reserva/reserva-form.html?' + new Date().getTime(),
                     controller: 'ReservaForm',
                     controllerAs: 'vm',

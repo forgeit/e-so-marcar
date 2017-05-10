@@ -1,21 +1,21 @@
 (function () {
 
-	'use strict';
+    'use strict';
 
-	angular
-		.module('app')
-		.config(routes);
+    angular
+            .module('app')
+            .config(routes);
 
-	routes.$inject = ['$routeProvider', '$locationProvider'];
+    routes.$inject = ['$routeProvider', '$locationProvider'];
 
-	function routes($routeProvider, $locationProvider) {
-		$routeProvider
-			.when('/login', {
-				templateUrl: 'src/app/login/login.html?' + new Date().getTime(),
-				controller: 'Login',
-				controllerAs: 'vm',
-				notSecured: true
-			});
-	}
+    function routes($routeProvider, $locationProvider) {
+        $routeProvider
+                .when('/publico/login', {
+                    templateUrl: 'src/app/login/login.html?' + new Date().getTime(),
+                    controller: 'Login',
+                    controllerAs: 'vm',
+                    notSecured: true
+                });
+    }
 
 })();

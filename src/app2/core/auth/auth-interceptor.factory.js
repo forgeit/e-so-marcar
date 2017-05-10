@@ -27,14 +27,7 @@
 		}
 
 		function responseError(response) {
-			if (response.status === 401 || response.status === 403) {
-				AuthToken.remover();
-				$location.path('/login');
-				$timeout(function () {
-					toastr.remove();
-					toastr['error']('Sua sessão expirou, logue novamente.');
-				}, 1);
-			}
+
 
 			return $q.reject(response);
 		}

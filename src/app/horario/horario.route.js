@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/horario', {
+                .when('/privado/horario', {
                     templateUrl: 'src/app/horario/horario-lista.html?' + new Date().getTime(),
                     controller: 'HorarioLista',
                     controllerAs: 'vm',
@@ -26,7 +26,7 @@
                         ]
                     }
                 })
-                .when('/novo-horario', {
+                .when('/privado/novo-horario', {
                     templateUrl: 'src/app/horario/horario-form.html?' + new Date().getTime(),
                     controller: 'HorarioForm',
                     controllerAs: 'vm',
@@ -46,7 +46,7 @@
                         ]
                     }
                 })
-                .when('/novo-horario/:id', {
+                .when('/privado/novo-horario/:id', {
                     templateUrl: 'src/app/horario/horario-form.html?' + new Date().getTime(),
                     controller: 'HorarioForm',
                     controllerAs: 'vm',

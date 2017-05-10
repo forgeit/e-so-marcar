@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/dados', {
+                .when('/privado/dados', {
                     templateUrl: 'src/app/dados/dados-form.html',
                     controller: 'DadosForm',
                     controllerAs: 'vm',

@@ -281,7 +281,7 @@
         }
 
         function voltar() {
-            controllerUtils.$location.path('quadra');
+            controllerUtils.$location.path('privado/quadra');
         }
     }
 

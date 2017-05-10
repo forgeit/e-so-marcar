@@ -3,6 +3,6 @@
     'use strict';
 
     angular
-            .module('app.dados', []);
+            .module('app.reserva', []);
 
 })();

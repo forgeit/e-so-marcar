@@ -1,34 +1,20 @@
 (function () {
 
     'use strict';
-    angular.module('app.dados')
-            .controller('DadosForm', DadosForm);
-    DadosForm.$inject = [
+    angular.module('app.reserva')
+            .controller('ReservaForm', ReservaForm);
+    ReservaForm.$inject = [
         'controllerUtils',
-        'dadosRest',
-        'FileUploader',
+        'reservaRest',
         'configuracaoREST'];
-    function DadosForm(controllerUtils, dataservice, FileUploader, configuracaoREST) {
+    function ReservaForm(controllerUtils, dataservice, configuracaoREST) {
         /* jshint validthis: true */
         var vm = this;
 
-        vm.dados = {};
+        vm.reserva = {};
         vm.salvar = salvar;
         vm.voltar = voltar;
         vm.preview;
-        vm.uploader = new FileUploader({
-            url: configuracaoREST.url + 'upload',
-            queueLimit: 1
-        });
-
-        vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
-            if (response.exec) {
-                controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
-            } else {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
-            }
-            vm.dados.logo = response.nome;
-        };
 
         buscar();
 
@@ -36,22 +22,22 @@
             dataservice.buscar().then(success).catch(error);
 
             function success(response) {
-                vm.dados = controllerUtils.getData(response, 'dto');
-                vm.preview = vm.dados.logo;
+                vm.reserva = controllerUtils.getData(response, 'dto');
+                vm.preview = vm.reserva.logo;
             }
 
             function error() {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os dados.');
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os reserva.');
             }
 
         }
 
         function salvar() {
 
-            dataservice.salvar(vm.dados).then(success).catch(error);
+            dataservice.salvar(vm.reserva).then(success).catch(error);
 
             function error(response) {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao salvar os dados.');
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao salvar os reserva.');
             }
 
             function success(response) {
@@ -63,7 +49,7 @@
         }
 
         function voltar() {
-            controllerUtils.$location.path('/');
+            controllerUtils.$location.path('/publico');
         }
     }
 

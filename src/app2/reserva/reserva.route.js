@@ -10,17 +10,17 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/dados', {
-                    templateUrl: 'src/app/dados/dados-form.html',
-                    controller: 'DadosForm',
+                .when('/publico/reserva', {
+                    templateUrl: 'src/app2/reserva/reserva-form.html',
+                    controller: 'ReservaForm',
                     controllerAs: 'vm',
-                    titulo: 'Dados do Cliente',
+                    titulo: 'Reserva do Cliente',
                     cabecalho: {
-                        h1: 'Dados do Cliente',
+                        h1: 'Reserva do Cliente',
                         breadcrumbs: [
                             {
-                                nome: 'Dados do Cliente',
-                                link: 'dados',
+                                nome: 'Reserva do Cliente',
+                                link: 'reserva',
                                 ativo: false
                             }
                         ]
