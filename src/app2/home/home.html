@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-2" ng-repeat="cartao in vm.cartoes">
+        <div class="small-box" ng-class="cartao.hoje ? 'bg-yellow' : cartao.passado ? 'bg-red' : 'bg-green-active'" style="margin-bottom: 10px; border-radius: 2px;">
+            <div class="inner" style="padding: 3px;">
+                <h4 class="text-center" style="background-color: white; color: #555; border-radius: 2px;"><strong>{{ cartao.data }}</strong></h4>
+                <p>Resolvidas: <strong>{{ cartao.resolvida}}</strong><br/>
+                Não Resolvidas: <strong>{{ cartao.nao_resolvida}}</strong><br/>
+                Outras: <strong>{{ cartao.outras}}</strong></p>
+            </div>
+            <a ng-href="demanda/{{ cartao.data }}" class="small-box-footer">
+                Carregar Demandas <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
