@@ -10,7 +10,7 @@
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/privado/privado/quadra', {
+                .when('/privado/quadra', {
                     templateUrl: 'src/app/quadra/quadra-lista.html?' + new Date().getTime(),
                     controller: 'QuadraLista',
                     controllerAs: 'vm',

@@ -5,6 +5,7 @@
 
     var configuracaoREST = {
         url: window.location.origin + '/server/',
+        home: 'home/',
         reserva: 'reserva/'
     };
 

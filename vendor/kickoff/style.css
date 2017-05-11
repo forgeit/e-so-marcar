@@ -2246,8 +2246,8 @@ blockquote {
 }
 .header-8 .logo {
     float: none;
-    margin: 0 auto;
-    width: 200px;
+    margin: 0; /*auto;*/
+    /*width: 200px;*/
 }
 .kode-navigation ul > li.last ul {
     left: auto;
@@ -6559,7 +6559,7 @@ input[type="week"],
 input[type="number"], input[type="email"],
 input[type="url"], input[type="search"], 
 input[type="tel"], input[type="color"], .uneditable-input{
-    color:#fff;
+    color:#000;
 }
 /*
       ============================================================

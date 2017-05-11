@@ -19,7 +19,7 @@ class MY_Controller extends CI_Controller {
             $seguro = false;
         }
 
-        //$seguro = false;
+        $seguro = false;
 
         if ($seguro) {
             if ($this->input->get_request_header('Authorization')) {

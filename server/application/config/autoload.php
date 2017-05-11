@@ -148,5 +148,6 @@ $autoload['model'] = array(
     'EsporteTipoModel',
     'DiaSemanaModel',
     'ExcecaoModel',
+    'NewsletterModel',
     'HorarioModel'
 );

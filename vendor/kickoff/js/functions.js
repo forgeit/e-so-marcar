@@ -31,12 +31,12 @@ jQuery(document).ready(function(){
 	/* ---------------------------------------------------------------------- */
 	/*	Counter Functions
 	/* ---------------------------------------------------------------------- */
-	if(jQuery('.word-count').length){
-		jQuery(".word-count").counterUp({
-			delay: 10,
-			time: 1000
-		});
-	}
+//	if(jQuery('.word-count').length){
+//		jQuery(".word-count").counterUp({
+//			delay: 10,
+//			time: 1000
+//		});
+//	}
 	
 	
 	/* ---------------------------------------------------------------------- */

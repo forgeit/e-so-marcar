@@ -71,6 +71,17 @@ class MY_Model extends CI_Model {
         }
     }
 
+    function countPorColuna($coluna = null, $value = null) {
+
+        if ($coluna != null) {
+            $this->db->where($coluna, $value);
+        }
+
+        $count = $this->db->count_all_results($this->table);
+
+        return $count;
+    }
+
     function atualizar($id, $data, $idNome = 'id') {
         if (is_null($id) || !isset($data)) {
             return false;
