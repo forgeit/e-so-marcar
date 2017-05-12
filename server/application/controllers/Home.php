@@ -33,7 +33,7 @@ class Home extends MY_Controller {
                     ->from($this->config->item('smtp_user'))
                     ->to($newsletter->email)
                     ->subject('Confirmação de e-mail')
-                    ->message('<p>Para confirmar seu cadastro clique <a href="' . $this->config->item('base_url') . 'home/ativar/newsletter/' . $id . '/hash/' . $hash . '">aqui</a>.</p>')
+                    ->message('<p>Para confirmar seu cadastro clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/newsletter/' . $id . '/hash/' . $hash . '">aqui</a>.</p>')
                     ->send();
         }
 
@@ -52,7 +52,8 @@ class Home extends MY_Controller {
             if ($hash == $this->uri->segment(6)) {
                 $newsletter['flag_email_confirmado'] = 1;
                 $this->NewsletterModel->atualizar($newsletter['id'], $newsletter);
-                redirect($this->config->item('base_url'));
+                header("location:" . $this->config->item('base_url'));
+                die();
             } else {
                 print_r('Hash inválido!');
             }
@@ -67,7 +68,8 @@ class Home extends MY_Controller {
             if ($hash == $this->uri->segment(6)) {
                 $usuario['flag_email_confirmado'] = 1;
                 $this->UsuarioModel->atualizar($usuario['id'], $usuario);
-                redirect($this->config->item('base_url'));
+                header("location:" . $this->config->item('base_url'));
+                die();
             } else {
                 print_r('Hash inválido!');
             }

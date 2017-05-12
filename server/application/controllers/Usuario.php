@@ -39,7 +39,7 @@ class Usuario extends MY_Controller {
                     ->from($this->config->item('smtp_user'))
                     ->to($usuario->email)
                     ->subject('Validação de Conta')
-                    ->message('<p>Para ativar sua conta clique <a href="' . $this->config->item('base_url') . 'home/ativar/cadastro/' . $id . '/hash/' . $hash . '">aqui</a>.</p>')
+                    ->message('<p>Para ativar sua conta clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/cadastro/' . $id . '/hash/' . $hash . '">aqui</a>.</p>')
                     ->send();
         }
 
