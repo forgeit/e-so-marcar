@@ -31,14 +31,18 @@ class Usuario extends MY_Controller {
         unset($usuario->senha_denovo);
 
         //$response = array('exec' => $this->UsuarioModel->inserir($usuario));
+
         //if ($response) {
-        $this->email
-                ->from('pogo01acc@gmail.com')
-                ->to('charles.a.goettert@gmail.com')
-                ->subject('Validação de Conta')
-                ->message('<p>Para ativar sua conta clique <a href="hahahah">aqui</a>.</p>')
-                ->send();
+            $hash = 'AaueofhaE0h203480ihAEFOho34089h0';
+
+            $this->email
+                    ->from('pogo01acc@gmail.com')
+                    ->to('charles.a.goettert@gmail.com')
+                    ->subject('Validação de Conta')
+                    ->message('<p>Para ativar sua conta clique <a href="' . BASEPATH . '/server/newsletter/validar/' . $hash . '">aqui</a>.</p>')
+                    ->send();
         //}
+
         //$array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
         //print_r(json_encode($array));
     }
