@@ -43,7 +43,7 @@ class Usuario extends MY_Controller {
                     ->send();
         }
 
-        $array = $this->gerarRetorno("Sucesso ao salvar o registro.");
+        $array = $this->gerarRetorno(TRUE, "Sucesso ao salvar o registro.");
         print_r(json_encode($array));
     }
 

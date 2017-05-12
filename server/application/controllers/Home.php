@@ -37,7 +37,7 @@ class Home extends MY_Controller {
                     ->send();
         }
 
-        $array = $this->gerarRetorno("Obrigado! Seu e-mail foi armazenado em nossa lista.");
+        $array = $this->gerarRetorno(TRUE, "Obrigado! Seu e-mail foi armazenado em nossa lista.");
         print_r(json_encode($array));
     }
 
