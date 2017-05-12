@@ -26,8 +26,22 @@ class Home extends MY_Controller {
 
         $response = array('exec' => $this->NewsletterModel->inserir($newsletter));
 
+        if ($response) {
+            $hash = 'AUIPhe908HAEfoh-80h240HA)F_EH_08';
+            mail($newsletter->email, 'Confirmação de e-mail', '<p>Para confirmar seu cadastro clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/newsletter/' . $hash . '">aqui</a>.</p>');
+        }
+
         $array = $this->gerarRetorno($response, $response ? "Obrigado! Seu e-mail foi armazenado em nossa lista." : "Erro ao salvar o registro.");
         print_r(json_encode($array));
+    }
+
+    public function ativar() {
+        print_r($this->uri->segment(3));
+        print_r($this->uri->segment(4));
+
+        if ($this->uri->segment(3) == 'newsletter' && $this->uri->segment(4)) {
+            print_r('Resgistro ativado!');
+        }
     }
 
     public function email() {
@@ -50,6 +64,8 @@ class Home extends MY_Controller {
             ' . $message . '
             </body>
             </html>';
+
+        print_r($this->config->item('base_url'));
 
         // Also, for getting full html you may use the following internal method:
         $body = $this->email->full_html($subject, $message);
