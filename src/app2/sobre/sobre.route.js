@@ -14,6 +14,7 @@
                     templateUrl: 'src/app2/sobre/sobre.html',
                     controller: 'Sobre',
                     controllerAs: 'vm',
+                    notSecured: true,
                     titulo: 'Sobre do Cliente',
                     cabecalho: {
                         h1: 'Sobre do Cliente',

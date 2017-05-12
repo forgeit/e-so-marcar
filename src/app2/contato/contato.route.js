@@ -14,6 +14,7 @@
                     templateUrl: 'src/app2/contato/contato.html',
                     controller: 'Contato',
                     controllerAs: 'vm',
+                    notSecured: true,
                     titulo: 'Contato do Cliente',
                     cabecalho: {
                         h1: 'Contato do Cliente',

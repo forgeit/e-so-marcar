@@ -14,6 +14,7 @@
                     templateUrl: 'src/app2/reserva/reserva-clientes.html?' + new Date().getTime(),
                     controller: 'ReservaClientes',
                     controllerAs: 'vm',
+                    notSecured: true,
                     titulo: 'Lista de Clientes',
                     cabecalho: {
                         h1: 'Lista de Clientes',
@@ -30,6 +31,7 @@
                     templateUrl: 'src/app2/reserva/reserva-quadras.html?' + new Date().getTime(),
                     controller: 'ReservaQuadras',
                     controllerAs: 'vm',
+                    notSecured: true,
                     titulo: 'Lista de Quadras',
                     cabecalho: {
                         h1: 'Lista de Quadras',
@@ -50,6 +52,7 @@
                     templateUrl: 'src/app2/reserva/reserva-form.html?' + new Date().getTime(),
                     controller: 'ReservaForm',
                     controllerAs: 'vm',
+                    notSecured: true,
                     titulo: 'Reserva de Quadra',
                     cabecalho: {
                         h1: 'Reserva de Quadra',

@@ -1,39 +1,39 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('core.auth')
-		.factory('AuthInterceptor', AuthInterceptor)
-		.config(http);
+    angular
+            .module('core.authApp2')
+            .factory('AuthInterceptor', AuthInterceptor)
+            .config(http);
 
-	AuthInterceptor.$inject = ['$location', '$q', 'AuthToken', 'toastr', '$timeout'];
-	http.$inject = ['$httpProvider'];
+    AuthInterceptor.$inject = ['$location', '$q', 'AuthTokenApp2', 'toastr', '$timeout'];
+    http.$inject = ['$httpProvider'];
 
-	function AuthInterceptor($location, $q, AuthToken, toastr, $timeout) {
-		var service = {
-			request: request,
-			responseError: responseError
-		};
+    function AuthInterceptor($location, $q, AuthTokenApp2, toastr, $timeout) {
+        var service = {
+            request: request,
+            responseError: responseError
+        };
 
-		return service;
+        return service;
 
-		function request(config) {
-			config.headers = config.headers || {};
-			if (AuthToken.ler()) {
-				config.headers.Authorization = 'Bearer ' + AuthToken.ler();
-			}
+        function request(config) {
+            config.headers = config.headers || {};
+            if (AuthTokenApp2.ler()) {
+                config.headers.Authorization = 'Bearer ' + AuthTokenApp2.ler();
+            }
 
-			return config;
-		}
+            return config;
+        }
 
-		function responseError(response) {
+        function responseError(response) {
 
 
-			return $q.reject(response);
-		}
-	}
+            return $q.reject(response);
+        }
+    }
 
-	function http($httpProvider) {
-		$httpProvider.interceptors.push('AuthInterceptor');
-	}
+    function http($httpProvider) {
+        $httpProvider.interceptors.push('AuthInterceptor');
+    }
 })();

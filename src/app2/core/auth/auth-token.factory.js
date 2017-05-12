@@ -1,31 +1,31 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('core.auth')
-		.factory('AuthToken', AuthToken);
+    angular
+            .module('core.authApp2')
+            .factory('AuthTokenApp2', AuthTokenApp2);
 
-	AuthToken.$inject = ['$sessionStorage'];
+    AuthTokenApp2.$inject = ['$sessionStorage'];
 
-	function AuthToken($sessionStorage) {
-		var service = {
-			remover: remover,
-			ler: ler,
-			setar: setar
-		};
+    function AuthTokenApp2($sessionStorage) {
+        var service = {
+            remover: remover,
+            ler: ler,
+            setar: setar
+        };
 
-		return service;
+        return service;
 
-		function remover() {
-			delete $sessionStorage.token;
-		}
+        function remover() {
+            delete $sessionStorage.tokenApp2;
+        }
 
-		function ler() {
-			return $sessionStorage.token;			
-		}
+        function ler() {
+            return $sessionStorage.tokenApp2;
+        }
 
-		function setar(token) {
-			$sessionStorage.token = token;
-		}
-	}
+        function setar(tokenApp2) {
+            $sessionStorage.tokenApp2 = tokenApp2;
+        }
+    }
 })();	

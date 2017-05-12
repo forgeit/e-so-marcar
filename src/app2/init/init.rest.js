@@ -10,7 +10,8 @@
     function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
         var service = {
             newsletter: newsletter,
-            cadastrar: cadastrar
+            cadastrar: cadastrar,
+            logar: logar
         };
 
         return service;
@@ -20,7 +21,11 @@
         }
 
         function cadastrar(data) {
-            return $http.post(configuracaoREST.url + 'usuario/salvar', data);
+            return $http.post(configuracaoREST.url + configuracaoREST.home + 'cadastrar', data);
+        }
+
+        function logar(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.home + 'logar', data);
         }
     }
 })();

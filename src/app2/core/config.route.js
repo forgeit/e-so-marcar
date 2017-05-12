@@ -8,11 +8,11 @@
             .config(routes)
             .config(loading);
 
-    appRun.$inject = ['$rootScope', '$location', '$route'];
+    appRun.$inject = ['$rootScope', '$location', '$route', 'AuthTokenApp2'];
     loading.$inject = ['cfpLoadingBarProvider'];
     routes.$inject = ['$routeProvider', '$locationProvider'];
 
-    function appRun($rootScope, $location, $route, AuthToken) {
+    function appRun($rootScope, $location, $route, AuthTokenApp2) {
         setRouteEvents();
 
         function routeChangeError() {
@@ -21,11 +21,11 @@
 
         function routeChangeStart(event, next, current) {
             if (!next.notSecured) {
-//                if (!AuthToken.ler()) {
-//                    $rootScope.$evalAsync(function () {
-//                        $location.path('/login');
-//                    });
-//                }
+                if (!AuthTokenApp2.ler()) {
+                    $rootScope.$evalAsync(function () {
+                        $location.path('/');
+                    });
+                }
             }
         }
 

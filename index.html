@@ -37,328 +37,267 @@
     </head>
     <body ng-controller="InitController as init">
 
-        <header id="mainheader" class="kode-header-absolute" >
 
-            <!--// TopBaar //-->
-            <div class="kode-topbar">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 kode_bg_white">
-                            <ul class="top_slider_bxslider">
-                                <li><span class="kode-barinfo"><strong>Latest News : </strong> Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit,</span></li>
-                                <li><span class="kode-barinfo"><strong>Latest News : </strong> Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit,</span></li>
-                                <li><span class="kode-barinfo"><strong>Latest News : </strong> Welcome visitor you can Login or Create an Account</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="kode-userinfo">
-                                <!--<li><a href="" ng-click="init.areaCliente()"><i class="fa fa-gear"></i> Administrador</a></li>-->
-                                <li ng-show="false"><a href="#"><i class="fa fa-user"></i> Minha Conta</a></li>
-                                <li ng-show="false"><a href="#"><i class="fa fa-user"></i> Sair</a></li>
-                                <li ng-show="true"><a href="vendor/kickoff/#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Entrar</a></li>
-                                <li ng-show="true"><a href="vendor/kickoff/#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Registrar</a></li>
-                            </ul>
-                        </div>
-                    </div>
+    <menu-topo></menu-topo>
+    <!--// Wrapper //-->
+    <div class="kode-wrapper" ng-view>
+
+    </div>
+
+    <!--// NewsLatter //-->
+    <div class="kode-newslatter kode-bg-color" >
+        <span class="kode-halfbg thbg-color"></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Inscreva-se Para Receber Nossas Novidades</h3>
+                </div>
+                <div class="col-md-6">
+                    <form ng-submit="init.newsletter()">
+                        <input type="text" placeholder="Seu Endereço de E-mail" name="s" ng-model="init.newsletterForm.email" required>
+                        <label><button type="submit" value=""></button></label>
+                    </form>
                 </div>
             </div>
-            <!--// TopBaar //-->
-
-            <div class="header-8">
-                <div class="container">
-                    <div class="logo">
-                        <a href="/" class="logo"><img src="src/app2/layout/img/logo.png" width="" alt=""/></a>
-                    </div>
-                    <div class="kode-navigation pull-left" style="padding-top: 5px;">
-                        <ul>
-                            <li><a href="publico/cliente">Marque Seu Jogo</a></li>
-                            <li><a href="publico/galeria">Galeria</a></li>
-                            <li><a href="publico/contato">Contato</a></li>
-                            <li><a href="publico/sobre" >Sobre</a></li>
-                        </ul>
-                    </div>
-                    <div class="kode-navigation" style="padding-top: 5px;">
-                        <ul>
-                            <li><a href="" ng-click="init.areaCliente()">Administrador</a></li>
-                        </ul>
-                    </div>
-
-                    <!--                    NAVIGATION START
-                                        <div class="kode-navigation pull-left">
-                                            <ul>
-                                                <li><a href="publico/reserva">Marque Seu Jogo</a></li>
-                                                <li><a href="publico/galeria">Galeria</a></li>
-                                            </ul>
-                                        </div>
-                                        NAVIGATION END 
-                                        LOGO START	
-                                        <div class="logo">
-                                            <a href="/" class="logo"><img src="vendor/kickoff/images/logo.png" alt=""></a>
-                                        </div>
-                                        LOGO END	
-                                        NAVIGATION START
-                                        <div class="kode-navigation pull-left">
-                                            <ul>
-                                                <li><a href="publico/contato">Contato</a></li>
-                                                <li><a href="publico/sobre">Sobre</a></li>
-                                            </ul>
-                                        </div>
-                                        NAVIGATION END  -->
-                </div>
-            </div>
-        </header>
-
-        <!--// Wrapper //-->
-        <div class="kode-wrapper" ng-view>
-
         </div>
+    </div>
 
-        <!--// NewsLatter //-->
-        <div class="kode-newslatter kode-bg-color" >
-            <span class="kode-halfbg thbg-color"></span>
+    <!--// NewsLatter //-->
+    <footer id="footer1" class="kode-parallax kode-dark-overlay kode-bg-pattern">
+        <!--Footer Medium-->
+        <div class="footer-medium">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <h3>Inscreva-se Para Receber Nossas Novidades</h3>
-                    </div>
-                    <div class="col-md-6">
-                        <form ng-submit="init.newsletter()">
-                            <input type="text" placeholder="Seu Endereço de E-mail" name="s" ng-model="init.newsletterForm.email" required>
-                            <label><button type="submit" value=""></button></label>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--// NewsLatter //-->
-        <footer id="footer1" class="kode-parallax kode-dark-overlay kode-bg-pattern">
-            <!--Footer Medium-->
-            <div class="footer-medium">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="about-widget">
-                                <h3>Sobre É Só Marcar</h3>
-                                <ul class="kode-form-list">
-                                    <li><i class="fa fa-home"></i> <p><strong>Endereço:</strong> 805 omnis iste natus error.</p></li>
-                                    <li><i class="fa fa-phone"></i> <p><strong>Telefone:</strong> 111 8756 22  777 4456 112</p></li>
-                                    <li><i class="fa fa-envelope-o"></i> <p><strong>E-mail:</strong> Info@sportyleague.com</p></li>
-                                </ul>
-                            </div>
+                    <div class="col-md-4">
+                        <div class="about-widget">
+                            <h3>Sobre É Só Marcar</h3>
+                            <ul class="kode-form-list">
+                                <li><i class="fa fa-home"></i> <p><strong>Endereço:</strong> 805 omnis iste natus error.</p></li>
+                                <li><i class="fa fa-phone"></i> <p><strong>Telefone:</strong> 111 8756 22  777 4456 112</p></li>
+                                <li><i class="fa fa-envelope-o"></i> <p><strong>E-mail:</strong> Info@sportyleague.com</p></li>
+                            </ul>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <div class="widget widget-flickr kode-gallery-pretty">
-                                <h3>Flickr</h3>
-                                <ul>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-1.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-2.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-3.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-1.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-2.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-3.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-1.jpg"></a></li>
-                                    <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-2.jpg"></a></li>
-                                </ul>
-                            </div>
+                    <div class="col-md-4">
+                        <div class="widget widget-flickr kode-gallery-pretty">
+                            <h3>Flickr</h3>
+                            <ul>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-1.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-2.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-3.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-1.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-2.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-3.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-1.jpg"></a></li>
+                                <li><a data-gal="prettyphoto" href="vendor/kickoff/extra-images/widgetgallery-2.jpg"><img alt="" src="vendor/kickoff/extra-images/widgetgallery-2.jpg"></a></li>
+                            </ul>
                         </div>
-                        <div class="col-md-4">
-                            <div class="contact-us-widget">
-                                <h3>Redes Socias</h3>
-                                <p>Siga-nos nas redes sociais para <br>
-                                    se manter atualizado<br>
-                                    sobre eventos e equipes.<br>
-                                </p>
-                                <ul class="social-links1">
-                                    <li>
-                                        <a href="vendor/kickoff/#" class="tw-bg1"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="vendor/kickoff/#" class="fb-bg1"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="vendor/kickoff/#" class="youtube-bg1"><i class="fa fa-youtube"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="vendor/kickoff/#" class="linkedin-bg1"><i class="fa fa-linkedin"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="vendor/kickoff/#" class="tw-bg1"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="vendor/kickoff/#" class="fb-bg1"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-us-widget">
+                            <h3>Redes Socias</h3>
+                            <p>Siga-nos nas redes sociais para <br>
+                                se manter atualizado<br>
+                                sobre eventos e equipes.<br>
+                            </p>
+                            <ul class="social-links1">
+                                <li>
+                                    <a href="vendor/kickoff/#" class="tw-bg1"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="vendor/kickoff/#" class="fb-bg1"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="vendor/kickoff/#" class="youtube-bg1"><i class="fa fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="vendor/kickoff/#" class="linkedin-bg1"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="vendor/kickoff/#" class="tw-bg1"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="vendor/kickoff/#" class="fb-bg1"><i class="fa fa-facebook"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--Footer Medium End-->
+        </div>
+        <!--Footer Medium End-->
 
 
-        </footer>
-        <!--// Contact Footer //-->
+    </footer>
+    <!--// Contact Footer //-->
 
-        <div class="kode-bottom-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>©2017 É Só Marcar. Todos os direitos reservados</p>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="vendor/kickoff/#" id="kode-topbtn" class="thbg-colortwo"><i class="fa fa-angle-up"></i></a>
-                    </div>
+    <div class="kode-bottom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>©2017 É Só Marcar. Todos os direitos reservados</p>
                 </div>
-            </div>      </div>
-        <div class="clearfix clear"></div>
+                <div class="col-md-6">
+                    <a href="vendor/kickoff/#" id="kode-topbtn" class="thbg-colortwo"><i class="fa fa-angle-up"></i></a>
+                </div>
+            </div>
+        </div>      </div>
+    <div class="clearfix clear"></div>
 
-        <!--// Wrapper //-->
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header thbg-color">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Acessar Sua Conta </h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="kode-loginform">
-                            <p><span>Usuário</span> <input type="text" placeholder="Usuário"></p>
-                            <p><span>Senha</span> <input type="password" placeholder="Senha"></p>
-                            <!--<p><label><input type="checkbox"><span>Remember Me</span></label></p>-->
-                            <p class="kode-submit"><a href="vendor/kickoff/#">Esqueci Minha Senha</a> <input class="thbg-colortwo" type="submit" value="Acessar"></p>
-                        </form>
-                    </div>
+    <!--// Wrapper //-->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header thbg-color">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Acessar Sua Conta </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="kode-loginform" name="formularioLogin" ng-submit="init.logar()">
+                        <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.login.login" required></p>
+                        <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.login.senha" required></p>
+                        <p class="kode-submit">
+                            <a href="vendor/kickoff/#">Esqueci Minha Senha</a> 
+                            <input class="btn thbg-colortwo" type="submit" value="Acessar" ng-disabled="formularioLogin.$invalid"></button></p>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModalTwo" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header thbg-color">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Cadastrar-se</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form novalidate class="kode-loginform" name="formularioCadastro" ng-submit="init.cadastrar()" >
-                            <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.cadastro.email" required></p>
-                            <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.cadastro.senha" required></p>
-                            <p><span>Repetir Senha</span> <input type="password" placeholder="Repetir Senha" ng-model="init.cadastro.senha_denovo" required></p>
-                            <!--<p><label><input type="checkbox"><span>Remember Me</span></label></p>-->
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModalTwo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header thbg-color">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Cadastrar-se</h4>
+                </div>
+                <div class="modal-body">
+                    <form novalidate class="kode-loginform" name="formularioCadastro" ng-submit="init.cadastrar()" >
+                        <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.cadastro.email" required></p>
+                        <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.cadastro.senha" required></p>
+                        <p><span>Repetir Senha</span> <input type="password" placeholder="Repetir Senha" ng-model="init.cadastro.senha_denovo" required></p>
+                        <!--<p><label><input type="checkbox"><span>Remember Me</span></label></p>-->
 
-                            <p class="kode-submit">
-                                <a href="vendor/kickoff/#">Esqueci Minha Senha</a> 
-                                <input class="btn thbg-colortwo" type="submit" value="Cadastrar" ng-disabled="formularioCadastro.$invalid"></button></p>
-                        </form>
-                    </div>
+                        <p class="kode-submit">
+                            <a href="vendor/kickoff/#">Esqueci Minha Senha</a> 
+                            <input class="btn thbg-colortwo" type="submit" value="Cadastrar" ng-disabled="formularioL.$invalid"></button></p>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header thbg-color">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Registro Efetuado</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-center"><i class="icon-ok-circle icon-2x"></i></p>
-                        <p class="text-center"><span>Registro efetuado com sucesso!</span></p>
-                        <p class="text-center"><span>Obrigado por se registrar em nosso site.</span></p>
-                        <p class="text-center" style="font-weight: bold"><span>Favor verificar seu e-mail para ativar sua conta.</span></p>
-                        <br>
-                    </div>
+    </div>
+    <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header thbg-color">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Registro Efetuado</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="icon-ok-circle icon-2x"></i></p>
+                    <p class="text-center"><span>Registro efetuado com sucesso!</span></p>
+                    <p class="text-center"><span>Obrigado por se registrar em nosso site.</span></p>
+                    <p class="text-center" style="font-weight: bold"><span>Favor verificar seu e-mail para ativar sua conta.</span></p>
+                    <br>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- jQuery (necessary for JavaScript plugins) -->
-        <!--<script src="bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>-->
-        <!--<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>-->
-        <script src="vendor/kickoff/js/jquery.js"></script>
-        <script src="vendor/kickoff/js/bootstrap.min.js"></script>
-        <script src="vendor/kickoff/js/jquery.flexslider.js"></script>
-        <script src="vendor/kickoff/js/owl.carousel.min.js"></script>
-        <script src="vendor/kickoff/js/jquery.countdown.js"></script>  
-        <script src="vendor/kickoff/js/waypoints-min.js"></script>
-        <script src="vendor/kickoff/js/jquery.bxslider.min.js"></script>
-        <script src="vendor/kickoff/js/bootstrap-progressbar.js"></script>
-        <script src="vendor/kickoff/js/jquery.accordion.js"></script>
-        <script src="vendor/kickoff/js/jquery.circlechart.js"></script>
-        <script src="vendor/kickoff/js/jquery.prettyphoto.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+    <!-- jQuery (necessary for JavaScript plugins) -->
+    <!--<script src="bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>-->
+    <!--<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>-->
+    <script src="vendor/kickoff/js/jquery.js"></script>
+    <script src="vendor/kickoff/js/bootstrap.min.js"></script>
+    <script src="vendor/kickoff/js/jquery.flexslider.js"></script>
+    <script src="vendor/kickoff/js/owl.carousel.min.js"></script>
+    <script src="vendor/kickoff/js/jquery.countdown.js"></script>  
+    <script src="vendor/kickoff/js/waypoints-min.js"></script>
+    <script src="vendor/kickoff/js/jquery.bxslider.min.js"></script>
+    <script src="vendor/kickoff/js/bootstrap-progressbar.js"></script>
+    <script src="vendor/kickoff/js/jquery.accordion.js"></script>
+    <script src="vendor/kickoff/js/jquery.circlechart.js"></script>
+    <script src="vendor/kickoff/js/jquery.prettyphoto.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
 
-        <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" src="bower_components/toastr/toastr.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-        <script type="text/javascript" src="bower_components/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
-        <script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular-loading-bar/src/loading-bar.js"></script>	
-        <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
-        <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
-        <script type="text/javascript" src="vendor/angular-datatables/dist/angular-datatables.js"></script>
-        <script type="text/javascript" src="vendor/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.5/angular-locale_pt-br.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="bower_components/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-loading-bar/src/loading-bar.js"></script>	
+    <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-datatables/dist/angular-datatables.js"></script>
+    <script type="text/javascript" src="vendor/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.5/angular-locale_pt-br.js"></script>
 
-        <script type="text/javascript" src="src/app2/app.module.js"></script>
-        <script type="text/javascript" src="src/app2/core/core.module.js"></script>
-        <script type="text/javascript" src="src/app2/core/config.route.js"></script>
-        <script type="text/javascript" src="src/app2/core/constants.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/utils.module.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/getdata.factory.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/tabela.factory.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/message.constants.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/message.factory.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/multi-promise.factory.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/promise.factory.js"></script>
-        <script type="text/javascript" src="src/app2/core/utils/controller.factory.js"></script>
+    <script type="text/javascript" src="src/app2/app.module.js"></script>
 
-        <!--        <script type="text/javascript" src="src/app2/core/auth/auth.module.js"></script>
-                <script type="text/javascript" src="src/app2/core/auth/auth-token.factory.js"></script>
-                <script type="text/javascript" src="src/app2/core/auth/auth-interceptor.factory.js"></script>
-        
-                <script type="text/javascript" src="src/app2/login/login.module.js"></script>
-                <script type="text/javascript" src="src/app2/login/login.route.js"></script>
-                <script type="text/javascript" src="src/app2/login/login.rest.js"></script>
-                <script type="text/javascript" src="src/app2/login/login.js"></script>-->
+    <script type="text/javascript" src="src/app2/layout/layout.module.js"></script>
+    <script type="text/javascript" src="src/app2/layout/menu-topo.directive.js"></script>
 
-        <script type="text/javascript" src="src/app2/init/init.module.js"></script>
-        <script type="text/javascript" src="src/app2/init/init.rest.js"></script>
-        <script type="text/javascript" src="src/app2/init/init.js"></script>
+    <script type="text/javascript" src="src/app2/core/core.module.js"></script>
+    <script type="text/javascript" src="src/app2/core/config.route.js"></script>
+    <script type="text/javascript" src="src/app2/core/constants.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/utils.module.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/getdata.factory.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/tabela.factory.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/message.constants.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/message.factory.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/multi-promise.factory.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/promise.factory.js"></script>
+    <script type="text/javascript" src="src/app2/core/utils/controller.factory.js"></script>
 
-        <script type="text/javascript" src="src/app2/home/home.module.js"></script>
-        <script type="text/javascript" src="src/app2/home/home.rest.js"></script>
-        <script type="text/javascript" src="src/app2/home/home.js"></script>
+    <script type="text/javascript" src="src/app2/core/auth/auth.module.js"></script>
+    <script type="text/javascript" src="src/app2/core/auth/auth-token.factory.js"></script>
+    <script type="text/javascript" src="src/app2/core/auth/auth-interceptor.factory.js"></script>
+    
+    <script type="text/javascript" src="src/app2/layout/menu-topo.controller.js"></script>
 
-        <script type="text/javascript" src="src/app2/galeria/galeria.module.js"></script>
-        <script type="text/javascript" src="src/app2/galeria/galeria.route.js"></script>
-        <script type="text/javascript" src="src/app2/galeria/galeria.rest.js"></script>
-        <script type="text/javascript" src="src/app2/galeria/galeria.js"></script>
+    <!--
+    <script type="text/javascript" src="src/app2/login/login.module.js"></script>
+    <script type="text/javascript" src="src/app2/login/login.route.js"></script>
+    <script type="text/javascript" src="src/app2/login/login.rest.js"></script>
+    <script type="text/javascript" src="src/app2/login/login.js"></script>-->
 
-        <script type="text/javascript" src="src/app2/contato/contato.module.js"></script>
-        <script type="text/javascript" src="src/app2/contato/contato.route.js"></script>
-        <script type="text/javascript" src="src/app2/contato/contato.rest.js"></script>
-        <script type="text/javascript" src="src/app2/contato/contato.js"></script>
+    <script type="text/javascript" src="src/app2/init/init.module.js"></script>
+    <script type="text/javascript" src="src/app2/init/init.rest.js"></script>
+    <script type="text/javascript" src="src/app2/init/init.js"></script>
 
-        <script type="text/javascript" src="src/app2/sobre/sobre.module.js"></script>
-        <script type="text/javascript" src="src/app2/sobre/sobre.route.js"></script>
-        <script type="text/javascript" src="src/app2/sobre/sobre.rest.js"></script>
-        <script type="text/javascript" src="src/app2/sobre/sobre.js"></script>
+    <script type="text/javascript" src="src/app2/home/home.module.js"></script>
+    <script type="text/javascript" src="src/app2/home/home.rest.js"></script>
+    <script type="text/javascript" src="src/app2/home/home.js"></script>
 
-        <script type="text/javascript" src="src/app2/reserva/reserva.module.js"></script>
-        <script type="text/javascript" src="src/app2/reserva/reserva.route.js"></script>
-        <script type="text/javascript" src="src/app2/reserva/reserva.rest.js"></script>
-        <script type="text/javascript" src="src/app2/reserva/reserva-clientes.js"></script>
-        <script type="text/javascript" src="src/app2/reserva/reserva-quadras.js"></script>
-        <script type="text/javascript" src="src/app2/reserva/reserva-form.js"></script>
+    <script type="text/javascript" src="src/app2/galeria/galeria.module.js"></script>
+    <script type="text/javascript" src="src/app2/galeria/galeria.route.js"></script>
+    <script type="text/javascript" src="src/app2/galeria/galeria.rest.js"></script>
+    <script type="text/javascript" src="src/app2/galeria/galeria.js"></script>
 
-    </body>
+    <script type="text/javascript" src="src/app2/contato/contato.module.js"></script>
+    <script type="text/javascript" src="src/app2/contato/contato.route.js"></script>
+    <script type="text/javascript" src="src/app2/contato/contato.rest.js"></script>
+    <script type="text/javascript" src="src/app2/contato/contato.js"></script>
+
+    <script type="text/javascript" src="src/app2/sobre/sobre.module.js"></script>
+    <script type="text/javascript" src="src/app2/sobre/sobre.route.js"></script>
+    <script type="text/javascript" src="src/app2/sobre/sobre.rest.js"></script>
+    <script type="text/javascript" src="src/app2/sobre/sobre.js"></script>
+
+    <script type="text/javascript" src="src/app2/reserva/reserva.module.js"></script>
+    <script type="text/javascript" src="src/app2/reserva/reserva.route.js"></script>
+    <script type="text/javascript" src="src/app2/reserva/reserva.rest.js"></script>
+    <script type="text/javascript" src="src/app2/reserva/reserva-clientes.js"></script>
+    <script type="text/javascript" src="src/app2/reserva/reserva-quadras.js"></script>
+    <script type="text/javascript" src="src/app2/reserva/reserva-form.js"></script>
+
+</body>
 
 </html>

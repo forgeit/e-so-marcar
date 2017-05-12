@@ -1,0 +1,71 @@
+<header id="mainheader" class="kode-header-absolute" ng-controller="MenuTopoController as vm" >
+
+    <!--// TopBaar //-->
+    <div class="kode-topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 kode_bg_white">
+                    <ul>
+                        <li>
+                            <span class="kode-barinfo" ng-show="usuarioSistema">Bem-vindo, <strong>{{usuarioSistema.nomeExibir}}</strong>, você já pode marcar seu jogo</span>
+                            <span class="kode-barinfo" ng-hide="usuarioSistema">Bem-vindo, visitante, você pode acessar ou criar uma conta</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="kode-userinfo">
+                        <!--<li><a href="" ng-click="init.areaCliente()"><i class="fa fa-gear"></i> Administrador</a></li>-->
+                        <li ng-show="usuarioSistema"><a href="#"><i class="fa fa-user"></i> Minha Conta</a></li>
+                        <li ng-show="usuarioSistema"><a href="#" ng-click="vm.sair()"><i class="fa fa-user"></i> Sair</a></li>
+                        <li ng-hide="usuarioSistema"><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Entrar</a></li>
+                        <li ng-hide="usuarioSistema"><a href="#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Registrar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// TopBaar //-->
+
+    <div class="header-8">
+        <div class="container">
+            <div class="logo">
+                <a href="/" class="logo"><img src="src/app2/layout/img/logo.png" width="" alt=""/></a>
+            </div>
+            <div class="kode-navigation pull-left" style="padding-top: 5px;">
+                <ul>
+                    <li><a href="publico/cliente">Marque Seu Jogo</a></li>
+                    <li><a href="publico/galeria">Galeria</a></li>
+                    <li><a href="publico/contato">Contato</a></li>
+                    <li><a href="publico/sobre" >Sobre</a></li>
+                </ul>
+            </div>
+            <div class="kode-navigation" style="padding-top: 5px;">
+                <ul>
+                    <li><a href="" ng-click="init.areaCliente()">Administrador</a></li>
+                </ul>
+            </div>
+
+            <!--                    NAVIGATION START
+                                <div class="kode-navigation pull-left">
+                                    <ul>
+                                        <li><a href="publico/reserva">Marque Seu Jogo</a></li>
+                                        <li><a href="publico/galeria">Galeria</a></li>
+                                    </ul>
+                                </div>
+                                NAVIGATION END 
+                                LOGO START	
+                                <div class="logo">
+                                    <a href="/" class="logo"><img src="vendor/kickoff/images/logo.png" alt=""></a>
+                                </div>
+                                LOGO END	
+                                NAVIGATION START
+                                <div class="kode-navigation pull-left">
+                                    <ul>
+                                        <li><a href="publico/contato">Contato</a></li>
+                                        <li><a href="publico/sobre">Sobre</a></li>
+                                    </ul>
+                                </div>
+                                NAVIGATION END  -->
+        </div>
+    </div>
+</header>

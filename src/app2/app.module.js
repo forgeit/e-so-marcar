@@ -9,6 +9,7 @@
         'app.contato',
         'app.sobre',
         'app.reserva',
+        'app.layout',
 //        'app.login',
         'app.home']);
 

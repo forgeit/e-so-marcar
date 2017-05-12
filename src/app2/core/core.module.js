@@ -13,7 +13,7 @@
         'core.utils',
         'angular-loading-bar',
         'ngStorage',
-//        'core.auth',
+        'core.authApp2',
         'angular-jwt']);
 
 })();

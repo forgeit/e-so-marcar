@@ -14,6 +14,7 @@
                     templateUrl: 'src/app2/galeria/galeria.html',
                     controller: 'Galeria',
                     controllerAs: 'vm',
+                    notSecured: true,
                     titulo: 'Galeria do Cliente',
                     cabecalho: {
                         h1: 'Galeria do Cliente',

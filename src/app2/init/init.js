@@ -5,17 +5,16 @@
             .module('app.init')
             .controller('InitController', InitController);
 
-    InitController.$inject = ['controllerUtils', 'initRest'];
+    InitController.$inject = ['controllerUtils', 'initRest', 'AuthTokenApp2', 'jwtHelper', '$rootScope'];
 
-    function InitController(controllerUtils, dataService) {
+    function InitController(controllerUtils, dataService, AuthTokenApp2, jwtHelper, $rootScope) {
 
         var vm = this;
-        vm.message = {
-            title: 'REGISTRO EFETUADO'
-        };
+
         vm.areaCliente = areaCliente;
         vm.newsletter = newsletter;
         vm.cadastrar = cadastrar;
+        vm.logar = logar;
 
         function areaCliente() {
             controllerUtils.$window.location.href = 'index-cliente.html';
@@ -51,6 +50,31 @@
                     $('#modalMessage').modal('show');
                 } else {
                     controllerUtils.feedMessage(response);
+                }
+            }
+        }
+
+        function logar() {
+
+            dataService.logar(vm.login).then(success).catch(error);
+
+            function error(response) {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao acessar o sistema.');
+            }
+
+            function success(response) {
+                controllerUtils.feedMessage(response);
+                if (response.data.status === 'true') {
+                    AuthTokenApp2.setar(response.data.data.token);
+
+                    var payload = jwtHelper.decodeToken(response.data.data.token);
+                    $rootScope.usuarioSistema = {};
+                    $rootScope.usuarioSistema.id = payload.id;
+                    $rootScope.usuarioSistema.nome = payload.nome;
+                    $rootScope.usuarioSistema.email = payload.email;
+                    $rootScope.usuarioSistema.nomeExibir = ((payload.nome) ? payload.nome : payload.email);
+
+                    $('#myModal').modal('hide');
                 }
             }
         }

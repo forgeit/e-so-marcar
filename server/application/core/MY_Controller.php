@@ -15,11 +15,12 @@ class MY_Controller extends CI_Controller {
 
         $seguro = true;
 
-        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'upload' || (0 === strrpos($this->uri->uri_string, 'arquivo/buscar'))) {
+        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'upload' || (0 === strrpos($this->uri->uri_string, 'arquivo/buscar'))
+                || (0 === strrpos($this->uri->uri_string, 'home'))) {
             $seguro = false;
         }
 
-        $seguro = false;
+        //$seguro = false;
 
         if ($seguro) {
             if ($this->input->get_request_header('Authorization')) {
