@@ -27,10 +27,10 @@ class Home extends MY_Controller {
         $response = array('exec' => $this->NewsletterModel->inserir($newsletter));
 
         if ($response) {
-            $hash = 'AUIPhe908HAEfoh-80h240HA)F_EH_08';
+            $hash = 'AUIPhe908HAEfoh80h240HA08';
 
             $this->email
-                    ->from('É Só Marcar')
+                    ->from('pogo01acc@gmail.com')
                     ->to('charles.a.goettert@gmail.com')
                     ->subject('Confirmação de e-mail')
                     ->message('<p>Para confirmar seu cadastro clique <a href="' . $this->config->item('base_url') . 'home/ativar/newsletter/' . $hash . '">aqui</a>.</p>')
