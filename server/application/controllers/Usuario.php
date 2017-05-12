@@ -32,6 +32,10 @@ class Usuario extends MY_Controller {
 
         $response = array('exec' => $this->UsuarioModel->inserir($usuario));
 
+        if ($response) {
+            mail('charles.a.goettert@gmail.com', 'Validação de Conta', '<p>Para ativar sua conta clique <a href="hahahah">aqui</a>.</p>');
+        }
+
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
         print_r(json_encode($array));
     }

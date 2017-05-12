@@ -31,8 +31,8 @@ class Home extends MY_Controller {
     }
 
     public function email() {
-        $subject = 'This is a test';
-        $message = '<p>This message has been sent for testing purposes.</p>';
+        $subject = 'Ativação de Conta';
+        $message = '<p>Para ativar sua conta clique <a href="hahahah">aqui</a>.</p>';
 
         $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -52,11 +52,10 @@ class Home extends MY_Controller {
             </html>';
 
         // Also, for getting full html you may use the following internal method:
-        //$body = $this->email->full_html($subject, $message);
+        $body = $this->email->full_html($subject, $message);
 
         $result = $this->email
                 ->from('pogo01acc@gmail.com')
-                //->reply_to('yoursecondemail@somedomain.com')    // Optional, an account where a human being reads.
                 ->to('charles.a.goettert@gmail.com')
                 ->subject($subject)
                 ->message($body)
