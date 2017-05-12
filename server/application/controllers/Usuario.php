@@ -24,7 +24,7 @@ class Usuario extends MY_Controller {
         $data = $this->security->xss_clean($this->input->raw_input_stream);
         $usuario = json_decode($data);
 
-        $this->validaDados($usuario);
+        //$this->validaDados($usuario);
 
         $usuario->data_cadastro = date('Y-m-d');
         $usuario->flag_email_confirmado = 0;
