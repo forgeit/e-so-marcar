@@ -47,7 +47,7 @@ class Home extends MY_Controller {
         if ($this->uri->segment(3) == 'newsletter' && $this->uri->segment(4) && $this->uri->segment(5) == 'hash' && $this->uri->segment(6)) {
 
             $newsletter = $this->NewsletterModel->buscarPorId($this->uri->segment(4));
-            $hash = hash('md5', $newsletter->email . 'newsletter-esomarcar');
+            $hash = hash('md5', $newsletter['email'] . 'newsletter-esomarcar');
 
             if ($hash == $this->uri->segment(4)) {
                 $newsletter['flag_email_confirmado'] = 1;
@@ -62,7 +62,7 @@ class Home extends MY_Controller {
         if ($this->uri->segment(3) == 'cadastro' && $this->uri->segment(4) && $this->uri->segment(5) == 'hash' && $this->uri->segment(6)) {
 
             $newsletter = $this->UsuarioModel->buscarPorId($this->uri->segment(4));
-            $hash = hash('md5', $newsletter->email . 'cadastro-esomarcar');
+            $hash = hash('md5', $newsletter['email'] . 'cadastro-esomarcar');
 
             if ($hash == $this->uri->segment(4)) {
                 $newsletter['flag_email_confirmado'] = 1;
