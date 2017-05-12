@@ -30,14 +30,14 @@ class Usuario extends MY_Controller {
         $usuario->flag_email_confirmado = 0;
         unset($usuario->senha_denovo);
 
-        $response = array('exec' => $this->UsuarioModel->inserir($usuario));
+        //$response = array('exec' => $this->UsuarioModel->inserir($usuario));
 
-        if ($response) {
+        //if ($response) {
             mail('charles.a.goettert@gmail.com', 'Validação de Conta', '<p>Para ativar sua conta clique <a href="hahahah">aqui</a>.</p>');
-        }
+        //}
 
-        $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
-        print_r(json_encode($array));
+        //$array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
+        //print_r(json_encode($array));
     }
 
     private function validaDados($usuario) {
