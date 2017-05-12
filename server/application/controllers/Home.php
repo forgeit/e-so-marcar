@@ -28,7 +28,7 @@ class Home extends MY_Controller {
 
         if ($response) {
             $hash = 'AUIPhe908HAEfoh-80h240HA)F_EH_08';
-            mail($newsletter->email, 'Confirmação de e-mail', '<p>Para confirmar seu cadastro clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/newsletter/' . $hash . '">aqui</a>.</p>');
+            mail($newsletter->email, 'Confirmação de e-mail', '<p>Para confirmar seu cadastro clique <a href="' . $this->config->item('base_url') . 'home/ativar/newsletter/' . $hash . '">aqui</a>.</p>');
         }
 
         $array = $this->gerarRetorno($response, $response ? "Obrigado! Seu e-mail foi armazenado em nossa lista." : "Erro ao salvar o registro.");
@@ -40,7 +40,11 @@ class Home extends MY_Controller {
         print_r($this->uri->segment(4));
 
         if ($this->uri->segment(3) == 'newsletter' && $this->uri->segment(4)) {
-            print_r('Resgistro ativado!');
+            print_r('Newsletter ativado!');
+        }
+        
+        if ($this->uri->segment(3) == 'cadastro' && $this->uri->segment(4)) {
+            print_r('Cadastro ativado!');
         }
     }
 
