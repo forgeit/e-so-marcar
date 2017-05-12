@@ -49,7 +49,13 @@ class Home extends MY_Controller {
             $newsletter = $this->NewsletterModel->buscarPorId($this->uri->segment(4));
             $hash = hash('md5', $newsletter['email'] . 'newsletter-esomarcar');
 
-            if ($hash == $this->uri->segment(4)) {
+            print_r('<br/>');
+            print_r($hash);
+            print_r('<br/>');
+            print_r($this->uri->segment(6));
+            print_r('<br/>');
+            
+            if ($hash == $this->uri->segment(6)) {
                 $newsletter['flag_email_confirmado'] = 1;
                 $this->NewsletterModel->atualizar($newsletter);
                 print_r('Newsletter ativado!');
@@ -64,7 +70,7 @@ class Home extends MY_Controller {
             $newsletter = $this->UsuarioModel->buscarPorId($this->uri->segment(4));
             $hash = hash('md5', $newsletter['email'] . 'cadastro-esomarcar');
 
-            if ($hash == $this->uri->segment(4)) {
+            if ($hash == $this->uri->segment(6)) {
                 $newsletter['flag_email_confirmado'] = 1;
                 $this->UsuarioModel->atualizar($newsletter);
                 print_r('Cadastro ativado!');
