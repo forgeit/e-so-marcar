@@ -12,8 +12,6 @@
             templateUrl: 'src/app2/layout/menu-topo.html'
         };
         
-        console.log('directive');
-
         return directive;
     }
 

@@ -16,6 +16,7 @@
 
         <!-- Css Files -->
         <link href="vendor/kickoff/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-loading-bar/src/loading-bar.css">
         <link href="vendor/kickoff/css/font-awesome.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link href="vendor/kickoff/css/themetypo.css" rel="stylesheet">
@@ -35,9 +36,9 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+
     <body ng-controller="InitController as init">
-
-
+        <div id="loading-bar-container"></div>	
     <menu-topo></menu-topo>
     <!--// Wrapper //-->
     <div class="kode-wrapper" ng-view>
@@ -259,7 +260,7 @@
     <script type="text/javascript" src="src/app2/core/auth/auth.module.js"></script>
     <script type="text/javascript" src="src/app2/core/auth/auth-token.factory.js"></script>
     <script type="text/javascript" src="src/app2/core/auth/auth-interceptor.factory.js"></script>
-    
+
     <script type="text/javascript" src="src/app2/layout/menu-topo.controller.js"></script>
 
     <!--

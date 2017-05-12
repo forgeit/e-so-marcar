@@ -12,12 +12,10 @@
         vm.isLogged = isLogged;
         vm.sair = sair;
 
-        console.log('loading');
-
         carregar();
 
         function carregar() {
-            console.log('carregando');
+            
             if (AuthTokenApp2.ler()) {
                 var payload = jwtHelper.decodeToken(AuthTokenApp2.ler());
                 $rootScope.usuarioSistema = {};
