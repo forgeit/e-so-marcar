@@ -30,20 +30,20 @@ class Usuario extends MY_Controller {
         $usuario->flag_email_confirmado = 0;
         unset($usuario->senha_denovo);
 
-        $response = array('exec' => $this->UsuarioModel->inserir($usuario));
+        $id = $this->UsuarioModel->inserirRetornaId($usuario);
 
-        if ($response) {
-            $hash = 'AaueofhaE0h203480ihAEFOho34089h0';
+        if ($id) {
+            $hash = hash('md5', $usuario->email . 'cadastro-esomarcar');
 
             $this->email
-                    ->from('pogo01acc@gmail.com')
-                    ->to('charles.a.goettert@gmail.com')
+                    ->from($this->config->item('smtp_user'))
+                    ->to($usuario->email)
                     ->subject('Validação de Conta')
-                    ->message('<p>Para ativar sua conta clique <a href="' . $this->config->item('base_url') . 'home/ativar/cadastro/' . $hash . '">aqui</a>.</p>')
+                    ->message('<p>Para ativar sua conta clique <a href="' . $this->config->item('base_url') . 'home/ativar/cadastro/' . $id . '/hash/' . $hash . '">aqui</a>.</p>')
                     ->send();
         }
 
-        $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
+        $array = $this->gerarRetorno("Sucesso ao salvar o registro.");
         print_r(json_encode($array));
     }
 
