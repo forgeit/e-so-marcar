@@ -11,12 +11,13 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>É Só Marcar</title>
         <base href="/">
-        
+
         <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
 
         <!-- Css Files -->
         <link href="vendor/kickoff/css/bootstrap.css" rel="stylesheet">
         <link href="vendor/kickoff/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link href="vendor/kickoff/css/themetypo.css" rel="stylesheet">
         <link href="vendor/kickoff/style.css" rel="stylesheet">
         <link href="vendor/kickoff/css/widget.css" rel="stylesheet">
@@ -51,9 +52,11 @@
                         </div>
                         <div class="col-md-6">
                             <ul class="kode-userinfo">
-                                <li><a href="" ng-click="init.areaCliente()"><i class="fa fa-gear"></i> Administrador</a></li>
-                                <li><a href="vendor/kickoff/#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Entrar</a></li>
-                                <li><a href="vendor/kickoff/#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Registrar</a></li>
+                                <!--<li><a href="" ng-click="init.areaCliente()"><i class="fa fa-gear"></i> Administrador</a></li>-->
+                                <li ng-show="false"><a href="#"><i class="fa fa-user"></i> Minha Conta</a></li>
+                                <li ng-show="false"><a href="#"><i class="fa fa-user"></i> Sair</a></li>
+                                <li ng-show="true"><a href="vendor/kickoff/#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Entrar</a></li>
+                                <li ng-show="true"><a href="vendor/kickoff/#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Registrar</a></li>
                             </ul>
                         </div>
                     </div>
@@ -71,31 +74,36 @@
                             <li><a href="publico/cliente">Marque Seu Jogo</a></li>
                             <li><a href="publico/galeria">Galeria</a></li>
                             <li><a href="publico/contato">Contato</a></li>
-                            <li><a href="publico/sobre">Sobre</a></li>
+                            <li><a href="publico/sobre" >Sobre</a></li>
                         </ul>
                     </div>
-                    
-<!--                    NAVIGATION START
-                    <div class="kode-navigation pull-left">
+                    <div class="kode-navigation">
                         <ul>
-                            <li><a href="publico/reserva">Marque Seu Jogo</a></li>
-                            <li><a href="publico/galeria">Galeria</a></li>
+                            <li><a href="" ng-click="init.areaCliente()">Administrador</a></li>
                         </ul>
                     </div>
-                    NAVIGATION END 
-                    LOGO START	
-                    <div class="logo">
-                        <a href="/" class="logo"><img src="vendor/kickoff/images/logo.png" alt=""></a>
-                    </div>
-                    LOGO END	
-                    NAVIGATION START
-                    <div class="kode-navigation pull-left">
-                        <ul>
-                            <li><a href="publico/contato">Contato</a></li>
-                            <li><a href="publico/sobre">Sobre</a></li>
-                        </ul>
-                    </div>
-                    NAVIGATION END  -->
+
+                    <!--                    NAVIGATION START
+                                        <div class="kode-navigation pull-left">
+                                            <ul>
+                                                <li><a href="publico/reserva">Marque Seu Jogo</a></li>
+                                                <li><a href="publico/galeria">Galeria</a></li>
+                                            </ul>
+                                        </div>
+                                        NAVIGATION END 
+                                        LOGO START	
+                                        <div class="logo">
+                                            <a href="/" class="logo"><img src="vendor/kickoff/images/logo.png" alt=""></a>
+                                        </div>
+                                        LOGO END	
+                                        NAVIGATION START
+                                        <div class="kode-navigation pull-left">
+                                            <ul>
+                                                <li><a href="publico/contato">Contato</a></li>
+                                                <li><a href="publico/sobre">Sobre</a></li>
+                                            </ul>
+                                        </div>
+                                        NAVIGATION END  -->
                 </div>
             </div>
         </header>
@@ -235,17 +243,33 @@
                         <h4 class="modal-title">Cadastrar-se</h4>
                     </div>
                     <div class="modal-body">
-                        <form novalidate class="kode-loginform" name="formularioCadastro" >
+                        <form novalidate class="kode-loginform" name="formularioCadastro" ng-submit="init.cadastrar()" >
                             <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.cadastro.email" required></p>
                             <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.cadastro.senha" required></p>
-                            <p><span>Repetir Senha</span> <input type="password" placeholder="Repetir Senha" ng-model="init.cadastro.senhaDenovo" required></p>
+                            <p><span>Repetir Senha</span> <input type="password" placeholder="Repetir Senha" ng-model="init.cadastro.senha_denovo" required></p>
                             <!--<p><label><input type="checkbox"><span>Remember Me</span></label></p>-->
-                            
+
                             <p class="kode-submit">
-                                <button type="button" class="btn btn-primary btn-flat" ng-click="alert('afeae')" >Salvar</button>
-                                <!--<a href="vendor/kickoff/#">Lost Your Password</a>--> 
-                                <!--<button class="btn thbg-colortwo" type="submit" value="Cadastrar" ng-disabled="formularioCadastro.$invalid"></button></p>-->
+                                <a href="vendor/kickoff/#">Esqueci Minha Senha</a> 
+                                <input class="btn thbg-colortwo" type="submit" value="Cadastrar" ng-disabled="formularioCadastro.$invalid"></button></p>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header thbg-color">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Registro Efetuado</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center"><i class="icon-ok-circle icon-2x"></i></p>
+                        <p class="text-center"><span>Registro efetuado com sucesso!</span></p>
+                        <p class="text-center"><span>Obrigado por se registrar em nosso site.</span></p>
+                        <p class="text-center" style="font-weight: bold"><span>Favor verificar seu e-mail para ativar sua conta.</span></p>
+                        <br>
                     </div>
                 </div>
             </div>

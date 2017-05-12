@@ -9,13 +9,18 @@
 
     function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
         var service = {
-            newsletter: newsletter
+            newsletter: newsletter,
+            cadastrar: cadastrar
         };
 
         return service;
 
         function newsletter(data) {
             return $http.post(configuracaoREST.url + configuracaoREST.home + 'newsletter', data);
+        }
+
+        function cadastrar(data) {
+            return $http.post(configuracaoREST.url + 'usuario/salvar', data);
         }
     }
 })();

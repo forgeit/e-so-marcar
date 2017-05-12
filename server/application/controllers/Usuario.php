@@ -28,6 +28,7 @@ class Usuario extends MY_Controller {
 
         $usuario->data_cadastro = date('Y-m-d');
         $usuario->flag_email_confirmado = 0;
+        unset($usuario->senha_denovo);
 
         $response = array('exec' => $this->UsuarioModel->inserir($usuario));
 
@@ -40,6 +41,11 @@ class Usuario extends MY_Controller {
             $this->gerarErro("E-mail é obrigatório.");
         }
 
+        $emailUnico = $this->UsuarioModel->buscarPorColuna('email', $usuario->email);
+        if ($emailUnico != null) {
+            $this->gerarErro("E-mail já cadastrado.");
+        }
+
         if (empty($usuario->senha)) {
             $this->gerarErro("Senha é obrigatório.");
         }
@@ -47,9 +53,9 @@ class Usuario extends MY_Controller {
         if (empty($usuario->senha_denovo)) {
             $this->gerarErro("Repetir Senha é obrigatórios.");
         }
-        
+
         if ($usuario->senha != $usuario->senha_denovo) {
-            $this->gerarErro("As senhas digitas estão diferentes.");
+            $this->gerarErro("As senhas são diferentes.");
         }
     }
 

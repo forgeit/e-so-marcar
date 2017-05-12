@@ -15,14 +15,13 @@
         vm.voltar = voltar;
         vm.preview;
 
-        buscar();
+        buscarClientes();
 
-        function buscar() {
-            dataservice.buscar().then(success).catch(error);
+        function buscarClientes() {
+            dataservice.buscarClientes().then(success).catch(error);
 
             function success(response) {
                 vm.reserva = controllerUtils.getData(response, 'dto');
-                vm.preview = vm.reserva.logo;
             }
 
             function error() {

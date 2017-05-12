@@ -10,7 +10,7 @@
     function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
         var service = {
             salvar: salvar,
-            buscar: buscar
+            buscarClientes: buscarClientes
         };
 
         return service;
@@ -19,8 +19,8 @@
             return $http.post(configuracaoREST.url + configuracaoREST.reserva + "salvar", data);
         }
 
-        function buscar() {
-            return $http.get(configuracaoREST.url + configuracaoREST.reserva + "buscar");
+        function buscarClientes() {
+            return $http.get(configuracaoREST.url + configuracaoREST.reserva + "buscarClientes");
         }
 
     }

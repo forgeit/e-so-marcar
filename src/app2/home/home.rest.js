@@ -9,8 +9,7 @@
 
     function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
         var service = {
-            buscar: buscar,
-            cadastrar: cadastrar
+            buscar: buscar
         };
 
         return service;
@@ -18,9 +17,6 @@
         function buscar() {
             return $http.get(configuracaoREST.url + configuracaoREST.home + 'count');
         }
-
-        function cadastrar(data) {
-            return $http.get(configuracaoREST.url + 'usuario/salvar', data);
-        }
+        
     }
 })();
