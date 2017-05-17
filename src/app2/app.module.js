@@ -10,7 +10,9 @@
         'app.sobre',
         'app.reserva',
         'app.layout',
+        'app.gerenciamento',
 //        'app.login',
-        'app.home']);
+        'app.home',
+        'angularFileUpload']);
 
 })();

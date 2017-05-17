@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-6 kode_bg_white">
                     <ul>
-                        <li>
+                        <li style="list-style: none;">
                             <span class="kode-barinfo" ng-show="usuarioSistema">Bem-vindo, <strong>{{usuarioSistema.nomeExibir}}</strong>, você já pode marcar seu jogo</span>
                             <span class="kode-barinfo" ng-hide="usuarioSistema">Bem-vindo, visitante, você pode acessar ou criar uma conta</span>
                         </li>
@@ -15,7 +15,7 @@
                 <div class="col-md-6">
                     <ul class="kode-userinfo">
                         <!--<li><a href="" ng-click="init.areaCliente()"><i class="fa fa-gear"></i> Administrador</a></li>-->
-                        <li ng-show="usuarioSistema"><a href="#"><i class="fa fa-user"></i> Minha Conta</a></li>
+                        <li ng-show="usuarioSistema"><a href="publico/gerenciamento"><i class="fa fa-user"></i> Minha Conta</a></li>
                         <li ng-show="usuarioSistema"><a href="#" ng-click="vm.sair()"><i class="fa fa-user"></i> Sair</a></li>
                         <li ng-hide="usuarioSistema"><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Entrar</a></li>
                         <li ng-hide="usuarioSistema"><a href="#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Registrar</a></li>
@@ -33,6 +33,7 @@
             </div>
             <div class="kode-navigation pull-left" style="padding-top: 5px;">
                 <ul>
+                    <li><a href="/">Início</a></li>
                     <li><a href="publico/cliente">Marque Seu Jogo</a></li>
                     <li><a href="publico/galeria">Galeria</a></li>
                     <li><a href="publico/contato">Contato</a></li>

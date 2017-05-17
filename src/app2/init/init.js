@@ -47,7 +47,9 @@
             function success(response) {
                 if (response.data.status === 'true') {
                     $('#myModalTwo').modal('hide');
-                    $('#modalMessage').modal('show');
+                    setTimeout(function () {
+                        $('#modalMessage').modal('show');
+                    }, 500);
                 } else {
                     controllerUtils.feedMessage(response);
                 }

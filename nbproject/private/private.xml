@@ -3,20 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="FORGE">
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Home.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/init/init.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/libraries/MY_Email_3_1_x.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/third_party/phpmailer/PHPMailerAutoload.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/system/libraries/Email.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/home/home.js</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/config/autoload.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/libraries/JWT.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/models/LoginModel.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Usuario.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/libraries/MY_Email.php</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/config/email.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/init/init.rest.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index-cliente.html</file>
         </group>
     </open-files>
 </project-private>

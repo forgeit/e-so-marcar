@@ -9,7 +9,11 @@ class Usuario extends MY_Controller {
     }
 
     public function buscar() {
-        
+        $array = array('data' =>
+            array('dto' =>
+                $this->UsuarioModel->buscarPorId($this->jwtController->id)));
+
+        print_r(json_encode($array));
     }
 
     public function buscarCombo() {

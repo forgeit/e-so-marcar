@@ -11,3 +11,19 @@ and open the template in the editor.
 .btn-100 {
     width: 100px
 }
+
+.kickoff-form p > span {
+    color: #333333;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.custom-simple-form ul li {
+    margin-bottom: 0;
+}
+
+.custom-simple-form ul li input[type="text"] {
+    height: 35px;
+}
