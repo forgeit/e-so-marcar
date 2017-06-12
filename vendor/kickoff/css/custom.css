@@ -27,3 +27,11 @@ and open the template in the editor.
 .custom-simple-form ul li input[type="text"] {
     height: 35px;
 }
+
+.livre {
+    background-color: green !important;
+}
+
+.reservado {
+    background-color: red !important;
+}

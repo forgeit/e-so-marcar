@@ -6,6 +6,22 @@ class HorarioModel extends MY_Model {
         parent::__construct();
         $this->table = 'horario';
     }
+    
+    function horarioDisponivel($idCliente, $idUsuario, $dataHora) {
+         $sql = "SELECT * FROM horario
+                    WHERE id_cliente = ?
+                    AND id_quadra = ?
+                    AND dia_semana = dayofweek(?)
+                    AND hora_inicial = DATE_FORMAT(?,'%H:%i:%s')";
+         
+         $query = $this->db->query($sql, array($idCliente, $idUsuario, $dataHora, $dataHora));
+         
+          if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
 
     function buscarTodosNativo($idCliente, $id = null) {
         $sql = "SELECT 
@@ -51,6 +67,48 @@ class HorarioModel extends MY_Model {
 
         if ($query->num_rows() > 0) {
             return $query->row_array();
+        } else {
+            return null;
+        }
+    }
+
+    function buscarReservas($idQuadra) {
+        $sql = '
+             SELECT 
+                CASE WHEN r.id IS NULL THEN "Livre" ELSE "Reservado" END as "title",
+                CONCAT(dias.d, "T", hora_inicial) as "start",
+                CONCAT(dias.d, "T", hora_final) as "end",
+                CASE WHEN r.id IS NULL THEN "livre" ELSE "reservado" END as "className",
+                CONCAT("R$ ", REPLACE(h.valor, ".", ",")) as valor
+            FROM (
+                SELECT 
+                        CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date) as d,
+                        WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) as dow
+                FROM ( SELECT 0 H
+                    UNION ALL SELECT 100 UNION ALL SELECT 200 UNION ALL SELECT 300
+                  ) H CROSS JOIN ( SELECT 0 T
+                    UNION ALL SELECT  10 UNION ALL SELECT  20 UNION ALL SELECT  30
+                    UNION ALL SELECT  40 UNION ALL SELECT  50 UNION ALL SELECT  60
+                    UNION ALL SELECT  70 UNION ALL SELECT  80 UNION ALL SELECT  90
+                  ) T CROSS JOIN ( SELECT 0 U
+                    UNION ALL SELECT   1 UNION ALL SELECT   2 UNION ALL SELECT   3
+                    UNION ALL SELECT   4 UNION ALL SELECT   5 UNION ALL SELECT   6
+                    UNION ALL SELECT   7 UNION ALL SELECT   8 UNION ALL SELECT   9
+                  ) U
+                WHERE
+                  (SYSDATE()+INTERVAL (H+T+U) DAY) <= (SYSDATE()+INTERVAL 3 MONTH)) as dias 
+            JOIN horario h ON dias.dow = h.dia_semana
+            LEFT JOIN reserva r ON r.id_quadra = h.id_quadra AND CONCAT(dias.d, "T", hora_inicial) = r.data_hora_reserva
+            LEFT JOIN horario_excecao e ON e.id_quadra = h.id_quadra AND NOT e.flag_pode_jogar AND
+                (CONCAT(dias.d, "T", hora_inicial) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_inicial) <= e.data_hora_final)
+                OR (CONCAT(dias.d, "T", hora_final) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_final) <= e.data_hora_final)
+            WHERE h.id_quadra = ?
+            AND e.id IS NULL';
+
+        $query = $this->db->query($sql, array($idQuadra));
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
         } else {
             return null;
         }

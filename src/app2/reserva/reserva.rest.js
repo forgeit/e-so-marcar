@@ -13,13 +13,14 @@
             buscarClientes: buscarClientes,
             buscarCliente: buscarCliente,
             buscarQuadras: buscarQuadras,
-            buscarQuadra: buscarQuadra
+            buscarQuadra: buscarQuadra,
+            buscarReservas: buscarReservas
         };
 
         return service;
 
         function salvar(data) {
-            return $http.post(configuracaoREST.url + configuracaoREST.reserva + "salvar", data);
+            return $http.post(configuracaoREST.url + configuracaoREST.reserva + "salvarUsuario", data);
         }
         
         function buscarCliente(data) {
@@ -36,6 +37,10 @@
         
         function buscarQuadras(data) {
             return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscarTodosNativo/" + data);
+        }
+        
+        function buscarReservas(data) {
+            return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscarReservas/" + data);
         }
 
     }

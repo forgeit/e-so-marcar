@@ -1,3 +1,16 @@
+<style>
+    .kode-simple-form ul li input[type="submit"] {
+        border: 7px solid;
+        box-shadow: 0 0 0 1px #f48686 inset;
+        color: #ffffff;
+        float: left;
+        font-size: 16px;
+        margin-top: 10px;
+        padding: 10px 30px;
+        text-transform: uppercase;
+    }
+</style>
+
 <div class="kode-subheader subheader-height">
     <div class="container">
         <div class="row">
@@ -19,6 +32,9 @@
 
 <!--// Main Content //-->
 <div class="kode-content">
+
+    <link rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.print.css" media="print">
 
     <!--// Page Content //-->
     <section class="kode-pagesection">
@@ -50,14 +66,53 @@
                         <div class="priceinfo">
 
                         </div>
-<!--                        <a href="#" class="kode-modren-btn thbg-colortwo">Add To Cart</a>
-                        <div class="shop-btn">
-                            <a href="#" class="fa fa-heart"></a>
-                            <a href="#" class="fa fa-share"></a>
-                        </div>-->
+                        <!--                        <a href="#" class="kode-modren-btn thbg-colortwo">Add To Cart</a>
+                                                <div class="shop-btn">
+                                                    <a href="#" class="fa fa-heart"></a>
+                                                    <a href="#" class="fa fa-share"></a>
+                                                </div>-->
 
                     </div>
-               
+                </div>
+                <br/>
+                <div class="row">
+
+                    <h1  style="border-bottom: 1px solid #c6c6c6; margin-bottom: 20px;">Reservas</h1>
+
+                    <section id="headerReservas" class="content" style="padding-bottom: 30px">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Dados da Reserva</h3>
+                                    </div>
+                                    <div class="box-body kode-simple-form custom-simple-form">
+                                        <form method="post" name="formulario" class="kickoff-form" ng-submit="vm.confirmar(vm.reserva)" >
+                                            <p><span>Início</span><input type="text" id="formIni" class="required" ng-model="vm.reserva.data_hora_reserva" disabled=""></p>
+                                            <p><span>Fim</span><input type="text" id="formFim" class="required" disabled></p>
+                                            <p><span>Valor</span><input type="text" id="formValor" class="required" disabled ></p>
+                                            <ul><li><input id="formButton" class="thbg-color" type="submit" value="Reservar Horário"></li></ul>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="box box-primary">
+                                    <div class="box-body no-padding">
+                                        <!-- THE CALENDAR -->
+                                        <div id="calendar"></div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /. box -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+
 
                 </div>
 
@@ -70,3 +125,35 @@
 <!--// Main Content //-->
 <script src="vendor/kickoff/js/kode_pp.js"></script>
 <script src="vendor/kickoff/js/functions.js"></script>
+<script src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src='/bower_components/fullcalendar/dist/locale/pt-br.js'></script>
+<script>
+                                                        $(function () {
+
+                                                            $('#calendar').fullCalendar({
+                                                                header: {
+                                                                    left: 'prev,next ',
+                                                                    center: 'title',
+                                                                    right: 'month,agendaWeek,agendaDay'
+                                                                },
+                                                                slotDuration: '01:00:00',
+                                                                buttonText: {
+                                                                    today: 'hoje',
+                                                                    month: 'mês',
+                                                                    week: 'semana',
+                                                                    day: 'dia'
+                                                                },
+                                                                editable: false,
+                                                                droppable: false,
+                                                                eventClick: function (calEvent, jsEvent, view) {
+                                                                    $('html, body').animate({
+                                                                        scrollTop: $("#headerReservas").offset().top - 50
+                                                                    }, 1000);
+                                                                    $('#formIni').val(calEvent.start.format("DD/MM/YYYY HH:mm:ss")).change();
+                                                                    $('#formFim').val(calEvent.end.format("DD/MM/YYYY HH:mm:ss")).change();
+                                                                    $('#formValor').val(calEvent.valor).change();
+                                                                }
+                                                            });
+
+                                                        });
+</script>

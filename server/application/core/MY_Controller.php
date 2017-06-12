@@ -134,6 +134,12 @@ class MY_Controller extends CI_Controller {
         $d = $this->toDate($data[0]);
         return $d . ' ' . $data[1] . ':00';
     }
+    
+    protected function toDateTimeSemZero($dateString) {
+        $data = explode(" ", $dateString);
+        $d = $this->toDate($data[0]);
+        return $d . ' ' . $data[1];
+    }
 
     protected function validaClienteQuadra($idQuadra) {
         $quadraBanco = $this->QuadraModel->buscarPorId($idQuadra);

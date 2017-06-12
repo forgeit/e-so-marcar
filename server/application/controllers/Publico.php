@@ -32,5 +32,9 @@ class Publico extends MY_Controller {
     public function buscarTodosNativo() {
         print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraModel->buscarTodosNativo($this->uri->segment(3))))));
     }
+    
+    public function buscarReservas() {
+        print_r(json_encode(array('data' => array('ArrayList' => $this->HorarioModel->buscarReservas($this->uri->segment(3))))));
+    }
 
 }
