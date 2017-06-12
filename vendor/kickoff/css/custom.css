@@ -35,3 +35,8 @@ and open the template in the editor.
 .reservado {
     background-color: red !important;
 }
+
+.livre:hover {
+    cursor: pointer;
+    background-color: grey !important;
+}
