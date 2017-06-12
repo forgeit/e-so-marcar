@@ -50,6 +50,17 @@ class Quadra extends MY_Controller {
         print_r(json_encode($array));
     }
 
+    public function buscarQuadra() {
+
+        $quadra = $this->QuadraModel->buscarPorId($this->uri->segment(3));
+        $quadra['esportes'] = $this->QuadraEsporteModel->buscarEsportes($quadra['id']);
+
+        $array = array('data' =>
+            array('dto' => $quadra));
+
+        print_r(json_encode($array));
+    }
+
     public function buscarTodos() {
 
         if ($this->uri->segment(2) == 'tipo-quadra' && $this->uri->segment(3)) {
@@ -63,6 +74,10 @@ class Quadra extends MY_Controller {
 
     public function buscarCombo() {
         print_r(json_encode(array('data' => array('ArrayList' => $lista = $this->QuadraModel->buscarTodosNativo($this->jwtController->id)))));
+    }
+
+    public function buscarTodosNativo() {
+        print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraModel->buscarTodosNativo($this->uri->segment(3))))));
     }
 
     public function excluir() {

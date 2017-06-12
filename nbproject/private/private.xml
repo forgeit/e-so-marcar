@@ -5,6 +5,10 @@
         <group name="FORGE">
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index.html</file>
             <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/index-cliente.html</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-form.html</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app/anuncio/anuncio-form.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/gerenciamento/gerenciamento-form.js</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/gerenciamento/gerenciamento-form.html</file>
         </group>
     </open-files>
 </project-private>

@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>Marque Seu Jogo</h1>
+                <h1>Quadra - {{vm.quadra.titulo}}</h1>
             </div>
             <div class="col-md-6">
                 <ul class="kode-breadcrumb">
                     <li><a href="/">Início</a></li>
                     <li><a href="publico/cliente">Lista de Clientes</a></li>
-                    <li><a href="publico/quadra/cliente/1">Lista de Quadras</a></li>
+                    <li><a href="publico/quadra/cliente/{{vm.cliente.id}}">Lista de Quadras</a></li>
                     <li><a href="#">Reservar Quadra</a></li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
 
                 <div class="kode-pagecontent col-md-12">
                     <div class="kode-images">
-                        <a href="#" class="shopmainthumb"><img src="vendor/kickoff/extra-images/shop-detail2.jpg" alt=""></a>
+                        <a href="#" class="shopmainthumb"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem}}" alt="Imagem quadra {{vm.quadra.titulo}}"></a>
                         <ul>
                             <li><a href="#"><img src="vendor/kickoff/extra-images/shop-detail1.jpg" alt=""></a></li>
                             <li><a href="#"><img src="vendor/kickoff/extra-images/shop-detail1.jpg" alt=""></a></li>
@@ -37,95 +37,27 @@
                     <div class="kode-summery">
 
                         <div class="summery-title">
-                            <h2>Fermentum eros</h2>
+                            <h2>{{vm.quadra.titulo}}</h2>
                             <div class="clearfix"></div>
-                            <small>In stock</small>
-                            <div class="kode-rating"><span class="rating-box width-80-percent"></span></div>
+                            <!--                            <small>In stock</small>-->
+                            <div class="kode-rating"><span class="rating-box" style="width: 100%"></span></div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
+                        <p>{{vm.quadra.descricao}}</p>
+                        <p>Esportes:</p>
+                        <ul style="    padding-left: 30px;">
+                            <li ng-repeat="esporte in vm.quadra.esportes">{{esporte.nome}}</li>
+                        </ul>
                         <div class="priceinfo">
-                            <h2>$55</h2>
-                            <ul>
-                                <li><span>Size</span>
-                                    <select>
-                                        <option>small</option>
-                                        <option>small</option>
-                                        <option>small</option>
-                                        <option>small</option>
-                                    </select>
-                                </li>
-                                <li><span>Color</span>
-                                    <select>
-                                        <option>Black</option>
-                                        <option>Red</option>
-                                        <option>Black</option>
-                                        <option>Red</option>
-                                    </select>
-                                </li>
-                            </ul>
+
                         </div>
-                        <a href="#" class="kode-modren-btn thbg-colortwo">Add To Cart</a>
+<!--                        <a href="#" class="kode-modren-btn thbg-colortwo">Add To Cart</a>
                         <div class="shop-btn">
                             <a href="#" class="fa fa-heart"></a>
                             <a href="#" class="fa fa-share"></a>
-                        </div>
+                        </div>-->
 
                     </div>
-                    <div class="kode-player-tabs shop-nav">
-
-                        <!-- Nav tabs -->
-                        <ul class="player-nav" role="tablist">
-                            <li role="presentation" class="active"><a href="#hometwo" aria-controls="hometwo" role="tab" data-toggle="tab">Product Description</a></li>
-                            <li role="presentation"><a href="#profiletwo" aria-controls="profiletwo" role="tab" data-toggle="tab">(1) Reveiw</a></li>
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="hometwo">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus</p>
-                                <p>Nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam.Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et</p>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="profiletwo">
-                                <table class="kode-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Leagues</th>
-                                            <th>Season</th>
-                                            <th>Appearance</th>
-                                            <th>Goal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Prem Lge</td>
-                                            <td>2014-2015</td>
-                                            <td>00</td>
-                                            <td>01</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Europe Lge</td>
-                                            <td>2014-2015</td>
-                                            <td>00</td>
-                                            <td>01</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fa Cup</td>
-                                            <td>2014-2015</td>
-                                            <td>00</td>
-                                            <td>01</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lge Cup</td>
-                                            <td>2014-2015</td>
-                                            <td>00</td>
-                                            <td>01</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
+               
 
                 </div>
 

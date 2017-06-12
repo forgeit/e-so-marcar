@@ -135,6 +135,7 @@ $autoload['language'] = array();
  */
 $autoload['model'] = array(
     'LoginModel',
+    'ClienteModel',
     'ArquivoModel',
     'DadosModel',
     'UsuarioModel',

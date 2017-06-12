@@ -48,7 +48,7 @@
                         ]
                     }
                 })
-                .when('/publico/quadra/:id', {
+                .when('/publico/quadra/:id/cliente/:idCliente', {
                     templateUrl: 'src/app2/reserva/reserva-form.html?' + new Date().getTime(),
                     controller: 'ReservaForm',
                     controllerAs: 'vm',
@@ -63,11 +63,11 @@
                             },
                             {
                                 nome: 'Quadras',
-                                link: 'publico/quadra/cliente/:id'
+                                link: 'publico/quadra/cliente/:idCliente'
                             },
                             {
                                 nome: 'Reserva',
-                                link: 'publico/quadra/:id',
+                                link: 'publico/quadra/:id/cliente/:idCliente',
                                 ativo: true
                             }
                         ]

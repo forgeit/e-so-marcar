@@ -11,18 +11,31 @@
         /* jshint validthis: true */
         var vm = this;
 
-        vm.reserva = {};
+        vm.cliente;
+        vm.quadras;
         vm.voltar = voltar;
         vm.preview;
 
-        buscar();
+        buscarCliente();
+        buscarQuadras();
 
-        function buscar() {
-            dataservice.buscar().then(success).catch(error);
+        function buscarCliente() {
+            dataservice.buscarCliente(controllerUtils.$routeParams.id).then(success).catch(error);
 
             function success(response) {
-                vm.reserva = controllerUtils.getData(response, 'dto');
-                vm.preview = vm.reserva.logo;
+                vm.cliente = controllerUtils.getData(response, 'dto');
+            }
+
+            function error() {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os reserva.');
+            }
+        }
+
+        function buscarQuadras() {
+            dataservice.buscarQuadras(controllerUtils.$routeParams.id).then(success).catch(error);
+
+            function success(response) {
+                vm.quadras = controllerUtils.getData(response, 'ArrayList');
             }
 
             function error() {

@@ -7,6 +7,8 @@
         url: window.location.origin + '/server/',
         home: 'home/',
         usuario: 'usuario/',
+        cliente: 'cliente/',
+        quadra: 'quadra/',
         reserva: 'reserva/'
     };
 

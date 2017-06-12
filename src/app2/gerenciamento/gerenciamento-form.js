@@ -65,6 +65,8 @@
         function voltar() {
             controllerUtils.$location.path('/');
         }
+        
+        $('#data_nascimento').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
     }
 
 })();

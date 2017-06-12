@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>Quadras</h1>
+                <h1>Quadras - {{vm.cliente.nome_fantasia}}</h1>
             </div>
             <div class="col-md-6">
                 <ul class="kode-breadcrumb">
@@ -29,184 +29,29 @@
                     <div class="kode-blog-list kode-grid-blog">
                         <ul class="row">
 
-                            <li class="col-md-4">
+                            <li class="col-md-4" ng-repeat="quadra in vm.quadras track by quadra.id">
                                 <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">07 <span>may</span></time>
-                                    <h5><a href="publico/quadra/1">Sed ut perspiciatis unde omnisiste natus error</a></h5>
+                                    <!--<time datetime="2008-02-14 20:00">07 <span>may</span></time>-->
+                                    <h5><a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}">{{quadra.titulo}}</a></h5>
                                 </div>
-                                <figure><a href="publico/quadra/1"><img src="vendor/kickoff/extra-images/bloggird-1.jpg" alt=""></a></figure>
+                                <figure><a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}"><img ng-src="server/arquivo/buscar/{{quadra.imagem}}" class="img-lg" style="min-height: 370px" alt="Imagem quadra {{quadra.titulo}}"></a></figure>
                                 <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
+<!--                                    <ul class="kode-blog-options">
                                         <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
                                         <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
                                         <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
+                                    </ul>-->
+                                    <p>{{quadra.descricao}}</p>
+                                    <a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}" class="kode-modrenbtn thbg-colorhover">Reservar</a>
                                     <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
+<!--                                    <ul class="kode-team-network">
                                         <li><a class="fa fa-facebook" href="#"></a></li>
                                         <li><a class="fa fa-twitter" href="#"></a></li>
                                         <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
                             </li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">15 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-2.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">15 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-2.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="clearfix"></li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">10 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-3.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">26 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-1.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">15 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-2.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="clearfix"></li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">05 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-1.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="col-md-4">
-                                <div class="kode-time-zoon">
-                                    <time datetime="2008-02-14 20:00">07 <span>may</span></time>
-                                    <h5><a href="#">Sed ut perspiciatis unde omnisiste natus error</a></h5>
-                                </div>
-                                <figure><a href="#"><img src="vendor/kickoff/extra-images/bloggird-2.jpg" alt=""></a></figure>
-                                <div class="kode-blog-info">
-                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, cons ecte tuer adipiscing elit, sed diam non ummy nibh euismod tinc idunt ut laoreet dolore magna ali quam erat volutpat...</p>
-                                    <a href="#" class="kode-modrenbtn thbg-colorhover">Read More</a>
-                                    <div class="clearfix"></div>
-                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                            
                             <li class="clearfix"></li>
                         </ul>
 

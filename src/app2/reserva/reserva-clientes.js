@@ -11,7 +11,7 @@
         /* jshint validthis: true */
         var vm = this;
 
-        vm.reserva = {};
+        vm.clientes;
         vm.voltar = voltar;
         vm.preview;
 
@@ -21,7 +21,7 @@
             dataservice.buscarClientes().then(success).catch(error);
 
             function success(response) {
-                vm.reserva = controllerUtils.getData(response, 'dto');
+                vm.clientes = controllerUtils.getData(response, 'ArrayList');
             }
 
             function error() {
