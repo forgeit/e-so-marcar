@@ -23,19 +23,19 @@
         }
         
         function buscarCliente(data) {
-            return $http.get(configuracaoREST.url + configuracaoREST.cliente + "buscar/" + data);
+            return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscar/" + data);
         }
 
         function buscarClientes() {
-            return $http.get(configuracaoREST.url + configuracaoREST.cliente + "buscarTodos");
+            return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscarTodos");
         }
         
         function buscarQuadra(data) {
-            return $http.get(configuracaoREST.url + configuracaoREST.quadra + "buscarQuadra/" + data);
+            return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscarQuadra/" + data);
         }
         
         function buscarQuadras(data) {
-            return $http.get(configuracaoREST.url + configuracaoREST.quadra + "buscarTodosNativo/" + data);
+            return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscarTodosNativo/" + data);
         }
 
     }
