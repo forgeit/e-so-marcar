@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cliente extends MY_Controller {
+class Publico extends MY_Controller {
 
     public function buscar() {
 
