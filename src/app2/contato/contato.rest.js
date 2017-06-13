@@ -9,13 +9,13 @@
 
     function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
         var service = {
-            buscar: buscar
+            enviar: enviar
         };
 
         return service;
 
-        function buscar(data) {
-            return $http.get(configuracaoREST.url + 'contato/buscar');
+        function enviar(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.publico + "contato", data);
         }
     }
 })();

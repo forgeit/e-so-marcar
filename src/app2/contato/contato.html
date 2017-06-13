@@ -24,25 +24,25 @@
             <div class="row">
 
                 <div class="kode-pagecontent col-md-12">
-                    <div class="kode-map">
+<!--                    <div class="kode-map">
                         <div class="map-canvas" id="map-canvas"></div>
-                    </div>
+                    </div>-->
 
                     <div class="contactus-page">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="kode-simple-form">  					
-                                    <form method="post" class="comments-form" id="contactform">
+                                    <form method="post" class="comments-form" ng-submit="vm.enviar()">
                                         <ul>
-                                            <li><input type="text" id="name" name="name" class="required" placeholder="Name *"></li>
-                                            <li><input type="text" id="email" name="email" class="required email" placeholder="Email *"></li>
-                                            <li><input type="text" name="address" id="address" placeholder="Address:"></li>
-                                            <li><textarea name="message" id="message" placeholder="add your message"></textarea></li>
-                                            <li>
+                                            <li><input type="text" id="name" name="name" ng-model="vm.contato.nome" class="required" placeholder="Seu nome *"></li>
+                                            <li><input type="text" id="email" name="email" ng-model="vm.contato.email" class="required email" placeholder="Seu E-mail *"></li>
+                                            <li><input type="text" id="telefone" name="telefone" ng-model="vm.contato.telefone" id="telefone" placeholder="Seu telefone "></li>
+                                            <li><textarea name="message" ng-model="vm.contato.mensagem" id="message" placeholder="Sua mensagem *"></textarea></li>
+<!--                                            <li>
                                                 <label for="verify">Você é humano?</label>
-                                                <iframe src="vendor/kickoff/inc/capcha_page.html" height="29" width="80" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" class="capcha_image_frame" name="capcha_image_frame"></iframe>
+                                                <iframe src="/vendor/kickoff/inc/capcha_page.html" height="29" width="80" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" class="capcha_image_frame" name="capcha_image_frame"></iframe>
                                                 <input class="verify" type="text" id="verify" name="verify" />
-                                            </li>
+                                            </li>-->
                                             <li><input class="thbg-color" type="submit" value="Enviar"></li>
                                         </ul>
                                     </form>
@@ -51,17 +51,17 @@
                             <div class="col-md-6">
                                 <div class="kode-section-title"> <h2>Informações</h2> </div>
                                 <div class="kode-forminfo">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip..</p>
+                                    <p>Estamos sempre dispostos a ouvir suas sugestões e opiniões pelos nosso meios de comunicação. Você pode entrar em contato conosco pelo formulário ao lado, por e-mail, pelas redes socias ou ainda, se preferir, ligar para um de nossos números.</p>
                                     <ul class="kode-form-list">
-                                        <li><i class="fa fa-home"></i> <p><strong>Endereço: </strong> 805 omnis iste natus error sit voluptatem accusantium</p></li>
-                                        <li><i class="fa fa-phone"></i> <p><strong>Telefone: </strong> 111 8756 22  777 4456 112</p></li>
-                                        <li><i class="fa fa-envelope-o"></i> <p><strong>E-mail: </strong> Info@sportyleague.com</p></li>
+                                        <!--<li><i class="fa fa-phone"></i> <p><strong>Telefone: </strong> 111 8756 22  777 4456 112</p></li>-->
+                                        <li><i class="fa fa-envelope-o"></i> <p><strong>E-mail: </strong> contato@esomarcar.com.br</p></li>
                                     </ul>
                                     <h3>Nos Encontre Em</h3>
                                     <ul class="kode-team-network">
-                                        <li><a href="#" class="fa fa-facebook"></a></li>
-                                        <li><a href="#" class="fa fa-twitter"></a></li>
-                                        <li><a href="#" class="fa fa-linkedin"></a></li>
+                                        <li><a href="https://facebook.com/ESoMarcar" target="_blank" class="fa fa-facebook"></a></li>
+                                        <li><a href="https://twitter.com/esomarcar" target="_blank" class="fa fa-twitter"></a></li>
+                                        <li><a href="https://www.youtube.com/channel/UC0-UCrXksVCld6gtr9cKIVA" target="_blank" class="fa fa-youtube"></a></li>
+                                        <li><a href="https://www.instagram.com/ESoMarcar" target="_blank" class="fa fa-instagram"></a></li>
                                     </ul>
                                 </div>
                             </div>

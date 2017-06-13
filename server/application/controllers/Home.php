@@ -81,11 +81,18 @@ class Home extends MY_Controller {
         }
 
         $usuario = $this->UsuarioModel->verificarLogin($usuario->login, md5($usuario->senha));
+        
+        if(!$usuario['flag_email_confirmado']) {    
+            print_r(json_encode($this->gerarRetorno(FALSE, "Você deve confirmar sua conta antes de acessar o sistema.")));
+            die();
+        }
+        
         if ($usuario) {
             $array = $this->gerarRetorno(TRUE, "Bem-vindo, ao É Só Marcar.");
             $array['data'] = array('token' => $this->generate_token($usuario[0]));
 
             print_r(json_encode($array));
+            die();
         } else {
             print_r(json_encode($this->gerarRetorno(FALSE, "Dados informados são inválidos.")));
             die();
