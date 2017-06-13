@@ -10,14 +10,15 @@ class UsuarioModel extends MY_Model {
     function verificarLogin($login, $senha) {
 
         $sql = "SELECT 
-                    id, nome, email
+                    id, nome, email, flag_email_confirmado
                 FROM usuario
-                WHERE email = ? AND senha = ?";
+                WHERE email = ? AND senha = ?
+                LIMIT 1";
 
         $query = $this->db->query($sql, array($login, $senha));
 
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            return $query->row_array();
         } else {
             return null;
         }
