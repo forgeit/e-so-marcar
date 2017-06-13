@@ -40,80 +40,81 @@
     <section class="kode-pagesection">
         <div class="container">
             <div class="row">
+                <div class="col-md-1 banner banner-lateral" style="width: 12.499999995%; height: 400px"></div>
+                <div class="kode-pagecontent col-md-9">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="banner banner-central "></div>
 
-                <div class="kode-pagecontent col-md-12">
-                    <div class="kode-images">
-                        <a href="#" class="shopmainthumb"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem}}" alt="Imagem principal quadra {{vm.quadra.titulo}}"></a>
-                        <ul>
-                            <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem1}}" alt="Imagem 1 quadra {{vm.quadra.titulo}}"></a></li>
-                            <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem2}}" alt="Imagem 2 quadra {{vm.quadra.titulo}}"></a></li>
-                            <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem3}}" alt="Imagem 3 quadra {{vm.quadra.titulo}}"></a></li>
-                        </ul>
-                    </div>
-                    <div class="kode-summery">
+                            <div class="kode-images">
+                                <a href="#" class="shopmainthumb"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem}}" alt="Imagem principal quadra {{vm.quadra.titulo}}"></a>
+                                <ul class="hide-1024px">
+                                    <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem1}}" alt="Imagem 1 quadra {{vm.quadra.titulo}}"></a></li>
+                                    <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem2}}" alt="Imagem 2 quadra {{vm.quadra.titulo}}"></a></li>
+                                    <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem3}}" alt="Imagem 3 quadra {{vm.quadra.titulo}}"></a></li>
+                                </ul>
+                            </div>
+                            <div class="kode-summery">
+                                <div class="summery-title">
+                                    <h2>{{vm.quadra.titulo}}</h2>
+                                    <div class="clearfix"></div>
+                                    <!--                            <small>In stock</small>-->
+                                    <div class="kode-rating"><span class="rating-box" style="width: 100%"></span></div>
+                                </div>
+                                <p>{{vm.quadra.descricao}}</p>
+                                <p>Esportes:</p>
+                                <ul style="    padding-left: 30px;">
+                                    <li ng-repeat="esporte in vm.quadra.esportes">{{esporte.nome}}</li>
+                                </ul>
+                                <div class="priceinfo">
 
-                        <div class="summery-title">
-                            <h2>{{vm.quadra.titulo}}</h2>
-                            <div class="clearfix"></div>
-                            <!--                            <small>In stock</small>-->
-                            <div class="kode-rating"><span class="rating-box" style="width: 100%"></span></div>
+                                </div>
+                            </div>
+
                         </div>
-                        <p>{{vm.quadra.descricao}}</p>
-                        <p>Esportes:</p>
-                        <ul style="    padding-left: 30px;">
-                            <li ng-repeat="esporte in vm.quadra.esportes">{{esporte.nome}}</li>
-                        </ul>
-                        <div class="priceinfo">
-
-                        </div>
-                        <!--                        <a href="#" class="kode-modren-btn thbg-colortwo">Add To Cart</a>
-                                                <div class="shop-btn">
-                                                    <a href="#" class="fa fa-heart"></a>
-                                                    <a href="#" class="fa fa-share"></a>
-                                                </div>-->
-
                     </div>
                 </div>
+                <div class="col-md-1 banner banner-lateral" style="width: 12.499999995%; height: 400px"></div>
                 <br/>
                 <div class="row">
+                    <div class="col-md-12">
+                        <h1  style="border-bottom: 1px solid #c6c6c6; margin-bottom: 20px;">Reservas</h1>
+                        <section id="headerReservas" class="content">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-3" style="padding-bottom: 30px">
+                                    <div class="box box-solid">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Dados da Reserva</h3>
+                                        </div>
+                                        <div class="box-body kode-simple-form custom-simple-form">
+                                            <form method="post" name="formulario" class="kickoff-form" ng-submit="vm.confirmar(vm.reserva)" >
+                                                <p><span>Início</span><input type="text" id="formIni" class="required" style="width: 100%" ng-model="vm.reserva.data_hora_reserva" disabled=""></p>
+                                                <p><span>Fim</span><input type="text" id="formFim" class="required" style="width: 100%" disabled></p>
+                                                <p><span>Valor</span><input type="text" id="formValor" class="required" style="width: 100%" disabled ></p>
+                                                <ul><li><input id="formButton" class="thbg-color" type="submit" value="Reservar Horário"></li></ul>
+                                            </form>
 
-                    <h1  style="border-bottom: 1px solid #c6c6c6; margin-bottom: 20px;">Reservas</h1>
-
-                    <section id="headerReservas" class="content" style="padding-bottom: 30px">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Dados da Reserva</h3>
-                                    </div>
-                                    <div class="box-body kode-simple-form custom-simple-form">
-                                        <form method="post" name="formulario" class="kickoff-form" ng-submit="vm.confirmar(vm.reserva)" >
-                                            <p><span>Início</span><input type="text" id="formIni" class="required" ng-model="vm.reserva.data_hora_reserva" disabled=""></p>
-                                            <p><span>Fim</span><input type="text" id="formFim" class="required" disabled></p>
-                                            <p><span>Valor</span><input type="text" id="formValor" class="required" disabled ></p>
-                                            <ul><li><input id="formButton" class="thbg-color" type="submit" value="Reservar Horário"></li></ul>
-                                        </form>
-
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-md-9">
-                                <div class="box box-primary">
-                                    <div class="box-body no-padding">
-                                        <!-- THE CALENDAR -->
-                                        <div id="calendar"></div>
+                                <!-- /.col -->
+                                <div class="col-xs-12 col-md-9" style="padding-bottom: 30px">
+                                    <div class="box box-primary">
+                                        <div class="box-body no-padding">
+                                            <!-- THE CALENDAR -->
+                                            <div id="calendar"></div>
+                                        </div>
+                                        <!-- /.box-body -->
                                     </div>
-                                    <!-- /.box-body -->
+                                    <!-- /. box -->
                                 </div>
-                                <!-- /. box -->
+                                <!-- /.col -->
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-                    </section>
+                            <!-- /.row -->
+                        </section>
 
 
+                    </div>
                 </div>
 
             </div>
@@ -128,32 +129,32 @@
 <script src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 <script src='/bower_components/fullcalendar/dist/locale/pt-br.js'></script>
 <script>
-                                                        $(function () {
+                                                            $(function () {
 
-                                                            $('#calendar').fullCalendar({
-                                                                header: {
-                                                                    left: 'prev,next ',
-                                                                    center: 'title',
-                                                                    right: 'month,agendaWeek,agendaDay'
-                                                                },
-                                                                slotDuration: '01:00:00',
-                                                                buttonText: {
-                                                                    today: 'hoje',
-                                                                    month: 'mês',
-                                                                    week: 'semana',
-                                                                    day: 'dia'
-                                                                },
-                                                                editable: false,
-                                                                droppable: false,
-                                                                eventClick: function (calEvent, jsEvent, view) {
-                                                                    $('html, body').animate({
-                                                                        scrollTop: $("#headerReservas").offset().top - 50
-                                                                    }, 1000);
-                                                                    $('#formIni').val(calEvent.start.format("DD/MM/YYYY HH:mm:ss")).change();
-                                                                    $('#formFim').val(calEvent.end.format("DD/MM/YYYY HH:mm:ss")).change();
-                                                                    $('#formValor').val(calEvent.valor).change();
-                                                                }
+                                                                $('#calendar').fullCalendar({
+                                                                    header: {
+                                                                        left: 'prev,next ',
+                                                                        center: 'title',
+                                                                        right: 'month,agendaWeek,agendaDay'
+                                                                    },
+                                                                    slotDuration: '01:00:00',
+                                                                    buttonText: {
+                                                                        today: 'hoje',
+                                                                        month: 'mês',
+                                                                        week: 'semana',
+                                                                        day: 'dia'
+                                                                    },
+                                                                    editable: false,
+                                                                    droppable: false,
+                                                                    eventClick: function (calEvent, jsEvent, view) {
+                                                                        $('html, body').animate({
+                                                                            scrollTop: $("#headerReservas").offset().top - 50
+                                                                        }, 1000);
+                                                                        $('#formIni').val(calEvent.start.format("DD/MM/YYYY HH:mm:ss")).change();
+                                                                        $('#formFim').val(calEvent.end.format("DD/MM/YYYY HH:mm:ss")).change();
+                                                                        $('#formValor').val(calEvent.valor).change();
+                                                                    }
+                                                                });
+
                                                             });
-
-                                                        });
 </script>

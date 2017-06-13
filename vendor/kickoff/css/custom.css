@@ -40,3 +40,26 @@ and open the template in the editor.
     cursor: pointer;
     background-color: grey !important;
 }
+
+.banner {
+    border: 1px solid #c6c6c6;
+    background-color: #fcfcfc;
+}
+
+.banner-central {
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.banner-lateral {
+    height: 800px;
+}
+
+@media only screen and (max-width: 1026px) {
+    .banner-lateral, .hide-1024px {
+        display: none;
+    }
+    .shopmainthumb {
+        width: 100%;
+    }
+}

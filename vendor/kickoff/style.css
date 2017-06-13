@@ -654,6 +654,8 @@ header{
     color: #ffffff;
     display: inline-block;
     text-transform: uppercase;
+    float: none !important;
+    font-weight: normal !important;
 }
 .add_to_cart i {
     margin-right: 8px;
@@ -990,15 +992,15 @@ header{
     position: relative;
     width: 100%;
 }
-.kode-time-zoon::before {
+/*.kode-time-zoon::before {
     background-color: #f4f4f4;
     content: "";
     height: 2px;
-    left: 20%;
+    left: 4%;
     position: absolute;
     top: -2px;
-    width: 264px;
-}
+    width: 2px;
+}*/
 .kode-large-blog ul li:hover .kode-time-zoon time {
     color: #ffffff;
 }

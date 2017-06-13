@@ -23,43 +23,31 @@
     <section class="kode-pagesection">
         <div class="container">
             <div class="row">
-
-                <div class="kode-pagecontent col-md-12">
-
+                <div class="col-md-1 banner banner-lateral" style="width: 12.499999995%;"></div>
+                <div class="kode-pagecontent col-md-9">
+                    
+                    <div class="col-md-12 ">
+                        <div class="banner banner-central "></div>
+                    </div>
                     <div class="kode-blog-list kode-grid-blog">
                         <ul class="row">
-
                             <li class="col-md-4" ng-repeat="quadra in vm.quadras track by quadra.id">
                                 <div class="kode-time-zoon">
                                     <!--<time datetime="2008-02-14 20:00">07 <span>may</span></time>-->
                                     <h5><a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}">{{quadra.titulo}}</a></h5>
                                 </div>
-                                <figure><a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}"><img ng-src="server/arquivo/buscar/{{quadra.imagem}}" class="img-lg" style="min-height: 370px" alt="Imagem quadra {{quadra.titulo}}"></a></figure>
+                                <figure><a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}"><img ng-src="server/arquivo/buscar/{{quadra.imagem}}" class="img-lg" style="min-height: 270px" alt="Imagem quadra {{quadra.titulo}}"></a></figure>
                                 <div class="kode-blog-info">
-<!--                                    <ul class="kode-blog-options">
-                                        <li><a href="#"><i class="fa fa-user"></i> Jozaf</a></li>
-                                        <li><a href="#"><i class="fa fa-comment"></i> 3 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-share-alt"></i> 12 Share</a></li>
-                                    </ul>-->
                                     <p>{{quadra.descricao}}</p>
                                     <a href="publico/quadra/{{quadra.id}}/cliente/{{vm.cliente.id}}" class="kode-modrenbtn thbg-colorhover">Reservar</a>
                                     <div class="clearfix"></div>
-<!--                                    <ul class="kode-team-network">
-                                        <li><a class="fa fa-facebook" href="#"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                    </ul>-->
                                 </div>
                             </li>
-                            
                             <li class="clearfix"></li>
                         </ul>
-
                     </div>
-
                 </div>
-
-
+                <div class="col-md-1 banner banner-lateral" style="width: 12.499999995%;"></div>
             </div>
         </div>
     </section>
