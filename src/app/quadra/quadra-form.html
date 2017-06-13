@@ -41,7 +41,7 @@
                         <div class="col-md-4">
                             <div class="form-group" ng-class="formulario.descricao.$dirty && formulario.descricao.$invalid ? 'has-error' : ''">
                                 <label for="descricao">Descrição: *</label>
-                                <input id="descricao" type="text" name="descricao" class="form-control" ng-model="vm.quadra.descricao" placeholder="Informe a descrição da quadra" required>
+                                <textarea id="descricao" name="descricao" class="form-control" style="max-width: 100%; height: 80px" ng-model="vm.quadra.descricao" placeholder="Informe a descrição da quadra" required></textarea>
                                 <span class="help-block" ng-show="formulario.descricao.$dirty && formulario.descricao.$invalid">O campo é obrigatório</span>
                             </div>
                         </div>
@@ -102,38 +102,42 @@
                         </div>
                     </div>
 
-<!--                    <div class="row">
-                        <div class="col-md-10">
-                            <label for="situacao">Funcionamento:</label>
-                            <table class="table-funcionamento table table-condensed table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Horário</th>
-                                        <th>Domingo</th>
-                                        <th>Segunda</th>
-                                        <th>Terça</th>
-                                        <th>Quarta</th>
-                                        <th>Quinta</th>
-                                        <th>Sexta</th>
-                                        <th>Sábado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="h in vm.range(6, 23)">
-                                        <td>{{h}}h00</td>
-                                        <td ng-repeat="d in vm.range(1, 7)" ng-click="vm.toggleHorario($event, d, h)">
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <br>-->
-
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="imagem">Imagem Principal: *</label>
-                                <input id="imagem" name="imagem" type="file" nv-file-select="" uploader="vm.uploader1" multiple required/>
+                                <input id="imagem" name="imagem" type="file" nv-file-select="" uploader="vm.uploader0" multiple required/>
+                                <div ng-repeat="item in vm.uploader0.queue">
+                                    <div>
+                                        <div ng-show="vm.uploader0.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                                    </div>
+                                    <div nowrap>
+                                        <button type="button" class="btn btn-success btn-xs btn-flat" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs btn-flat" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remover
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2" ng-show="vm.editar">
+                            <div class="form-group">
+                                <label for="preview">Atual:</label>
+                                <div class="input-group">
+                                    <img ng-src="server/arquivo/buscar/{{vm.quadra.imagem}}" class="img-lg" alt="Imagem Atual">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="imagem1">Imagem 1: </label>
+                                <input id="imagem1" name="imagem1" type="file" nv-file-select="" uploader="vm.uploader1" multiple required/>
                                 <div ng-repeat="item in vm.uploader1.queue">
                                     <div>
                                         <div ng-show="vm.uploader1.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
@@ -150,20 +154,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" ng-show="vm.editar">
+                        <div class="col-md-2" ng-show="vm.editar">
                             <div class="form-group">
-                                <label for="preview">Imagem Atual:</label>
+                                <label for="preview">Atual:</label>
                                 <div class="input-group">
-                                    <img ng-src="server/arquivo/buscar/{{vm.preview}}" class="img-lg" alt="Imagem Atual">
+                                    <img ng-src="server/arquivo/buscar/{{vm.quadra.imagem1}}" class="img-lg" alt="Sem Imagem">
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label for="imagem2">Imagem Principal: *</label>
+                                <label for="imagem2">Imagem 2: </label>
                                 <input id="imagem2" name="imagem2" type="file" nv-file-select="" uploader="vm.uploader2" multiple required/>
                                 <div ng-repeat="item in vm.uploader2.queue">
                                     <div>
@@ -181,11 +182,39 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" ng-show="vm.editar">
+                        <div class="col-md-2" ng-show="vm.editar">
                             <div class="form-group">
-                                <label for="preview">Imagem Atual:</label>
+                                <label for="preview">Atual:</label>
                                 <div class="input-group">
-                                    <img ng-src="server/arquivo/buscar/{{vm.preview2}}" class="img-lg" alt="Imagem Atual">
+                                    <img ng-src="server/arquivo/buscar/{{vm.quadra.imagem2}}" class="img-lg" alt="Sem Imagem">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="imagem3">Imagem 3:</label>
+                                <input id="imagem3" name="imagem3" type="file" nv-file-select="" uploader="vm.uploader3" multiple required/>
+                                <div ng-repeat="item in vm.uploader3.queue">
+                                    <div>
+                                        <div ng-show="vm.uploader3.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                                    </div>
+                                    <div nowrap>
+                                        <button type="button" class="btn btn-success btn-xs btn-flat" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs btn-flat" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remover
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2" ng-show="vm.editar">
+                            <div class="form-group">
+                                <label for="preview">Atual:</label>
+                                <div class="input-group">
+                                    <img ng-src="server/arquivo/buscar/{{vm.quadra.imagem3}}" class="img-lg" alt="Sem Imagem">
                                 </div>
                             </div>
                         </div>
@@ -196,7 +225,7 @@
 
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
-                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid || !vm.uploader1.queue[0].isUploaded">Salvar</button>
+                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid || !vm.uploader0.queue[0].isUploaded">Salvar</button>
                     <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
                 </div>
             </form>

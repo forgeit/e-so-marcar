@@ -19,6 +19,15 @@ class Quadra extends MY_Controller {
         if ($quadraBanco['imagem'] != $quadra->imagem) {
             $quadra->imagem = $this->uploadArquivo($quadra->imagem, 'quadra');
         }
+        if ($quadraBanco['imagem1'] != $quadra->imagem1) {
+            $quadra->imagem1 = $this->uploadArquivo($quadra->imagem1, 'quadra');
+        }
+        if ($quadraBanco['imagem2'] != $quadra->imagem2) {
+            $quadra->imagem2 = $this->uploadArquivo($quadra->imagem2, 'quadra');
+        }
+        if ($quadraBanco['imagem3'] != $quadra->imagem3) {
+            $quadra->imagem3 = $this->uploadArquivo($quadra->imagem3, 'quadra');
+        }
 
         $response = array('exec' => $this->QuadraModel->atualizar($quadra->id, $quadra));
 
@@ -124,6 +133,9 @@ class Quadra extends MY_Controller {
 
         $quadra->id_cliente = $this->jwtController->id;
         $quadra->imagem = $this->uploadArquivo($quadra->imagem, 'quadra');
+        $quadra->imagem1 = $this->uploadArquivo($quadra->imagem1, 'quadra');
+        $quadra->imagem2 = $this->uploadArquivo($quadra->imagem2, 'quadra');
+        $quadra->imagem3 = $this->uploadArquivo($quadra->imagem3, 'quadra');
 
         $idQuadra = $this->QuadraModel->inserirRetornaId($quadra);
 

@@ -42,22 +42,29 @@
         };
         vm.esportes = [];
         vm.esportesAux = [];
-        vm.preview = 0;
         vm.editar = false;
         vm.filtrar = null;
         vm.tipoQuadraList = [];
         vm.salvar = salvar;
         vm.voltar = voltar;
+        vm.uploader0 = new FileUploader({
+            url: configuracaoREST.url + 'upload',
+            queueLimit: 1
+        });
         vm.uploader1 = new FileUploader({
             url: configuracaoREST.url + 'upload',
             queueLimit: 1
         });
-
         vm.uploader2 = new FileUploader({
-            url: configuracaoREST.url + 'upload'
+            url: configuracaoREST.url + 'upload',
+            queueLimit: 1
         });
-
-        vm.uploader1.onCompleteItem = function (fileItem, response, status, headers) {
+        vm.uploader3 = new FileUploader({
+            url: configuracaoREST.url + 'upload',
+            queueLimit: 1
+        });
+        
+        vm.uploader0.onCompleteItem = function (fileItem, response, status, headers) {
             if (response.exec) {
                 controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
             } else {
@@ -65,14 +72,29 @@
             }
             vm.quadra.imagem = response.nome;
         };
-
+        vm.uploader1.onCompleteItem = function (fileItem, response, status, headers) {
+            if (response.exec) {
+                controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
+            } else {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
+            }
+            vm.quadra.imagem1 = response.nome;
+        };
         vm.uploader2.onCompleteItem = function (fileItem, response, status, headers) {
             if (response.exec) {
                 controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
             } else {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
             }
-            vm.quadra.imagem = response.nome;
+            vm.quadra.imagem2 = response.nome;
+        };
+        vm.uploader3.onCompleteItem = function (fileItem, response, status, headers) {
+            if (response.exec) {
+                controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
+            } else {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, response.message);
+            }
+            vm.quadra.imagem3 = response.nome;
         };
 
         iniciar();
@@ -116,8 +138,7 @@
                 vm.quadra.flag_tamanho_oficial = vm.quadra.flag_tamanho_oficial === '1';
                 vm.quadra.flag_dia_chuva = vm.quadra.flag_dia_chuva === '1';
                 vm.quadra.flag_marcacao_mensal = vm.quadra.flag_marcacao_mensal === '1';
-                vm.preview = vm.quadra.imagem;
-
+                
                 if (vm.quadra.id_tipo_quadra) {
                     $scope.$watch('vm.tipoQuadraList', function () {
                         if (vm.tipoQuadraList.length > 0) {
