@@ -30,9 +30,9 @@
                         <ul class="row">
                             <li class="col-md-3 col-sm-6" ng-repeat="cliente in vm.clientes track by cliente.id">
                                 <div class="kode-pro-inner">
-                                    <figure><a href="#"><img ng-src="server/arquivo/buscar/{{cliente.logo}}" class="img-lg" style="min-height: 258px;" alt="Logo {{cliente.nome_fantasia}}"></a>
+                                    <figure><a  href="/publico/quadra/cliente/{{cliente.id}}"><img ng-src="server/arquivo/buscar/{{cliente.logo}}" class="img-lg" style="min-height: 258px;" alt="Logo {{cliente.nome_fantasia}}"></a>
                                         <figcaption>
-                                            <h4><a href="#">{{cliente.nome_fantasia}}</a></h4>
+                                            <h4><a  href="/publico/quadra/cliente/{{cliente.id}}">{{cliente.nome_fantasia}}</a></h4>
                                             <!--<p class="kode-pro-cat"><a href="#">{{cliente.tel}}</a></p>-->
                                         </figcaption>
                                     </figure>

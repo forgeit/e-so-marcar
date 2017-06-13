@@ -17,7 +17,7 @@ class Usuario extends MY_Controller {
     }
 
     public function buscarCombo() {
-        print_r(json_encode(array('data' => array('ArrayList' => $this->UsuarioModel->buscarTodos('nome')))));
+        print_r(json_encode(array('data' => array('ArrayList' => $this->UsuarioModel->buscarTodos('email')))));
     }
 
     public function excluir() {

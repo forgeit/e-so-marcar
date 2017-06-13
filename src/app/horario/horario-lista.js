@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('novo-horario/' + aData.id);
+                controllerUtils.$location.path('privado/novo-horario/' + aData.id);
                 $scope.$apply();
             }
 

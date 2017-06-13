@@ -16,7 +16,7 @@
                         <div class="col-md-3">
                             <div class="form-group" ng-class="formulario.usuario.$dirty && formulario.usuario.$invalid ? 'has-error' : ''">
                                 <label for="usuario">Usuário: *</label>
-                                <select class="form-control" id="usuario" name="usuario" ng-options="usuario.nome for usuario in vm.usuarioList track by usuario.id" ng-model="vm.usuario" ng-change="vm.buscarValor(formulario)" required>
+                                <select class="form-control" id="usuario" name="usuario" ng-options="usuario.email for usuario in vm.usuarioList track by usuario.id" ng-model="vm.usuario" ng-change="vm.buscarValor(formulario)" required>
                                     <option value="">Selecione</option> 	
                                 </select>
                                 <span class="help-block" ng-show="formulario.usuario.$dirty && formulario.usuario.$invalid">O campo é obrigatório</span>

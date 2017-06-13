@@ -11,7 +11,7 @@ class ReservaModel extends MY_Model {
         $sql = "SELECT 
                     r.id, 
                     q.titulo as quadra, 
-                    u.nome as usuario,
+                    CASE WHEN u.nome THEN u.nome ELSE u.email END as usuario, 
                     DATE_FORMAT(r.data_hora_reserva,'%d/%m/%Y %H:%i') AS data_hora_reserva,
                     CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor
                 FROM reserva r

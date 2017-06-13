@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('nova-quadra/' + aData.id);
+                controllerUtils.$location.path('privado/nova-quadra/' + aData.id);
                 $scope.$apply();
             }
 

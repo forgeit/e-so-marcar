@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('novo-anuncio/' + aData.id);
+                controllerUtils.$location.path('privado/novo-anuncio/' + aData.id);
                 $scope.$apply();
             }
 

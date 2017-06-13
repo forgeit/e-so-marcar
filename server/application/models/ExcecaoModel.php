@@ -13,7 +13,8 @@ class ExcecaoModel extends MY_Model {
                     q.titulo as quadra,
                     DATE_FORMAT(r.data_hora_inicial,'%d/%m/%Y %H:%i') AS data_hora_inicial,
                     DATE_FORMAT(r.data_hora_final,'%d/%m/%Y %H:%i') AS data_hora_final,
-                    CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor
+                    CASE WHEN r.flag_pode_jogar THEN 'Sim' ELSE 'Não' END as flag_pode_jogar, 
+                    CASE WHEN r.flag_pode_jogar THEN CONCAT('R$ ', REPLACE(r.valor, '.', ',')) ELSE '-' END as valor
                 FROM horario_excecao r
                 JOIN quadra q ON q.id = r.id_quadra
                 WHERE r.id_cliente = ?";

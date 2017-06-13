@@ -128,9 +128,4 @@ class Excecao extends MY_Controller {
         }
     }
 
-    private function validaClienteQuadra($idQuadra) {
-        $quadraBanco = $this->QuadraModel->buscarPorId($idQuadra);
-        return ($quadraBanco['id_cliente'] != $this->jwtController->id);
-    }
-
 }

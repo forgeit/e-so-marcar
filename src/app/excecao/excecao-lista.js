@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('nova-excecao/' + aData.id);
+                controllerUtils.$location.path('privado/nova-excecao/' + aData.id);
                 $scope.$apply();
             }
 
@@ -56,6 +56,8 @@
                     ['quadra', 'Quadra'],
                     ['data_hora_inicial', 'Data e Hora Inicial'],
                     ['data_hora_final', 'Data e Hora Final'],
+                    ['flag_pode_jogar', 'Pode Jogar'],
+                    ['valor', 'Valor'],
                     ['id', 'Ações', tabelaUtils.criarBotaoPadrao]
                 ]);
             }

@@ -47,7 +47,7 @@
             criarOpcoesTabela();
 
             function carregarObjeto(aData) {
-                controllerUtils.$location.path('nova-reserva/' + aData.id);
+                controllerUtils.$location.path('privado/nova-reserva/' + aData.id);
                 $scope.$apply();
             }
 
