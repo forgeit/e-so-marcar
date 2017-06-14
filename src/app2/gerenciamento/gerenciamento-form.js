@@ -7,14 +7,17 @@
         'controllerUtils',
         'gerenciamentoRest',
         'FileUploader',
-        'configuracaoREST'];
-    function GerenciamentoForm(controllerUtils, dataservice, FileUploader, configuracaoREST) {
+        'configuracaoREST',
+        'AuthTokenApp2',
+        '$rootScope'];
+    function GerenciamentoForm(controllerUtils, dataservice, FileUploader, configuracaoREST, AuthTokenApp2, $rootScope) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.usuario = {};
         vm.salvar = salvar;
         vm.alterarSenha = alterarSenha;
+        vm.desativarConta = desativarConta;
         vm.voltar = voltar;
         vm.preview;
         vm.uploader = new FileUploader({
@@ -58,11 +61,12 @@
             function success(response) {
                 controllerUtils.feedMessage(response);
                 if (response.data.status === 'true') {
+                    $rootScope.usuarioSistema.nomeExibir = vm.usuario.nome;
                     voltar();
                 }
             }
         }
-        
+
         function alterarSenha() {
 
             dataservice.alterarSenha(vm.novaSenha).then(success).catch(error);
@@ -79,10 +83,43 @@
             }
         }
 
+        function desativarConta(aData) {
+            $.confirm({
+                text: "Você tem certeza que deseja desativar sua conta?",
+                title: "Confirmação",
+                confirm: function (button) {
+                    desativar(aData);
+                },
+                confirmButtonClass: "btn-danger btn-flat",
+                cancelButtonClass: "btn-default btn-flat",
+                confirmButton: "Sim, tenho certeza!",
+                cancelButton: "Não",
+                dialogClass: "modal-dialog modal-lg"
+            });
+        }
+
+        function desativar(data) {
+
+            dataservice.desativar(data).then(success).catch(error);
+
+            function error(response) {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao alterar senha.');
+            }
+
+            function success(response) {
+                controllerUtils.feedMessage(response);
+                if (response.data.status === 'true') {
+                    AuthTokenApp2.remover();
+                    $rootScope.usuarioSistema = null;
+                    voltar();
+                }
+            }
+        }
+
         function voltar() {
             controllerUtils.$location.path('/');
         }
-        
+
         $('#data_nascimento').datepicker({autoclose: true, format: 'dd/mm/yyyy', language: 'pt-BR'});
     }
 

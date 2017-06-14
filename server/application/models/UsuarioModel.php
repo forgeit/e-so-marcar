@@ -7,10 +7,26 @@ class UsuarioModel extends MY_Model {
         $this->table = 'usuario';
     }
 
+    function buscarTodosAtivo() {
+        $sql = "SELECT 
+                   u.*
+                FROM usuario u
+                WHERE u.flag_ativo
+                ORDER BY u.email";
+
+        $query = $this->db->query($sql);
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+
     function verificarLogin($login, $senha) {
 
         $sql = "SELECT 
-                    id, nome, email, flag_email_confirmado
+                    id, nome, email, flag_email_confirmado, flag_ativo
                 FROM usuario
                 WHERE email = ? AND senha = ?
                 LIMIT 1";
@@ -23,7 +39,7 @@ class UsuarioModel extends MY_Model {
             return null;
         }
     }
-    
+
     function buscarPorIdNativo($id) {
         $sql = "SELECT 
                     p.*, 

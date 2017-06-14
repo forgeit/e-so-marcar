@@ -13,7 +13,7 @@ class Usuario extends MY_Controller {
     }
 
     public function buscarCombo() {
-        print_r(json_encode(array('data' => array('ArrayList' => $this->UsuarioModel->buscarTodos('email')))));
+        print_r(json_encode(array('data' => array('ArrayList' => $this->UsuarioModel->buscarTodosAtivo()))));
     }
 
     public function excluir() {
@@ -126,6 +126,27 @@ class Usuario extends MY_Controller {
         $this->UsuarioModel->atualizar($this->jwtController->id, $usuarioBanco);
 
         $array = $this->gerarRetorno(TRUE, "Senha atualizada com sucesso.");
+        print_r(json_encode($array));
+    }
+
+    public function desativarConta() {
+        $senha = $this->security->xss_clean($this->input->raw_input_stream);
+
+        if (empty($senha)) {
+            $this->gerarErro("Senha é obrigatório.");
+        }
+
+        $usuarioBanco = $this->UsuarioModel->buscarPorId($this->jwtController->id);
+
+        if ($usuarioBanco['senha'] != md5($senha)) {
+            $this->gerarErro("Senha incorreta.");
+        }
+
+        $usuarioBanco['flag_ativo'] = 0;
+
+        $this->UsuarioModel->atualizar($this->jwtController->id, $usuarioBanco);
+
+        $array = $this->gerarRetorno(TRUE, "Conta desativada com sucesso.");
         print_r(json_encode($array));
     }
 

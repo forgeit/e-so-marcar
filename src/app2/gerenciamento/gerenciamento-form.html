@@ -88,10 +88,33 @@
                                 <div class="kode-simple-form custom-simple-form">  					
                                     <form method="post" class="kickoff-form" ng-submit="vm.alterarSenha()" >
                                         <ul>
-                                            <li><p><span>Senha Atual*</span><input type="password" id="email" name="atual" style="width: 100%;" class="required" ng-model="vm.novaSenha.atual" placeholder="Senha atual" required="" ></p></li>
-                                            <li><p><span>Nova Senha*</span><input type="password" id="name" name="novaSenha" style="width: 100%;" class="required" ng-model="vm.novaSenha.nova" placeholder="Nova senha" required=""></p></li>
-                                            <li><p><span>Repita Nova Senha*</span><input id="data_nascimento" type="password" style="width: 100%;" name="novaSenha2"  class="required"  ng-model="vm.novaSenha.nova2" required="" placeholder="Repita nova senha" ></p></li>
+                                            <li><p><span>Senha Atual*</span><input type="password" name="atual" style="width: 100%;" class="required" ng-model="vm.novaSenha.atual" placeholder="Senha atual" required="" ></p></li>
+                                            <li><p><span>Nova Senha*</span><input type="password" name="novaSenha" style="width: 100%;" class="required" ng-model="vm.novaSenha.nova" placeholder="Nova senha" required=""></p></li>
+                                            <li><p><span>Repita Nova Senha*</span><input type="password" style="width: 100%;" name="novaSenha2"  class="required"  ng-model="vm.novaSenha.nova2" required="" placeholder="Repita nova senha" ></p></li>
                                             <li><input class="thbg-color" type="submit" value="Alterar Senha"></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="kode-pagecontent col-md-12">
+                    <div class="contactus-page">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="h1-underline">Desativação de Conta</h1>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="kode-simple-form custom-simple-form">  					
+                                    <form method="post" class="kickoff-form" ng-submit="vm.desativarConta(vm.senhaAtual)" >
+                                        <ul>
+                                            <li><p><span>Senha Atual*</span><input type="password" name="atual" style="width: 100%;" class="required" ng-model="vm.senhaAtual" placeholder="Senha atual" required="" ></p></li>
+                                            <li><input class="thbg-color" type="submit" value="Desativar Conta"></li>
                                         </ul>
                                     </form>
                                 </div>

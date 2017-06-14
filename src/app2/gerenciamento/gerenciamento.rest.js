@@ -11,7 +11,8 @@
         var service = {
             salvar: salvar,
             buscar: buscar,
-            alterarSenha: alterarSenha
+            alterarSenha: alterarSenha,
+            desativar: desativar
         };
 
         return service;
@@ -19,9 +20,13 @@
         function salvar(data) {
             return $http.post(configuracaoREST.url + configuracaoREST.usuario + "atualizar", data);
         }
-        
+
         function alterarSenha(data) {
             return $http.post(configuracaoREST.url + configuracaoREST.usuario + "alterarSenha", data);
+        }
+
+        function desativar(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.usuario + "desativarConta", data);
         }
 
         function buscar() {
