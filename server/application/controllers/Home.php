@@ -152,7 +152,7 @@ class Home extends MY_Controller {
 
             $usuario = $this->UsuarioModel->buscarPorId($this->uri->segment(4));
 
-            if ($hash == $usuario['senha_hash']) {
+            if ($usuario['senha_hash'] == $this->uri->segment(6)) {
 
                 $novaSenha = substr(md5($usuario['email'] . rand()), 0, 8);
                 $usuario['senha'] = md5($novaSenha);
