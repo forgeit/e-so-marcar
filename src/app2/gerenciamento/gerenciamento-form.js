@@ -14,6 +14,7 @@
 
         vm.usuario = {};
         vm.salvar = salvar;
+        vm.alterarSenha = alterarSenha;
         vm.voltar = voltar;
         vm.preview;
         vm.uploader = new FileUploader({
@@ -52,6 +53,22 @@
 
             function error(response) {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao atualizar as informações.');
+            }
+
+            function success(response) {
+                controllerUtils.feedMessage(response);
+                if (response.data.status === 'true') {
+                    voltar();
+                }
+            }
+        }
+        
+        function alterarSenha() {
+
+            dataservice.alterarSenha(vm.novaSenha).then(success).catch(error);
+
+            function error(response) {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao alterar senha.');
             }
 
             function success(response) {

@@ -10,13 +10,18 @@
     function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
         var service = {
             salvar: salvar,
-            buscar: buscar
+            buscar: buscar,
+            alterarSenha: alterarSenha
         };
 
         return service;
 
         function salvar(data) {
             return $http.post(configuracaoREST.url + configuracaoREST.usuario + "atualizar", data);
+        }
+        
+        function alterarSenha(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.usuario + "alterarSenha", data);
         }
 
         function buscar() {

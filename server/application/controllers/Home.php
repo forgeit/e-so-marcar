@@ -156,6 +156,7 @@ class Home extends MY_Controller {
 
                 $novaSenha = substr(md5($usuario['email'] . rand()), 0, 8);
                 $usuario['senha'] = md5($novaSenha);
+                $usuario['senha_hash'] = '';
 
                 $this->UsuarioModel->atualizar($usuario['id'], $usuario);
 

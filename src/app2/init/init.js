@@ -90,7 +90,7 @@
                 }, 600);
             }
         }
-        
+
         function senha(email) {
 
             dataService.senha(email).then(success).catch(error);
@@ -103,9 +103,8 @@
                 if (response.data.status === 'true') {
                     $('#myModal').modal('hide');
                     $('#myModalTwo').modal('hide');
-                } else {
-                    controllerUtils.feedMessage(response);
                 }
+                controllerUtils.feedMessage(response);
             }
         }
 

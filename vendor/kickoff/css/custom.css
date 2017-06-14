@@ -55,6 +55,12 @@ and open the template in the editor.
     height: 800px;
 }
 
+.h1-underline {
+    border-bottom: 1px solid #c6c6c6;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
 @media only screen and (max-width: 1026px) {
     .banner-lateral, .hide-1024px {
         display: none;
