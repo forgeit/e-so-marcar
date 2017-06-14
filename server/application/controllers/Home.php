@@ -203,10 +203,12 @@ class Home extends MY_Controller {
             $this->gerarErro("E-mail é obrigatório.");
         }
 
-        $usuario = $this->UsuarioModel->buscarPorColuna('email', $email);
+        $usuarios = $this->UsuarioModel->buscarPorColuna('email', $email);
+        
+        if ($usuarios) {
 
-        if ($usuario) {
-
+            $usuario = $usuarios[0];
+            
             $hash = md5($email . rand());
             $usuario['senha_hash'] = $hash;
             $this->UsuarioModel->atualizar($usuario['id'], $usuario);
