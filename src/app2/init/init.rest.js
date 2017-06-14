@@ -11,7 +11,8 @@
         var service = {
             newsletter: newsletter,
             cadastrar: cadastrar,
-            logar: logar
+            logar: logar,
+            senha: senha
         };
 
         return service;
@@ -26,6 +27,10 @@
 
         function logar(data) {
             return $http.post(configuracaoREST.url + configuracaoREST.home + 'logar', data);
+        }
+        
+        function senha(data) {
+            return $http.post(configuracaoREST.url + configuracaoREST.home + 'senha', data);
         }
     }
 })();

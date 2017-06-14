@@ -15,7 +15,7 @@
         carregar();
 
         function carregar() {
-            
+
             if (AuthTokenApp2.ler()) {
                 var payload = jwtHelper.decodeToken(AuthTokenApp2.ler());
                 $rootScope.usuarioSistema = {};
@@ -33,6 +33,11 @@
         function sair() {
             AuthTokenApp2.remover();
             $rootScope.usuarioSistema = null;
+            $('#loading-bar-container').html('<div id="loader-wrapper"><h4><img style="width: 100px;" src="src/app/layout/img/core/logo.png" /><br/><img src="src/app/layout/img/core/loader.gif"/></h4></div>');
+            setTimeout(function () {
+                $('#loading-bar-container').html('');
+            }, 500);
+            controllerUtils.$location.path('/');
         }
     }
 

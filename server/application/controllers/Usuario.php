@@ -4,14 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends MY_Controller {
 
-    public function atualizar() {
-        
-    }
-
     public function buscar() {
         $array = array('data' =>
             array('dto' =>
-                $this->UsuarioModel->buscarPorId($this->jwtController->id)));
+                $this->UsuarioModel->buscarPorIdNativo($this->jwtController->id)));
 
         print_r(json_encode($array));
     }
@@ -72,6 +68,31 @@ class Usuario extends MY_Controller {
         if ($usuario->senha != $usuario->senha_denovo) {
             $this->gerarErro("As senhas são diferentes.");
         }
+    }
+
+    public function atualizar() {
+        $data = $this->security->xss_clean($this->input->raw_input_stream);
+        $usuario = json_decode($data);
+
+        if (empty($usuario->nome)) {
+            $this->gerarErro("Nome é obrigatório.");
+        }
+
+        $usuarioBanco = $this->UsuarioModel->buscarPorId($this->jwtController->id);
+
+        $usuarioBanco['nome'] = $usuario->nome;
+        $usuarioBanco['telefone'] = $usuario->telefone;
+        $usuarioBanco['biogradia'] = $usuario->biogradia;
+        if (empty($usuario->data_nascimento)) {
+            $usuarioBanco['data_nascimento'] = NULL;
+        } else {
+            $usuarioBanco['data_nascimento'] = $this->toDate($usuario->data_nascimento);
+        }
+
+        $this->UsuarioModel->atualizar($this->jwtController->id, $usuarioBanco);
+
+        $array = $this->gerarRetorno(TRUE, "Dados atualizados com sucesso.");
+        print_r(json_encode($array));
     }
 
 }

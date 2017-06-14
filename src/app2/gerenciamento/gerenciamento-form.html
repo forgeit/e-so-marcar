@@ -29,14 +29,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="kode-simple-form custom-simple-form">  					
-                                    <form method="post" class="kickoff-form" >
+                                    <form method="post" class="kickoff-form" ng-submit="vm.salvar()" >
                                         <ul>
                                             <li><p><span>E-mail</span><input type="text" id="email" name="email" class="required email" ng-model="vm.usuario.email" placeholder="Email *" disabled=""></p></li>
                                             <li><p><span>Nome *</span><input type="text" id="name" name="name" class="required" ng-model="vm.usuario.nome" placeholder="Nome"></p></li>
-                                            <li><p><span>Data de Nascimento</span><input id="data_nascimento" type="text" name="data_nascimento"  ng-model="vm.usuario.data_nascimento" placeholder="Data de nascimento" required></p></li>
-                                            <li><p><span>Telefone</span><input type="text" id="telefone" name="telefone" ng-model="vm.usuario.telefone" placeholder="Telefone"></p></li>
-                                            <li><p><span>Facebook</span><input type="text" id="facebook" name="facebook" ng-model="vm.usuario.facebook" placeholder="Facebook"></p></li>
-                                            <li><p><span>Biografia</span><textarea name="message" id="message" placeholder="Escreva sobre você"></textarea></p></li>
+                                            <li><p><span>Data de Nascimento</span><input id="data_nascimento" type="text" name="data_nascimento"  ng-model="vm.usuario.data_nascimento" placeholder="Data de nascimento" ></p></li>
+                                            <li><p><span>Telefone</span><input type="text" id="telefone" name="telefone" ng-model="vm.usuario.telefone" ui-mask="(99) 9999-9999?9"></p></li>
+<!--                                            <li><p><span>Facebook</span><input type="text" id="facebook" name="facebook" ng-model="vm.usuario.facebook" placeholder="Facebook"></p></li>-->
+                                            <li><p><span>Biografia</span><textarea name="message" id="message" ng-model="vm.usuario.biogradia" placeholder="Escreva sobre você"></textarea></p></li>
                                             <li><input class="thbg-color" type="submit" value="Atualizar Informações"></li>
                                         </ul>
                                     </form>

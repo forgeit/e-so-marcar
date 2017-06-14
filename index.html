@@ -164,7 +164,7 @@
                         <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.login.login" required></p>
                         <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.login.senha" required></p>
                         <p class="kode-submit">
-                            <a href="vendor/kickoff/#">Esqueci Minha Senha</a> 
+                            <a href="" ng-click="init.senha(init.login.login)">Esqueci Minha Senha</a> 
                             <input class="btn thbg-colortwo" type="submit" value="Acessar" ng-disabled="formularioLogin.$invalid"></button></p>
                     </form>
                 </div>
@@ -187,7 +187,7 @@
                         <!--<p><label><input type="checkbox"><span>Remember Me</span></label></p>-->
 
                         <p class="kode-submit">
-                            <a href="vendor/kickoff/#">Esqueci Minha Senha</a> 
+                            <a href="" ng-click="init.senha(init.cadastro)">Esqueci Minha Senha</a> 
                             <input class="btn thbg-colortwo" type="submit" value="Cadastrar" ng-disabled="formularioCadastro.$invalid"></p>
                     </form>
                 </div>

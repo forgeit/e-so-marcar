@@ -81,7 +81,7 @@ class Home extends MY_Controller {
         }
 
         $usuario = $this->UsuarioModel->verificarLogin($usuario->login, md5($usuario->senha));
-        
+
         if ($usuario) {
             if ($usuario['flag_email_confirmado'] == 0) {
                 print_r(json_encode($this->gerarRetorno(FALSE, "Você deve confirmar sua conta antes de acessar o sistema.")));
@@ -146,6 +146,31 @@ class Home extends MY_Controller {
                 print_r('Hash inválido!');
             }
         }
+
+        //ativa cadastro
+        if ($this->uri->segment(3) == 'senha' && $this->uri->segment(4) && $this->uri->segment(5) == 'hash' && $this->uri->segment(6)) {
+
+            $usuario = $this->UsuarioModel->buscarPorId($this->uri->segment(4));
+
+            if ($hash == $usuario['senha_hash']) {
+
+                $novaSenha = substr(md5($usuario['email'] . rand()), 0, 8);
+                $usuario['senha'] = md5($novaSenha);
+
+                $this->UsuarioModel->atualizar($usuario['id'], $usuario);
+
+                $this->email
+                        ->from($this->config->item('smtp_user'))
+                        ->to($usuario['email'])
+                        ->subject('Recuperação de senha')
+                        ->message('<p>Sua nova senha é: <b>' . $novaSenha . '</b></p>')
+                        ->send();
+                
+                print_r('Sua senha foi restaurada. Verifique seu email!');
+            } else {
+                print_r('Hash inválido!');
+            }
+        }
     }
 
     private function validaDados($usuario) {
@@ -169,6 +194,34 @@ class Home extends MY_Controller {
         if ($usuario->senha != $usuario->senha_denovo) {
             $this->gerarErro("As senhas são diferentes.");
         }
+    }
+
+    public function senha() {
+        $email = $this->security->xss_clean($this->input->raw_input_stream);
+
+        if (empty($email)) {
+            $this->gerarErro("E-mail é obrigatório.");
+        }
+
+        $usuario = $this->UsuarioModel->buscarPorColuna('email', $email);
+
+        if ($usuario) {
+
+            $hash = md5($email . rand());
+            $usuario['senha_hash'] = $hash;
+            $this->UsuarioModel->atualizar($usuario['id'], $usuario);
+
+            $this->email
+                    ->from($this->config->item('smtp_user'))
+                    ->to($email)
+                    ->subject('Confirmação de pedido de senha')
+                    ->message('<p>Para confirmar seu pedido de nova senha clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/senha/' . $usuario['id'] . '/hash/' . $hash . '">aqui</a>.</p>'
+                            . '<br/>Caso você não solicitou uma nova senha ignore este email.')
+                    ->send();
+        }
+
+        $array = $this->gerarRetorno(TRUE, "Uma confirmação de pedido de senha foi enviada ao seu email.");
+        print_r(json_encode($array));
     }
 
 }

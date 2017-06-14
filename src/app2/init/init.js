@@ -15,6 +15,7 @@
         vm.newsletter = newsletter;
         vm.cadastrar = cadastrar;
         vm.logar = logar;
+        vm.senha = senha;
 
         function areaCliente() {
             controllerUtils.$window.location.href = 'index-cliente.html';
@@ -65,7 +66,6 @@
             }
 
             function success(response) {
-                controllerUtils.feedMessage(response);
                 if (response.data.status === 'true') {
                     AuthTokenApp2.setar(response.data.data.token);
 
@@ -76,7 +76,35 @@
                     $rootScope.usuarioSistema.email = payload.email;
                     $rootScope.usuarioSistema.nomeExibir = ((payload.nome) ? payload.nome : payload.email);
 
+                    vm.login = {};
+
                     $('#myModal').modal('hide');
+                }
+
+                $('#loading-bar-container').html('<div id="loader-wrapper"><h4><img style="width: 100px;" src="src/app/layout/img/core/logo.png" /><br/><img src="src/app/layout/img/core/loader.gif"/></h4></div>');
+                setTimeout(function () {
+                    $('#loading-bar-container').html('');
+                }, 500);
+                setTimeout(function () {
+                    controllerUtils.feedMessage(response);
+                }, 600);
+            }
+        }
+        
+        function senha(email) {
+
+            dataService.senha(email).then(success).catch(error);
+
+            function error(response) {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Erro ao recuperar senha.');
+            }
+
+            function success(response) {
+                if (response.data.status === 'true') {
+                    $('#myModal').modal('hide');
+                    $('#myModalTwo').modal('hide');
+                } else {
+                    controllerUtils.feedMessage(response);
                 }
             }
         }
