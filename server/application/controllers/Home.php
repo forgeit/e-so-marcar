@@ -209,6 +209,8 @@ class Home extends MY_Controller {
 
             $usuario = $usuarios[0];
             
+            $id = $usuario['id'];
+            
             $hash = md5($email . rand());
             $usuario['senha_hash'] = $hash;
             $this->UsuarioModel->atualizar($usuario['id'], $usuario);
@@ -217,7 +219,7 @@ class Home extends MY_Controller {
                     ->from($this->config->item('smtp_user'))
                     ->to($email)
                     ->subject('Confirmação de pedido de senha')
-                    ->message('<p>Para confirmar seu pedido de nova senha clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/senha/' . $usuario['id'] . '/hash/' . $hash . '">aqui</a>.</p>'
+                    ->message('<p>Para confirmar seu pedido de nova senha clique <a href="' . $this->config->item('base_url') . '/server/home/ativar/senha/' . $id . '/hash/' . $hash . '">aqui</a>.</p>'
                             . '<br/>Caso você não solicitou uma nova senha ignore este email.')
                     ->send();
         }
