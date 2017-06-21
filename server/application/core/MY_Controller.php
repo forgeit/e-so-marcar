@@ -15,8 +15,7 @@ class MY_Controller extends CI_Controller {
 
         $seguro = true;
 
-        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'upload' || (0 === strrpos($this->uri->uri_string, 'arquivo/buscar'))
-                || (0 === strrpos($this->uri->uri_string, 'home')) || (0 === strrpos($this->uri->uri_string, 'publico'))) {
+        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'upload' || (0 === strrpos($this->uri->uri_string, 'arquivo/buscar')) || (0 === strrpos($this->uri->uri_string, 'home')) || (0 === strrpos($this->uri->uri_string, 'publico'))) {
             $seguro = false;
         }
 
@@ -119,8 +118,8 @@ class MY_Controller extends CI_Controller {
 
     protected function deletarArquivo($idArquivo) {
         $arquivo = $this->ArquivoModel->buscarPorId($idArquivo);
-        if (!unlink($arquivo['caminho'])) {
-            
+        if (file_exists($arquivo['caminho'])) {
+            unlink($arquivo['caminho']);
         }
     }
 
@@ -134,7 +133,7 @@ class MY_Controller extends CI_Controller {
         $d = $this->toDate($data[0]);
         return $d . ' ' . $data[1] . ':00';
     }
-    
+
     protected function toDateTimeSemZero($dateString) {
         $data = explode(" ", $dateString);
         $d = $this->toDate($data[0]);

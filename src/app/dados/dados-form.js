@@ -7,8 +7,9 @@
         'controllerUtils',
         'dadosRest',
         'FileUploader',
-        'configuracaoREST'];
-    function DadosForm(controllerUtils, dataservice, FileUploader, configuracaoREST) {
+        'configuracaoREST',
+        '$rootScope'];
+    function DadosForm(controllerUtils, dataservice, FileUploader, configuracaoREST, $rootScope) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -38,6 +39,8 @@
             function success(response) {
                 vm.dados = controllerUtils.getData(response, 'dto');
                 vm.preview = vm.dados.logo;
+                $rootScope.usuarioLogado.nome = vm.dados.nome_fantasia;
+                $rootScope.usuarioLogado.imagem = vm.dados.logo;
             }
 
             function error() {
@@ -57,6 +60,7 @@
             function success(response) {
                 controllerUtils.feedMessage(response);
                 if (response.data.status === 'true') {
+                    buscar();
                     voltar();
                 }
             }
