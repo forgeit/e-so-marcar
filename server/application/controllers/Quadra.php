@@ -133,10 +133,16 @@ class Quadra extends MY_Controller {
 
         $quadra->id_cliente = $this->jwtController->id;
         $quadra->imagem = $this->uploadArquivo($quadra->imagem, 'quadra');
-        $quadra->imagem1 = $this->uploadArquivo($quadra->imagem1, 'quadra');
-        $quadra->imagem2 = $this->uploadArquivo($quadra->imagem2, 'quadra');
-        $quadra->imagem3 = $this->uploadArquivo($quadra->imagem3, 'quadra');
-
+        if (isset($quadra->imagem1)) {
+            $quadra->imagem1 = $this->uploadArquivo($quadra->imagem1, 'quadra');
+        }
+        if (isset($quadra->imagem2)) {
+            $quadra->imagem2 = $this->uploadArquivo($quadra->imagem2, 'quadra');
+        }
+        if (isset($quadra->imagem3)) {
+            $quadra->imagem3 = $this->uploadArquivo($quadra->imagem3, 'quadra');
+        }
+        
         $idQuadra = $this->QuadraModel->inserirRetornaId($quadra);
 
         foreach ($quadra->esportes as $value) {
