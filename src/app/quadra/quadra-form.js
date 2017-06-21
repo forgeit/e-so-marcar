@@ -275,11 +275,8 @@
             vm.quadra.id_tipo_local = vm.tipoLocal ? vm.tipoLocal.id : null;
             vm.quadra.esportes = vm.esportes;
 
-            if (vm.uploader1.queue.length === 0) {
+            if (vm.uploader0.queue.length === 0) {
                 vm.quadra.imagem = '';
-            }
-            if (vm.uploader2.queue.length === 0) {
-                //vm.quadra.imagem = '';
             }
 
             if (formulario.$valid) {
