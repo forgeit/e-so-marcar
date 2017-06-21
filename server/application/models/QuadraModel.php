@@ -7,21 +7,21 @@ class QuadraModel extends MY_Model {
         $this->table = 'quadra';
     }
 
-    function buscarTodosNativo($idCliente, $id = null) {
+    function buscarTodosNativo($idCliente, $valido = null) {
         $sql = "SELECT 
                     *,
                     CASE WHEN p.situacao THEN 'Ativo' ELSE 'Desativo' END as situacao
                 FROM quadra p
                 WHERE p.id_cliente = ?";
 
-        if ($id != null) {
-            $sql .= " AND t.id_tipo_quadra = ?";
+        if ($valido != null) {
+            $sql .= " AND p.situacao ";
         }
 
-        if ($id == null) {
+        if ($valido == null) {
             $query = $this->db->query($sql, array($idCliente));
         } else {
-            $query = $this->db->query($sql, array($idCliente, $id));
+            $query = $this->db->query($sql, array($idCliente));
         }
 
         if ($query->num_rows() > 0) {

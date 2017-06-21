@@ -82,11 +82,11 @@ class Quadra extends MY_Controller {
     }
 
     public function buscarCombo() {
-        print_r(json_encode(array('data' => array('ArrayList' => $lista = $this->QuadraModel->buscarTodosNativo($this->jwtController->id)))));
+        print_r(json_encode(array('data' => array('ArrayList' => $lista = $this->QuadraModel->buscarTodosNativo($this->jwtController->id, 1)))));
     }
 
     public function buscarTodosNativo() {
-        print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraModel->buscarTodosNativo($this->uri->segment(3))))));
+        print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraModel->buscarTodosNativo($this->uri->segment(3), 1)))));
     }
 
     public function excluir() {
@@ -97,12 +97,13 @@ class Quadra extends MY_Controller {
             $this->gerarErro("Você não pode alterar este registro.");
         }
 
-        if (date('Y-m-d') >= $quadraBanco['data_inicial'] && date('Y-m-d') <= $quadraBanco['data_final']) {
-            $this->gerarErro("Anúncio em período exibição não pode ser removido.");
+        if ($quadraBanco['situacao']) {
+            $this->gerarErro("Quadra ainda está ativa.");
         }
-
-        if ($quadraBanco['ativo']) {
-            $this->gerarErro("Somente registros desativos podem ser removidos.");
+        
+        $reservas = $this->ReservaModel->buscarPorColuna('id_quadra', $quadraBanco['id']);
+        if($reservas != null) {
+            $this->gerarErro("Já existem reservas para esta quadra.");
         }
 
         $response = $this->QuadraModel->excluir($quadraBanco['id']);
