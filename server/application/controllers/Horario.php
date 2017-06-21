@@ -11,7 +11,7 @@ class Horario extends MY_Controller {
 
         $horario->id = $horarioBanco['id'];
         $this->validaDados($horario);
-        
+
         $horario->hora_inicial = $horario->hora_inicial . '00';
         $horario->hora_final = $horario->hora_final . '00';
 
@@ -80,11 +80,11 @@ class Horario extends MY_Controller {
         $data = $this->security->xss_clean($this->input->raw_input_stream);
         $horario = json_decode($data);
 
-        $this->validaDados($horario);
-
         $horario->id_cliente = $this->jwtController->id;
         $horario->hora_inicial = $horario->hora_inicial . '00';
         $horario->hora_final = $horario->hora_final . '00';
+
+        $this->validaDados($horario);
 
         $response = $this->HorarioModel->inserir($horario);
 
@@ -116,13 +116,18 @@ class Horario extends MY_Controller {
         if ($this->validaClienteQuadra($horario->id_quadra)) {
             $this->gerarErro("Você não pode inserir horários para esta quadra.");
         }
-        
+
         if (empty($horario->valor)) {
             $this->gerarErro("Valor é obrigatório.");
         }
-        
+
         if (!is_numeric($horario->valor)) {
             $this->gerarErro("Valor deve ser numérico.");
+        }
+
+        $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $horario->id_quadra, $horario->dia_semana, $horario->hora_inicial, $horario->hora_final);
+        if ($horarios != null) {
+            $this->gerarErro("Horário já existe.");
         }
     }
 
