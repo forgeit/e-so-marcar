@@ -54,7 +54,7 @@
         }
 
         function salvar(data) {
-            return $http.post(configuracaoREST.url + configuracaoREST.reserva + 'salvar', data);
+            return $http.post(configuracaoREST.url + configuracaoREST.reserva + 'salvarCliente', data);
         }
     }
 })();

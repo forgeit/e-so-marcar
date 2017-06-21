@@ -74,6 +74,7 @@ class Reserva extends MY_Controller {
         $reserva = json_decode($data);
 
         $reserva->id_cliente = $this->jwtController->id;
+        $reserva->data_hora_reserva = $this->toDateTime($reserva->data_hora_reserva);
 
         $this->validaDados($reserva);
 
@@ -149,7 +150,7 @@ class Reserva extends MY_Controller {
         $horario = $this->horarioReserva($this->jwtController->id, $reserva->id_quadra, $reserva->data_hora_reserva);
 
         $array = array('data' =>
-            array('dto' => $horario));
+            array('dto' => $horario, 'status' => TRUE));
         print_r(json_encode($array));
     }
 
@@ -169,8 +170,14 @@ class Reserva extends MY_Controller {
         $horario = $this->ExcecaoModel->buscarHorarioJogar($idQuadra, $idCliente, $dataHora);
 
         if ($horario == null) {
-            $horario = $this->HorarioModel->buscarHorario($idQuadra, $idCliente, date('w', strtotime($dataHora)) - 1, date('H:i:s', strtotime($dataHora)));
+            $horario = $this->HorarioModel->buscarHorario($idQuadra, $idCliente, date('w', strtotime($dataHora)) + 1, date('H:i:s', strtotime($dataHora)));
         }
+        
+//        print_r( date('w', strtotime($dataHora)) + 1);
+//        print_r('   -   ');
+//        print_r(date('H:i:s', strtotime($dataHora)));
+//        print_r('   -   ');
+//        print_r($dataHora);
 
         if ($horario == null) {
             $this->gerarErro("Horário selecionado não disponível para esta quadra.");
