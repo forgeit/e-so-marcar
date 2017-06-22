@@ -14,7 +14,9 @@
 
         <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
         <style>
-            [ng\:cloak],[ng-cloak],.ng-cloak{display:none !important}
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+                display: none !important;
+            }
         </style>
         <!-- Css Files -->
         <link href="vendor/kickoff/css/bootstrap.css" rel="stylesheet">
@@ -42,8 +44,8 @@
     </head>
 
     <body ng-controller="InitController as init" ng-cloak>
-        <div id="loading-bar-container"></div>	
-    <menu-topo></menu-topo>
+    <div id="loading-bar-container"></div>	
+    <menu-topo ng-cloak></menu-topo>
     <!--// Wrapper //-->
     <div class="kode-wrapper" ng-view>
 
@@ -103,7 +105,7 @@
                             <h3>Redes Socias</h3>
                             <p>Siga-nos nas redes sociais para <br>
                                 se manter atualizado sobre<br>
-                                 eventos e equipes.<br>
+                                eventos e equipes.<br>
                             </p>
                             <ul class="social-links1">
                                 <li>
@@ -118,15 +120,15 @@
                                 <li>
                                     <a href="https://www.instagram.com/ESoMarcar" class="instagram-bg1" target="_blank"><i class="fa fa-instagram"></i></a>
                                 </li>
-<!--                                <li>
-                                    <a href="vendor/kickoff/#" class="linkedin-bg1"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a href="vendor/kickoff/#" class="tw-bg1"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="vendor/kickoff/#" class="fb-bg1"><i class="fa fa-facebook"></i></a>
-                                </li>-->
+                                <!--                                <li>
+                                                                    <a href="vendor/kickoff/#" class="linkedin-bg1"><i class="fa fa-linkedin"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="vendor/kickoff/#" class="tw-bg1"><i class="fa fa-twitter"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="vendor/kickoff/#" class="fb-bg1"><i class="fa fa-facebook"></i></a>
+                                                                </li>-->
                             </ul>
                         </div>
                     </div>

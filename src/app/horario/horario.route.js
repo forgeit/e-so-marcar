@@ -20,7 +20,7 @@
                         breadcrumbs: [
                             {
                                 nome: 'Horários',
-                                link: 'horario',
+                                link: '/privado/horario',
                                 ativo: true
                             }
                         ]
@@ -36,11 +36,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Horários',
-                                link: 'horario'
+                                link: '/privado/horario'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'novo-horario',
+                                link: '/privado/novo-horario',
                                 ativo: true
                             }
                         ]
@@ -56,11 +56,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Horários',
-                                link: 'horario'
+                                link: '/privado/horario'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'novo-horario',
+                                link: '/privado/novo-horario',
                                 ativo: true
                             }
                         ]

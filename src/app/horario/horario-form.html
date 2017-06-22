@@ -14,12 +14,17 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="formulario.dia_semana.$dirty && formulario.dia_semana.$invalid ? 'has-error' : ''">
+                            <div ng-if="vm.editar" class="form-group" ng-class="formulario.dia_semana2.$dirty && formulario.dia_semana2.$invalid ? 'has-error' : ''">
                                 <label for="dia_semana">Dia da Semana: *</label>
-                                <select class="form-control" id="dia_semana" name="dia_semana" ng-options="dia_semana.nome for dia_semana in vm.diaSemanaList track by dia_semana.id" ng-model="vm.dia_semana" required>
+                                <select class="form-control" id="dia_semana2" name="dia_semana2" ng-options="dia_semana.nome for dia_semana in vm.diaSemanaList track by dia_semana.id" ng-model="vm.dia_semana" required>
                                     <option value="">Selecione</option> 	
                                 </select>
-                                <span class="help-block" ng-show="formulario.dia_semana.$dirty && formulario.dia_semana.$invalid">O campo é obrigatório</span>
+                                <span class="help-block" ng-show="formulario.dia_semana2.$dirty && formulario.dia_semana2.$invalid">O campo é obrigatório</span>
+                            </div>
+                            <div ng-hide="vm.editar" class="form-group" ng-class="formulario.dia_semana.$dirty && formulario.dia_semana.$invalid ? 'has-error' : ''">
+                                <label for="dia_semana">Dia da Semana: *</label>
+                                <select class="form-control select2" id="dia_semana" multiple="multiple" name="dia_semana" ng-options="dia_semana.nome for dia_semana in vm.diaSemanaList track by dia_semana.id" ng-model="vm.dias" required>	
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-2 bootstrap-timepicker">

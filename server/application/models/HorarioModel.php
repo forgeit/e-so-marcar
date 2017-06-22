@@ -6,25 +6,25 @@ class HorarioModel extends MY_Model {
         parent::__construct();
         $this->table = 'horario';
     }
-    
+
     function horarioDisponivel($idCliente, $idQuadra, $dataHora) {
-         $sql = "SELECT * FROM horario
+        $sql = "SELECT * FROM horario
                     WHERE id_cliente = ?
                     AND id_quadra = ?
                     AND dia_semana = dayofweek(?)
                     AND hora_inicial = DATE_FORMAT(?,'%H:%i:%s')";
-         
-         $query = $this->db->query($sql, array($idCliente, $idQuadra, $dataHora, $dataHora));
-         
-          if ($query->num_rows() > 0) {
+
+        $query = $this->db->query($sql, array($idCliente, $idQuadra, $dataHora, $dataHora));
+
+        if ($query->num_rows() > 0) {
             return $query->row_array();
         } else {
             return null;
         }
     }
-    
-     function horarioExiste($idCliente, $idUsuario, $diaSemana, $dataHoraIni, $dataHoraFim) {
-         $sql = "SELECT * FROM horario
+
+    function horarioExiste($idCliente, $idUsuario, $diaSemana, $dataHoraIni, $dataHoraFim, $idHorario = null) {
+        $sql = "SELECT * FROM horario
                     WHERE id_cliente = ?
                     AND id_quadra = ?
                     AND dia_semana = ?
@@ -32,10 +32,15 @@ class HorarioModel extends MY_Model {
                         (? >= hora_inicial AND ? < hora_final)
                         OR (? > hora_inicial AND ? <= hora_final)
                     )";
-         
-         $query = $this->db->query($sql, array($idCliente, $idUsuario, $diaSemana, $dataHoraIni, $dataHoraIni, $dataHoraFim, $dataHoraFim));
-         
-          if ($query->num_rows() > 0) {
+        
+        if ($idHorario == null) {
+            $query = $this->db->query($sql, array($idCliente, $idUsuario, $diaSemana, $dataHoraIni, $dataHoraIni, $dataHoraFim, $dataHoraFim));
+        } else {
+            $sql .= " AND id <> ?";
+            $query = $this->db->query($sql, array($idCliente, $idUsuario, $diaSemana, $dataHoraIni, $dataHoraIni, $dataHoraFim, $dataHoraFim, $idHorario));
+        }
+        
+        if ($query->num_rows() > 0) {
             return $query->row_array();
         } else {
             return null;

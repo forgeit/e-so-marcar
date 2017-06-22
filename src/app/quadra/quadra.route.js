@@ -20,7 +20,7 @@
                         breadcrumbs: [
                             {
                                 nome: 'Quadras',
-                                link: 'quadra',
+                                link: '/privado/quadra',
                                 ativo: true
                             }
                         ]
@@ -36,11 +36,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Quadras',
-                                link: 'quadra'
+                                link: '/privado/quadra'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'nova-quadra',
+                                link: '/privado/nova-quadra',
                                 ativo: true
                             }
                         ]
@@ -56,11 +56,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Quadras',
-                                link: 'quadra'
+                                link: '/privado/quadra'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'nova-quadra',
+                                link: '/privado/nova-quadra',
                                 ativo: true
                             }
                         ]

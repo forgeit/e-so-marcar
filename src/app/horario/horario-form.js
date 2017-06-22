@@ -122,12 +122,16 @@
 
             if (values[1].exec) {
                 vm.diaSemanaList = values[1].objeto;
+                vm.dias = values[1].objeto;
             } else {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os dias da semana.');
             }
         }
 
         function iniciar() {
+            $('#dia_semana').select2({
+                placeholder: 'Selecione'
+            });
 
             var promises = [];
 
@@ -145,7 +149,7 @@
 
         function salvar(formulario) {
             vm.horario.id_quadra = vm.quadra.id;
-            vm.horario.dia_semana = vm.dia_semana.id;
+            vm.horario.dia_semana = vm.dias;
 
             if (formulario.$valid) {
                 dataservice.salvar(vm.horario).then(success).catch(error);

@@ -20,7 +20,7 @@
                         breadcrumbs: [
                             {
                                 nome: 'Reservas',
-                                link: 'reserva',
+                                link: '/privado/reserva',
                                 ativo: true
                             }
                         ]
@@ -36,11 +36,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Reservas',
-                                link: 'reserva'
+                                link: '/privado/reserva'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'nova-reserva',
+                                link: '/privado/nova-reserva',
                                 ativo: true
                             }
                         ]
@@ -56,11 +56,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Reservas',
-                                link: 'reserva'
+                                link: '/privado/reserva'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'nova-reserva',
+                                link: '/privado/nova-reserva',
                                 ativo: true
                             }
                         ]

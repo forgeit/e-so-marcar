@@ -10,10 +10,10 @@ class Horario extends MY_Controller {
         $horarioBanco = $this->HorarioModel->buscarPorId($this->uri->segment(3));
 
         $horario->id = $horarioBanco['id'];
-        $this->validaDados($horario);
-
         $horario->hora_inicial = $horario->hora_inicial . '00';
         $horario->hora_final = $horario->hora_final . '00';
+        
+        $this->validaDados($horario);
 
         $response = array('exec' => $this->HorarioModel->atualizar($horario->id, $horario));
 
@@ -84,9 +84,14 @@ class Horario extends MY_Controller {
         $horario->hora_inicial = $horario->hora_inicial . '00';
         $horario->hora_final = $horario->hora_final . '00';
 
-        $this->validaDados($horario);
+        $dias = $horario->dia_semana;
 
-        $response = $this->HorarioModel->inserir($horario);
+        foreach ($dias as $dia_semana) {
+            $horario->dia_semana = $dia_semana->id;
+            $this->validaDados($horario);
+
+            $response = $this->HorarioModel->inserir($horario);
+        }
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
         print_r(json_encode($array));
@@ -125,7 +130,12 @@ class Horario extends MY_Controller {
             $this->gerarErro("Valor deve ser numérico.");
         }
 
-        $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $horario->id_quadra, $horario->dia_semana, $horario->hora_inicial, $horario->hora_final);
+        if(isset($horario->id)) {
+            $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $horario->id_quadra, $horario->dia_semana, $horario->hora_inicial, $horario->hora_final, $horario->id);
+        } else {
+            $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $horario->id_quadra, $horario->dia_semana, $horario->hora_inicial, $horario->hora_final);
+        }
+
         if ($horarios != null) {
             $this->gerarErro("Horário já existe.");
         }

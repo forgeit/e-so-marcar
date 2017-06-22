@@ -20,7 +20,7 @@
                         breadcrumbs: [
                             {
                                 nome: 'Anúncios',
-                                link: 'anuncio',
+                                link: '/privado/anuncio',
                                 ativo: true
                             }
                         ]
@@ -36,11 +36,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Anúncios',
-                                link: 'anuncio'
+                                link: '/privado/anuncio'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'novo-anuncio',
+                                link: '/privado/novo-anuncio',
                                 ativo: true
                             }
                         ]
@@ -56,11 +56,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Anúncios',
-                                link: 'anuncio'
+                                link: '/privado/anuncio'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'novo-anuncio',
+                                link: '/privado/novo-anuncio',
                                 ativo: true
                             }
                         ]

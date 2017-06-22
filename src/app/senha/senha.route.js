@@ -20,7 +20,7 @@
                         breadcrumbs: [
                             {
                                 nome: 'Senha do Cliente',
-                                link: 'senha',
+                                link: '/privado/senha',
                                 ativo: false
                             }
                         ]

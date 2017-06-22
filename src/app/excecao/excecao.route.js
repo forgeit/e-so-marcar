@@ -20,7 +20,7 @@
                         breadcrumbs: [
                             {
                                 nome: 'Horários de Exceção',
-                                link: 'excecao',
+                                link: '/privado/excecao',
                                 ativo: true
                             }
                         ]
@@ -36,11 +36,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Horários de Exceção',
-                                link: 'excecao'
+                                link: '/privado/excecao'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'nova-excecao',
+                                link: '/privado/nova-excecao',
                                 ativo: true
                             }
                         ]
@@ -56,11 +56,11 @@
                         breadcrumbs: [
                             {
                                 nome: 'Horários de Exceção',
-                                link: 'excecao'
+                                link: '/privado/excecao'
                             },
                             {
                                 nome: 'Cadastro',
-                                link: 'nova-excecao',
+                                link: '/privado/nova-excecao',
                                 ativo: true
                             }
                         ]
