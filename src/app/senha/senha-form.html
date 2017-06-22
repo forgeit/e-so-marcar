@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form novalidate name="formulario" ng-submit="vm.salvar(formulario)">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="formulario.atual.$dirty && formulario.atual.$invalid ? 'has-error' : ''">
+                                <div class="form-group">
+                                    <label for="atual">Senha Atual: *</label>
+                                    <input id="atual" type="password" name="atual" class="form-control" ng-model="vm.dados.atual" placeholder="Senha atual" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="formulario.nova.$dirty && formulario.nova.$invalid ? 'has-error' : ''">
+                                <div class="form-group">
+                                    <label for="nova">Nova Senha: *</label>
+                                    <input id="nova" type="password" name="nova" class="form-control" ng-model="vm.dados.nova" placeholder="Nova nova" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="formulario.nova2.$dirty && formulario.nova2.$invalid ? 'has-error' : ''">
+                                <div class="form-group">
+                                    <label for="nova2">Repetir Nova Senha: *</label>
+                                    <input id="nova2" type="password" name="nova2" class="form-control" ng-model="vm.dados.nova2" placeholder="Repetir nova nova" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary btn-flat" ng-disabled="formulario.$invalid">Salvar</button>
+                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

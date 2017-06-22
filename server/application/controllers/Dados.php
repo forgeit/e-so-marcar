@@ -11,6 +11,40 @@ class Dados extends MY_Controller {
 
         print_r(json_encode($array));
     }
+    
+    public function senha() {
+        $data = $this->security->xss_clean($this->input->raw_input_stream);
+        $senhas = json_decode($data);
+
+        if (empty($senhas->atual)) {
+            $this->gerarErro("Senha atual é obrigatório.");
+        }
+
+        if (empty($senhas->nova)) {
+            $this->gerarErro("Nova senha é obrigatório.");
+        }
+
+        if (empty($senhas->nova2)) {
+            $this->gerarErro("Repetir nova senha é obrigatório.");
+        }
+
+        if ($senhas->nova2 != $senhas->nova) {
+            $this->gerarErro("Novas senhas são diferentes.");
+        }
+
+        $usuarioBanco = $this->ClienteModel->buscarPorId($this->jwtController->id);
+
+        if ($usuarioBanco['senha'] != md5($senhas->atual)) {
+            $this->gerarErro("Senha atual incorreta.");
+        }
+
+        $usuarioBanco['senha'] = md5($senhas->nova);
+
+        $this->ClienteModel->atualizar($this->jwtController->id, $usuarioBanco);
+
+        $array = $this->gerarRetorno(TRUE, "Senha atualizada com sucesso.");
+        print_r(json_encode($array));
+    }
 
     public function salvar() {
         $dadosBanco = $this->DadosModel->buscarPorId($this->jwtController->id);

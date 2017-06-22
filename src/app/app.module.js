@@ -13,6 +13,7 @@
         'app.reserva',
         'app.horario',
         'app.excecao',
+        'app.senha',
         'angularFileUpload']);
 
 })();
