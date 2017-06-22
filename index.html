@@ -13,7 +13,9 @@
         <base href="/">
 
         <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
-
+        <style>
+            [ng\:cloak],[ng-cloak],.ng-cloak{display:none !important}
+        </style>
         <!-- Css Files -->
         <link href="vendor/kickoff/css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="bower_components/angular-loading-bar/src/loading-bar.css">
@@ -39,7 +41,7 @@
         <![endif]-->
     </head>
 
-    <body ng-controller="InitController as init">
+    <body ng-controller="InitController as init" ng-cloak>
         <div id="loading-bar-container"></div>	
     <menu-topo></menu-topo>
     <!--// Wrapper //-->
