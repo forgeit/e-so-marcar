@@ -103,7 +103,7 @@ class Quadra extends MY_Controller {
         
         $reservas = $this->ReservaModel->buscarPorColuna('id_quadra', $quadraBanco['id']);
         if($reservas != null) {
-            $this->gerarErro("Já existem reservas para esta quadra.");
+            $this->gerarErro("Não pode ser removido pois já existem reservas para esta quadra.");
         }
 
         $response = $this->QuadraModel->excluir($quadraBanco['id']);

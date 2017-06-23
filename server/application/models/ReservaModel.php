@@ -17,7 +17,8 @@ class ReservaModel extends MY_Model {
                 FROM reserva r
 		LEFT JOIN quadra q ON q.id = r.id_quadra
                 LEFT JOIN usuario u ON u.id = r.id_usuario
-                WHERE r.id_cliente = ? AND r.data_hora_reserva >= CURDATE() ";
+                WHERE r.id_cliente = ? ";
+                //AND r.data_hora_reserva >= CURDATE() ";
 
         $query = $this->db->query($sql, array($idCliente));
 
