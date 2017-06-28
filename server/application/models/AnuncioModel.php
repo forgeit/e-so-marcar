@@ -52,6 +52,26 @@ class AnuncioModel extends MY_Model {
             return null;
         }
     }
+    
+    function buscarPorClientePorTipo($idCliente, $idTipoAnuncio) {
+        $sql = "SELECT 
+                    titulo,
+                    imagem,
+                    url_direcionamento
+                FROM anuncio a
+                WHERE a.id_cliente = ?
+                AND a.id_tipo_anuncio = ?
+                AND current_date() >= a.data_inicial
+                AND current_date() <= a.data_final";
+
+        $query = $this->db->query($sql, array($idCliente, $idTipoAnuncio));
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
 
     function anuncioNaoUnico($idCliente, $anuncio) {
         $sql = "SELECT 

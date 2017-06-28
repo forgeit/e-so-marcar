@@ -14,7 +14,8 @@
             buscarCliente: buscarCliente,
             buscarQuadras: buscarQuadras,
             buscarQuadra: buscarQuadra,
-            buscarReservas: buscarReservas
+            buscarReservas: buscarReservas,
+            buscarBanner: buscarBanner
         };
 
         return service;
@@ -41,6 +42,10 @@
         
         function buscarReservas(data) {
             return $http.get(configuracaoREST.url + configuracaoREST.publico + "buscarReservas/" + data);
+        }
+        
+        function buscarBanner(data) {
+            return $http.get(configuracaoREST.url + configuracaoREST.publico + 'buscarBanner/cliente/' + data);
         }
 
     }

@@ -22,6 +22,7 @@
         buscarQuadra();
         buscarCliente();
         buscarReservas();
+        buscarBanner();
 
         function buscarQuadra() {
             dataservice.buscarQuadra(controllerUtils.$routeParams.id).then(success).catch(error);
@@ -61,7 +62,18 @@
             function error() {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os reserva.');
             }
+        }
+        
+        function buscarBanner() {
+            return dataservice.buscarBanner(controllerUtils.$routeParams.idCliente).then(success).catch(error);
 
+            function error(response) {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar banner.');
+            }
+
+            function success(response) {
+                vm.banner = controllerUtils.getData(response, 'dto');
+            }
         }
 
         function confirmar(aData) {

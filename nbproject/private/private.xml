@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="FORGE">
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Quadra.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/reserva/reserva-clientes.html</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/config/database.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/controllers/Reserva.php</file>
-            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/server/application/models/ReservaModel.php</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/vendor/kickoff/css/custom.css</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/reserva/reserva-quadras.html</file>
+            <file>file:/home/cgoettert/NetBeansProjects/forgeit/somarcar/src/app2/reserva/reserva-form.html</file>
         </group>
     </open-files>
 </project-private>

@@ -10,7 +10,8 @@
         cliente: 'cliente/',
         quadra: 'quadra/',
         reserva: 'reserva/',
-        publico: 'publico/'
+        publico: 'publico/',
+        anuncio: 'anuncio/'
     };
 
     var datepicker = {

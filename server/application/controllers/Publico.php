@@ -73,4 +73,13 @@ class Publico extends MY_Controller {
         print_r(json_encode($array));
     }
 
+    public function buscarBanner() {
+        $anuncio = $this->AnuncioModel->buscarPorClientePorTipo($this->uri->segment(4), 1);
+
+        $array = array('data' =>
+            array('dto' => $anuncio));
+
+        print_r(json_encode($array));
+    }
+    
 }

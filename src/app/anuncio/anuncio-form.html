@@ -97,6 +97,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="preview">Tamanho Imagem Ideal:</label>
+                                <div class="input-group">
+                                    <span ng-show="vm.tipoAnuncio">{{vm.tipoAnuncio.largura}} x {{vm.tipoAnuncio.altura}}</span>
+                                    <span ng-show="!vm.tipoAnuncio">Selecione um Tipo Anúncio</span>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
 
