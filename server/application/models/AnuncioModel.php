@@ -57,7 +57,7 @@ class AnuncioModel extends MY_Model {
         $sql = "SELECT 
                     titulo,
                     imagem,
-                    url_direcionamento
+                    CASE WHEN url_direcionamento IS null OR url_direcionamento = '' THEN '#' ELSE url_direcionamento END as url_direcionamento
                 FROM anuncio a
                 WHERE a.id_cliente = ?
                 AND a.id_tipo_anuncio = ?
