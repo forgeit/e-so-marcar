@@ -107,7 +107,7 @@ class HorarioModel extends MY_Model {
             FROM (
                 SELECT 
                         CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date) as d,
-                        WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) as dow
+                        WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) + 2 as dow
                 FROM ( SELECT 0 H
                     UNION ALL SELECT 100 UNION ALL SELECT 200 UNION ALL SELECT 300
                   ) H CROSS JOIN ( SELECT 0 T
