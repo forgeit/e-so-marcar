@@ -10072,3 +10072,24 @@ ul.spb-social2{
 .pp_social{
     display: none !important;
 }
+
+.btn.btn-flat {
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-width: 1px;
+}
+
+.jconfirm-kickoff .modal-body {
+    padding: 15px;
+}
+
+.jconfirm-kickoff h4 {
+    color: #000;
+    text-transform: uppercase;
+}
+
+.jconfirm-kickoff .close {
+    margin-top: 5px;
+}

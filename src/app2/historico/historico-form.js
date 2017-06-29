@@ -40,7 +40,7 @@
         
         function confirmar(aData) {
             $.confirm({
-                text: "Você tem certeza que deseja cancelar esta reserva?",
+                text: "Você tem certeza que deseja cancelar esta reserva?<br/>",
                 title: "Confirmação",
                 confirm: function (button) {
                     cancelar(aData);
@@ -49,7 +49,7 @@
                 cancelButtonClass: "btn-default btn-flat",
                 confirmButton: "Sim, tenho certeza!",
                 cancelButton: "Não",
-                dialogClass: "modal-dialog modal-lg"
+                dialogClass: "modal-dialog modal-lg jconfirm-kickoff"
             });
         }
 

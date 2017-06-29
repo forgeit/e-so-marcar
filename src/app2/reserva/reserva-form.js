@@ -87,7 +87,7 @@
                 cancelButtonClass: "btn-default btn-flat",
                 confirmButton: "Sim, tenho certeza!",
                 cancelButton: "Não",
-                dialogClass: "modal-dialog modal-lg"
+                dialogClass: "modal-dialog modal-lg jconfirm-kickoff"
             });
         }
 

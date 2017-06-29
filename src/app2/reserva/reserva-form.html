@@ -51,11 +51,11 @@
                             <a href="{{vm.banner.url_direcionamento}}" target="_blank"><img style="margin-bottom: 20px;" ng-src="server/arquivo/buscar/{{vm.banner.imagem}}" height="300px" width="1200px" alt="Banner central"></a>
 
                             <div class="kode-images">
-                                <a href="#" class="shopmainthumb"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem}}" alt="Imagem principal quadra {{vm.quadra.titulo}}"></a>
+                                <a href="#" data-rel="prettyPhoto" ng-href="server/arquivo/buscar/{{vm.quadra.imagem}}" class="shopmainthumb"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem}}" alt="Imagem principal quadra {{vm.quadra.titulo}}"></a>
                                 <ul class="hide-1024px">
-                                    <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem1}}" alt="Imagem 1 quadra {{vm.quadra.titulo}}"></a></li>
-                                    <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem2}}" alt="Imagem 2 quadra {{vm.quadra.titulo}}"></a></li>
-                                    <li><a href="#"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem3}}" alt="Imagem 3 quadra {{vm.quadra.titulo}}"></a></li>
+                                    <li><a href="#" data-rel="prettyPhoto" ng-href="server/arquivo/buscar/{{vm.quadra.imagem1}}"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem1}}" alt="Imagem 1 quadra {{vm.quadra.titulo}}"></a></li>
+                                    <li><a href="#" data-rel="prettyPhoto" ng-href="server/arquivo/buscar/{{vm.quadra.imagem2}}"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem2}}" alt="Imagem 2 quadra {{vm.quadra.titulo}}"></a></li>
+                                    <li><a href="#" data-rel="prettyPhoto" ng-href="server/arquivo/buscar/{{vm.quadra.imagem3}}"><img ng-src="server/arquivo/buscar/{{vm.quadra.imagem3}}" alt="Imagem 3 quadra {{vm.quadra.titulo}}"></a></li>
                                 </ul>
                             </div>
                             <div class="kode-summery">
@@ -134,6 +134,10 @@
 <script src='/bower_components/fullcalendar/dist/locale/pt-br.js'></script>
 <script>
                                                             $(function () {
+
+                                                                if ($("a[data-rel^='prettyPhoto']").length) {
+                                                                    $("a[data-rel^='prettyPhoto']").prettyPhoto({deeplinking: false});
+                                                                }
 
                                                                 $('#calendar').fullCalendar({
                                                                     header: {
