@@ -35,9 +35,9 @@
                         </ul>
                         <ul class="table-body" ng-repeat="reserva in vm.reservas track by reserva.id">
                             <li>
-                                <a href="#" class="list-thumb"><img ng-src="server/arquivo/buscar/{{ reserva.logo_cliente}}" class="img-circle" height="75px" alt="Logo Cliente"> {{reserva.cliente}}</a>
+                                <a href="/publico/quadra/cliente/{{reserva.id_cliente}}" class="list-thumb"><img ng-src="server/arquivo/buscar/{{ reserva.logo_cliente}}" class="img-circle" height="75px" alt="Logo Cliente"> {{reserva.cliente}}</a>
                             </li>
-                            <li><small>{{reserva.quadra}}</small></li>
+                            <li> <a href="/publico/quadra/{{reserva.id_quadra}}/cliente/{{reserva.id_cliente}}" class="list-thumb"><small>{{reserva.quadra}}</small></a></li>
                             <li><small>{{reserva.dia_semana}} - {{reserva.data_hora_reserva}}</small></li>
                             <li><small>{{reserva.valor}}</small></li>
                             <li class="fixer-btn">

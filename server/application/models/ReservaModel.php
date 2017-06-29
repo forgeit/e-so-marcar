@@ -66,8 +66,10 @@ class ReservaModel extends MY_Model {
     function buscarEmAberto($idUsuario) {
         $sql = "SELECT 
                     r.id,
+                    r.id_cliente,
                     c.nome_fantasia as cliente,
                     c.logo as logo_cliente,
+                    r.id_quadra,
                     q.titulo as quadra, 
                     DATE_FORMAT(r.data_hora_reserva,'%d/%m/%Y %H:%i') AS data_hora_reserva,
                     CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor,
