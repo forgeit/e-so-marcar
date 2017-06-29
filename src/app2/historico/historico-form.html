@@ -1,0 +1,68 @@
+<div class="kode-subheader subheader-height">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Minhas Reservas</h1>
+            </div>
+            <div class="col-md-6">
+                <ul class="kode-breadcrumb">
+                    <li><a href="/">Início</a></li>
+                    <li><a href="#">Minhas Reservas</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--// SubHeader //-->
+
+<!--// Main Content //-->
+<div class="kode-content" style="padding-bottom: 60px">
+
+    <!--// Page Content //-->
+    <section class="kode-pagesection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="kode-section-title"> <h2>Reservas Em Aberto</h2> </div>
+                    <div class="kode-fixer-list">
+                        <ul class="table-head thbg-color">
+                            <li><h5>Cliente</h5></li>
+                            <li><h5>Quadra</h5></li>
+                            <li><h5>Dia e Hora</h5></li>
+                            <li><h5>Valor</h5></li>
+                            <li><h5></h5></li>
+                            <!--<li class="fixer-pagination"> <a href="#" class="fa fa-angle-right"></a> <a href="#" class="fa fa-angle-left"></a> </li>-->
+                        </ul>
+                        <ul class="table-body" ng-repeat="reserva in vm.reservas track by reserva.id">
+                            <li>
+                                <a href="#" class="list-thumb"><img ng-src="server/arquivo/buscar/{{ reserva.logo_cliente}}" class="img-circle" height="75px" alt="Logo Cliente"> {{reserva.cliente}}</a>
+                            </li>
+                            <li><small>{{reserva.quadra}}</small></li>
+                            <li><small>{{reserva.dia_semana}} - {{reserva.data_hora_reserva}}</small></li>
+                            <li><small>{{reserva.valor}}</small></li>
+                            <li class="fixer-btn">
+                                <a href="#" ng-click="vm.confirmar(reserva.id)">Cancelar Reserva</a>
+                            </li>
+                        </ul>
+                        <ul class="table-body" ng-show="vm.reservas.length == null">
+                            <li style="background-color: #404040;"><small>{{vm.mensagemVazio}}</small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                        </ul>   
+                    </div>
+<!--                    <div class="kode-fixer-list" ng-show="vm.reservas.length == null">
+                        <span>Nenhuma reserva em aberto.</span>
+                    </div>-->
+                </div>
+                <br/>
+            </div>
+    </section>
+    <!--// Page Content //-->
+
+</div>
+<!--// Main Content //-->
+
+<script src="vendor/kickoff/js/kode_pp.js"></script>
+<script src="vendor/kickoff/js/functions.js"></script>

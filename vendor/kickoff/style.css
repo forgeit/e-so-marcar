@@ -1765,7 +1765,7 @@ blockquote {
     width: 20%;
 }
 .table-head li:first-child {
-    width: 32%;
+    /*width: 32%;*/
 }
 .table-head li h5 {
     color: #ffffff;
@@ -1794,7 +1794,7 @@ blockquote {
 .table-body li {
     background-color: #404040;
     color: #ffffff;
-    padding: 25px 0;
+    padding: 10px 0;
     text-align: center;
 }
 .list-thumb {
@@ -1815,10 +1815,10 @@ blockquote {
 .fixer-btn a {
     background-color: #ffffff;
     color: #333333;
-    float: right;
+    /*float: right;*/
     font-weight: bold;
-    margin-right: 20px;
-    padding: 3px 14px;
+    /*margin-right: 20px;*/
+    padding: 10px 14px;
 }
 .table-body li.fixer-btn {
     width: 26%;

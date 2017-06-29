@@ -15,8 +15,9 @@
                 <div class="col-md-6">
                     <ul class="kode-userinfo">
                         <!--<li><a href="" ng-click="init.areaCliente()"><i class="fa fa-gear"></i> Administrador</a></li>-->
-                        <li ng-show="usuarioSistema"><a href="publico/gerenciamento"><i class="fa fa-user"></i> Minha Conta</a></li>
-                        <li ng-show="usuarioSistema"><a href="#" ng-click="vm.sair()"><i class="fa fa-user"></i> Sair</a></li>
+                        <li ng-show="usuarioSistema"><a href="publico/historico"><i class="fa fa-calendar"></i> Minhas Reservas</a></li>
+                        <li ng-show="usuarioSistema"><a href="publico/gerenciamento"><i class="fa fa-user"></i> Meus Dados</a></li>
+                        <li ng-show="usuarioSistema"><a href="#" ng-click="vm.sair()"><i class="fa fa-sign-out"></i> Sair</a></li>
                         <li ng-hide="usuarioSistema"><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Entrar</a></li>
                         <li ng-hide="usuarioSistema"><a href="#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Registrar</a></li>
                     </ul>

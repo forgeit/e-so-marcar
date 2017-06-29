@@ -150,4 +150,28 @@ class Usuario extends MY_Controller {
         print_r(json_encode($array));
     }
 
+    public function buscarReservas() {
+        print_r(json_encode(array('data' => array('ArrayList' => $this->ReservaModel->buscarEmAberto($this->jwtController->id)))));
+    }
+
+    public function cancelarReserva() {
+        $reserva = $this->ReservaModel->buscarParaCancelamento($this->uri->segment(3));
+
+        if ($reserva['id_usuario'] != $this->jwtController->id) {
+            $this->gerarErro("Você não pode cancelar esta reserva.");
+        }
+        
+        if ($reserva['data_hora_reserva'] < date('Y-m-d H:i:s')) {
+            $this->gerarErro("Não pode ser cancelada. Reserva já utilizada.");
+        }
+
+        if ($reserva['data_possivel_cancelamento'] < date('Y-m-d H:i:s')) {
+            $this->gerarErro("Não pode ser cancelada. Antecedência de " . $reserva['horas_antecedencia_cancelamento'] . " para cancelamentos.");
+        }
+        
+        $this->ReservaModel->excluir($reserva['id']);
+        $array = $this->gerarRetorno(TRUE, "Reserva cancelada com sucesso.");
+        print_r(json_encode($array));
+    }
+
 }

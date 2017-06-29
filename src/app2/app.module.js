@@ -11,6 +11,7 @@
         'app.reserva',
         'app.layout',
         'app.gerenciamento',
+        'app.historico',
 //        'app.login',
         'app.home',
         'angularFileUpload']);
