@@ -19,7 +19,17 @@
                                 <span class="help-block" ng-show="formulario.senha.$dirty && formulario.senha.$invalid">O campo senha é obrigatório</span>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div
+                                vc-recaptcha
+                                class="g-recaptcha"
+                                key="vm.model.key"
+                                on-create="vm.setWidgetId(widgetId)"
+                                on-success="vm.setResponse(response)"
+                                on-expire="vm.cbExpiration()"></div>
+                        </div>
                     </div>
+
                 </div>
                 <div class="box-footer text-center">
                     <button type="submit" class="btn btn-primary btn-flat btn-100" ng-disabled="formulario.$invalid">Entrar</button>

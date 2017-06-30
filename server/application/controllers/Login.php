@@ -7,6 +7,8 @@ class Login extends MY_Controller {
     public function entrar() {
         $data = $this->security->xss_clean($this->input->raw_input_stream);
         $usuario = json_decode($data);
+        
+        $this->recaptcha($usuario);
 
         $this->load->library("JWT");
 

@@ -145,4 +145,13 @@ class MY_Controller extends CI_Controller {
         return ($quadraBanco['id_cliente'] != $this->jwtController->id);
     }
 
+    protected function recaptcha($usuario) {
+        $resposta = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LfuQycUAAAAAFb-lzA6itznYENhoOj9ve2bjoZa&response=" . $usuario->hash . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
+        $recaptcha = json_decode($resposta);
+        if (!$recaptcha->success) {
+            print_r(json_encode($this->gerarRetorno(FALSE, "ReCaptcha inválido.")));
+            die();
+        }
+    }
+
 }

@@ -6,11 +6,13 @@
             .module('app')
             .run(appRun)
             .config(routes)
-            .config(loading);
+            .config(loading)
+            .config(recaptcha);
 
     appRun.$inject = ['$rootScope', '$location', '$route', 'AuthTokenApp2'];
     loading.$inject = ['cfpLoadingBarProvider'];
     routes.$inject = ['$routeProvider', '$locationProvider'];
+    recaptcha.$inject = ['vcRecaptchaServiceProvider'];
 
     function appRun($rootScope, $location, $route, AuthTokenApp2) {
         setRouteEvents();
@@ -41,11 +43,21 @@
         }
     }
 
+    function recaptcha(vcRecaptchaServiceProvider) {
+        vcRecaptchaServiceProvider.setDefaults({
+            key: '6LfuQycUAAAAADiRK_lhH80niSyIwdoOtdTXYTDU',
+            theme: 'light',
+            stoken: '',
+            size: 'normal',
+            type: 'image',
+            lang: 'pt-BR'
+        });
+    }
+
     function loading(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
         cfpLoadingBarProvider.spinnerTemplate = '<div id="loader-wrapper"><h4><img style="width: 150px;" src="src/app2/layout/img/logo-lg.png" /><br/><img src="src/app2/layout/img/loader.gif"/></h4></div>';
     }
-
 
     function routes($routeProvider, $locationProvider) {
         $routeProvider

@@ -44,7 +44,7 @@
     </head>
 
     <body ng-controller="InitController as init" ng-cloak>
-    <div id="loading-bar-container"></div>	
+        <div id="loading-bar-container"></div>	
     <menu-topo ng-cloak></menu-topo>
     <!--// Wrapper //-->
     <div class="kode-wrapper" ng-view>
@@ -164,9 +164,16 @@
                     <h4 class="modal-title">Acessar Sua Conta </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="kode-loginform" name="formularioLogin" ng-submit="init.logar()">
+                    <form class="kode-loginform" name="formularioLogin" ng-submit="init.submit()">
                         <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.login.login" required></p>
                         <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.login.senha" required></p>
+                        <p><div
+                            vc-recaptcha
+                            class="g-recaptcha"
+                            key="init.model.key"
+                            on-create="init.setWidgetId(widgetId)"
+                            on-success="init.setResponse(response)"
+                            on-expire="init.cbExpiration()"></div></p>
                         <p class="kode-submit">
                             <a href="" ng-click="init.senha(init.login.login)">Esqueci Minha Senha</a> 
                             <input class="btn thbg-colortwo" type="submit" value="Acessar" ng-disabled="formularioLogin.$invalid"></button></p>
@@ -245,6 +252,7 @@
     <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-recaptcha/release/angular-recaptcha.min.js"></script>
     <script type="text/javascript" src="vendor/angular-datatables/dist/angular-datatables.js"></script>
     <script type="text/javascript" src="vendor/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.5/angular-locale_pt-br.js"></script>
@@ -311,7 +319,7 @@
     <script type="text/javascript" src="src/app2/reserva/reserva-clientes.js"></script>
     <script type="text/javascript" src="src/app2/reserva/reserva-quadras.js"></script>
     <script type="text/javascript" src="src/app2/reserva/reserva-form.js"></script>
-    
+
     <script type="text/javascript" src="src/app2/gerenciamento/gerenciamento.module.js"></script>
     <script type="text/javascript" src="src/app2/gerenciamento/gerenciamento.route.js"></script>
     <script type="text/javascript" src="src/app2/gerenciamento/gerenciamento.rest.js"></script>

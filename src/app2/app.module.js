@@ -3,6 +3,7 @@
     'use strict';
 
     angular.module('app', [
+        'vcRecaptcha',
         'app.core',
         'app.init',
         'app.galeria',
