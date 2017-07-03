@@ -20,7 +20,7 @@ class Publico extends MY_Controller {
 
     public function buscarQuadra() {
 
-        $quadra = $this->QuadraModel->buscarPorId($this->uri->segment(3));
+        $quadra = $this->QuadraModel->buscarPorIdNativo($this->uri->segment(3));
         $quadra['esportes'] = $this->QuadraEsporteModel->buscarEsportes($quadra['id']);
 
         $array = array('data' =>
@@ -30,7 +30,7 @@ class Publico extends MY_Controller {
     }
 
     public function buscarTodosNativo() {
-        print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraModel->buscarTodosNativo($this->uri->segment(3))))));
+        print_r(json_encode(array('data' => array('ArrayList' => $this->QuadraModel->buscarTodosNativo($this->uri->segment(3), 1)))));
     }
 
     public function buscarReservas() {

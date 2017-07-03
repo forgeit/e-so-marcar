@@ -141,6 +141,11 @@ class Usuario extends MY_Controller {
         if ($usuarioBanco['senha'] != md5($senha)) {
             $this->gerarErro("Senha incorreta.");
         }
+        
+        $reservas = $this->ReservaModel->buscarEmAberto($this->jwtController->id);
+        if($reservas == null) {
+            $this->gerarErro("Não é possível desativar a conta enquanto houverem reservas em aberto.");
+        }
 
         $usuarioBanco['flag_ativo'] = 0;
 

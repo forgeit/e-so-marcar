@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-primary">
+        <div class="box box-success">
             <form novalidate name="formulario" ng-submit="vm.editar ? vm.atualizar(formulario) : vm.salvar(formulario)">
                 <div class="box-body">
                     <div class="row">
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <label for="flag_tamanho_oficial">Tamanho Oficial:</label>
                                 <div class="input-group">
-                                    <toggle id="flag_tamanho_oficial" ng-model="vm.quadra.flag_tamanho_oficial" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat"></toggle>
+                                    <toggle id="flag_tamanho_oficial" ng-model="vm.quadra.flag_tamanho_oficial" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-success btn-flat" offstyle="btn btn-default btn-flat"></toggle>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label for="flag_dia_chuva">Dia de Chuva:</label>
                                 <div class="input-group">
-                                    <toggle id="flag_dia_chuva" ng-model="vm.quadra.flag_dia_chuva" ng-change="changed()" on="Disponível" off="Indisponível" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat"></toggle>
+                                    <toggle id="flag_dia_chuva" ng-model="vm.quadra.flag_dia_chuva" ng-change="changed()" on="Disponível" off="Indisponível" onstyle="btn btn-success btn-flat" offstyle="btn btn-default btn-flat"></toggle>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label for="flag_marcacao_mensal">Marcação Mensal:</label>
                                 <div class="input-group">
-                                    <toggle id="flag_marcacao_mensal" ng-model="vm.quadra.flag_marcacao_mensal" ng-change="changed()" on="Disponível" off="Indisponível" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat"></toggle>
+                                    <toggle id="flag_marcacao_mensal" ng-model="vm.quadra.flag_marcacao_mensal" ng-change="changed()" on="Disponível" off="Indisponível" onstyle="btn btn-success btn-flat" offstyle="btn btn-default btn-flat"></toggle>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label for="situacao">Situação:</label>
                                 <div class="input-group">
-                                    <toggle id="situacao" ng-model="vm.quadra.situacao" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat"></toggle>
+                                    <toggle id="situacao" ng-model="vm.quadra.situacao" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-success btn-flat" offstyle="btn btn-default btn-flat"></toggle>
                                 </div>
                             </div>
                         </div>
@@ -224,9 +224,9 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
-                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid || !vm.uploader0.queue[0].isUploaded">Salvar</button>
-                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                    <button type="submit" class="btn btn-success btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
+                    <button type="submit" class="btn btn-success btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid || !vm.uploader0.queue[0].isUploaded">Salvar</button>
+                    <button type="button" class="btn btn-success btn-flat" ng-click="vm.voltar()">Voltar</button>
                 </div>
             </form>
         </div>

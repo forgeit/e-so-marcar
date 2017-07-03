@@ -66,7 +66,15 @@
                                     <div class="kode-rating"><span class="rating-box" style="width: 100%"></span></div>
                                 </div>
                                 <p>{{vm.quadra.descricao}}</p>
-                                <p>Esportes:</p>
+                                <p><b>Endereço:</b> {{vm.cliente.endereco}}</p>
+                                <p><b>Tipo de Local:</b> {{vm.quadra.tipo_local}}</p>
+                                <p><b>Tipo de Quadra:</b> {{vm.quadra.tipo_quadra}}</p>
+                                <p><b>Tamanho Oficial:</b> {{vm.quadra.flag_tamanho_oficial == 1 && 'Sim' || 'Não'}} {{vm.quadra.comprimento && '(' + vm.quadra.comprimento + 'x' +  vm.quadra.largura + ')' || ' '}}</p>
+                                <p><b>Pode Jogar com Chuva:</b> {{vm.quadra.flag_dia_chuva == 1 && 'Sim' || 'Não'}}</p>
+                                <p><b>Reserva Mensal:</b> {{vm.quadra.flag_marcacao_mensal == 1 && 'Sim' || 'Não'}}</p>
+                                <p><b>Valor da Bola:</b> {{vm.quadra.valor_bola == 0 && 'Grátis' || 'R$ ' + vm.quadra.valor_bola}}</p>
+                                <p><b>Endereço:</b> {{vm.cliente.endereco}}</p>
+                                <p><b>Esportes:</b></p>
                                 <ul style="    padding-left: 30px;">
                                     <li ng-repeat="esporte in vm.quadra.esportes">{{esporte.nome}}</li>
                                 </ul>

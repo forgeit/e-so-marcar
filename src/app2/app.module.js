@@ -3,6 +3,7 @@
     'use strict';
 
     angular.module('app', [
+        'facebook',
         'vcRecaptcha',
         'app.core',
         'app.init',

@@ -107,3 +107,14 @@ canvas {
 .btn-100 {
     width: 100px
 }
+
+.select2-selection__choice,
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #00a65a !important;
+    border-color: #008d4c !important;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #00a65a !important;
+    border-color: #008d4c !important;
+}

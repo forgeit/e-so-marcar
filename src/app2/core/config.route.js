@@ -7,12 +7,14 @@
             .run(appRun)
             .config(routes)
             .config(loading)
+            .config(facebook)
             .config(recaptcha);
 
     appRun.$inject = ['$rootScope', '$location', '$route', 'AuthTokenApp2'];
     loading.$inject = ['cfpLoadingBarProvider'];
     routes.$inject = ['$routeProvider', '$locationProvider'];
     recaptcha.$inject = ['vcRecaptchaServiceProvider'];
+    facebook.$inject = ['FacebookProvider'];
 
     function appRun($rootScope, $location, $route, AuthTokenApp2) {
         setRouteEvents();
@@ -41,6 +43,10 @@
             $rootScope.$on('$routeChangeStart', routeChangeStart);
             $rootScope.$on('$routeChangeSuccess', routeChangeSuccess);
         }
+    }
+
+    function facebook(FacebookProvider) {
+        FacebookProvider.init('852872601425007');
     }
 
     function recaptcha(vcRecaptchaServiceProvider) {

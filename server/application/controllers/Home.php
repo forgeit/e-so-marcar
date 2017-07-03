@@ -106,7 +106,7 @@ class Home extends MY_Controller {
 
         if ($usuario) {
             if ($usuario['flag_ativo'] == 0) {
-                print_r(json_encode($this->gerarRetorno(FALSE, "Sua conta está desativada.")));
+                print_r(json_encode($this->gerarRetorno(FALSE, "Sua conta está desativa, por favor, realize o cadastro novamente.")));
                 die();
             }
 

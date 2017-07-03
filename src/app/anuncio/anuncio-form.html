@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-primary">
+        <div class="box box-success">
             <form novalidate name="formulario" ng-submit="vm.editar ? vm.atualizar(formulario) : vm.salvar(formulario)">
                 <div class="box-body">
                     <div class="row">
@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label for="ativo">Situação: *</label>
                                 <div class="input-group">
-                                    <toggle id="ativo" ng-model="vm.anuncio.ativo" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat"></toggle>
+                                    <toggle id="ativo" ng-model="vm.anuncio.ativo" ng-change="changed()" on="Ativo" off="Desativo" onstyle="btn btn-success btn-flat" offstyle="btn btn-success btn-flat"></toggle>
                                 </div>
                             </div>
                         </div>
@@ -111,9 +111,9 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
-                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid || !vm.uploader.queue[0].isUploaded">Salvar</button>
-                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                    <button type="submit" class="btn btn-success btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
+                    <button type="submit" class="btn btn-success btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid || !vm.uploader.queue[0].isUploaded">Salvar</button>
+                    <button type="button" class="btn btn-success btn-flat" ng-click="vm.voltar()">Voltar</button>
                 </div>
             </form>
         </div>

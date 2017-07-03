@@ -5,9 +5,9 @@
             .module('app.init')
             .controller('InitController', InitController);
 
-    InitController.$inject = ['controllerUtils', 'initRest', 'AuthTokenApp2', 'jwtHelper', '$rootScope', 'vcRecaptchaService'];
+    InitController.$inject = ['controllerUtils', 'initRest', 'AuthTokenApp2', 'jwtHelper', '$rootScope', 'vcRecaptchaService', 'Facebook', '$scope'];
 
-    function InitController(controllerUtils, dataService, AuthTokenApp2, jwtHelper, $rootScope, vcRecaptchaService) {
+    function InitController(controllerUtils, dataService, AuthTokenApp2, jwtHelper, $rootScope, vcRecaptchaService, Facebook, $scope) {
 
         var vm = this;
 
@@ -15,6 +15,7 @@
         vm.newsletter = newsletter;
         vm.cadastrar = cadastrar;
         vm.senha = senha;
+        vm.submit = submit;
 
         function areaCliente() {
             controllerUtils.$window.location.href = 'index-cliente.html';
@@ -56,14 +57,6 @@
             }
         }
 
-        vm.signin = function () {
-            if (vcRecaptchaService.getResponse() === "") {
-                alert('FAIL!');
-            } else {
-                alert(vcRecaptchaService.getResponse());
-            }
-        };
-
         function senha(email) {
 
             dataService.senha(email).then(success).catch(error);
@@ -101,9 +94,9 @@
             vm.response = null;
         };
 
-        vm.submit = function () {
+        function submit() {
 
-            if(vm.response) {
+            if (vm.response) {
                 vm.login.hash = vm.response;
                 dataService.logar(vm.login).then(success).catch(error);
             } else {
@@ -132,7 +125,7 @@
                     $('#myModal').modal('hide');
                 }
 
-                $('#loading-bar-container').html('<div id="loader-wrapper"><h4><img style="width: 100px;" src="src/app/layout/img/core/logo.png" /><br/><img src="src/app/layout/img/core/loader.gif"/></h4></div>');
+                $('#loading-bar-container').html('<div id="loader-wrapper"><h4><img style="width: 150px;" src="src/app2/layout/img/logo-lg.png" /><br/><img src="src/app2/layout/img/loader.gif"/></h4></div>');
                 setTimeout(function () {
                     $('#loading-bar-container').html('');
                 }, 500);
@@ -141,6 +134,67 @@
                 }, 600);
             }
 
+        }
+
+        $scope.$watch(
+                function () {
+                    return Facebook.isReady();
+                },
+                function (newVal) {
+                    if (newVal)
+                        $scope.facebookReady = true;
+                }
+        );
+
+        var userIsConnected = false;
+
+        Facebook.getLoginStatus(function (response) {
+            if (response.status == 'connected') {
+                userIsConnected = true;
+                console.log('iniciou logado');
+                vm.me();
+            }
+        });
+
+        vm.IntentLogin = function () {
+            if (!userIsConnected) {
+                vm.login();
+            } else {
+                console.log('ja logado');
+            }
+        };
+
+        vm.login = function () {
+            Facebook.login(function (response) {
+                if (response.status == 'connected') {
+                    vm.logged = true;
+                    vm.me();
+                }
+
+            });
+        };
+
+        vm.me = function () {
+            Facebook.api('/me', function (response) {
+                /**
+                 * Using $scope.$apply since this happens outside angular framework.
+                 */
+                $scope.$apply(function () {
+                    vm.user = response;
+                    
+                });
+
+            });
+        };
+
+        vm.logout = function () {
+            Facebook.logout(function () {
+                $scope.$apply(function () {
+                    vm.user = {};
+                    vm.logged = false;
+                    userIsConnected = false;
+                });
+            });
         };
 
     }
