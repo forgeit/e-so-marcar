@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-primary">
+        <div class="box box-success">
             <form novalidate name="formulario" ng-submit="vm.editar ? vm.atualizar(formulario) : vm.salvar(formulario)">
                 <div class="box-body">
                     <div class="row">
@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label for="flag_pode_jogar">Pode Jogar: *</label>
                                 <div class="input-group">
-                                    <toggle id="flag_pode_jogar" ng-model="vm.excecao.flag_pode_jogar" on="Pode" off="Não Pode" onstyle="btn btn-primary btn-flat" offstyle="btn btn-default btn-flat" required></toggle>
+                                    <toggle id="flag_pode_jogar" ng-model="vm.excecao.flag_pode_jogar" on="Pode" off="Não Pode" onstyle="btn btn-success btn-flat" offstyle="btn btn-default btn-flat" required></toggle>
                                 </div>
                             </div>
                         </div>
@@ -56,9 +56,9 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
-                    <button type="submit" class="btn btn-primary btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid">Salvar</button>
-                    <button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar()">Voltar</button>
+                    <button type="submit" class="btn btn-success btn-flat" ng-show="vm.editar" ng-disabled="formulario.$invalid">Atualizar</button>
+                    <button type="submit" class="btn btn-success btn-flat" ng-hide="vm.editar" ng-disabled="formulario.$invalid">Salvar</button>
+                    <button type="button" class="btn btn-success btn-flat" ng-click="vm.voltar()">Voltar</button>
                 </div>
             </form>
         </div>
