@@ -146,56 +146,56 @@
                 }
         );
 
-        var userIsConnected = false;
-
-        Facebook.getLoginStatus(function (response) {
-            if (response.status == 'connected') {
-                userIsConnected = true;
-                console.log('iniciou logado');
-                vm.me();
-            }
-        });
-
-        vm.IntentLogin = function () {
-            if (!userIsConnected) {
-                vm.login();
-            } else {
-                console.log('ja logado');
-            }
-        };
-
-        vm.login = function () {
-            Facebook.login(function (response) {
-                if (response.status == 'connected') {
-                    vm.logged = true;
-                    vm.me();
-                }
-
-            });
-        };
-
-        vm.me = function () {
-            Facebook.api('/me', function (response) {
-                /**
-                 * Using $scope.$apply since this happens outside angular framework.
-                 */
-                $scope.$apply(function () {
-                    vm.user = response;
-                    
-                });
-
-            });
-        };
-
-        vm.logout = function () {
-            Facebook.logout(function () {
-                $scope.$apply(function () {
-                    vm.user = {};
-                    vm.logged = false;
-                    userIsConnected = false;
-                });
-            });
-        };
+//        var userIsConnected = false;
+//
+//        Facebook.getLoginStatus(function (response) {
+//            if (response.status == 'connected') {
+//                userIsConnected = true;
+//                console.log('iniciou logado');
+//                vm.me();
+//            }
+//        });
+//
+//        vm.IntentLogin = function () {
+//            if (!userIsConnected) {
+//                vm.login();
+//            } else {
+//                console.log('ja logado');
+//            }
+//        };
+//
+//        vm.login = function () {
+//            Facebook.login(function (response) {
+//                if (response.status == 'connected') {
+//                    vm.logged = true;
+//                    vm.me();
+//                }
+//
+//            });
+//        };
+//
+//        vm.me = function () {
+//            Facebook.api('/me', function (response) {
+//                /**
+//                 * Using $scope.$apply since this happens outside angular framework.
+//                 */
+//                $scope.$apply(function () {
+//                    vm.user = response;
+//                    
+//                });
+//
+//            });
+//        };
+//
+//        vm.logout = function () {
+//            Facebook.logout(function () {
+//                $scope.$apply(function () {
+//                    vm.user = {};
+//                    vm.logged = false;
+//                    userIsConnected = false;
+//                });
+//            });
+//        };
 
     }
 })();

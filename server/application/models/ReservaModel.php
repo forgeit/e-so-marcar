@@ -11,7 +11,8 @@ class ReservaModel extends MY_Model {
         $sql = "SELECT 
                     r.id, 
                     q.titulo as quadra, 
-                    CASE WHEN u.nome THEN u.nome ELSE u.email END as usuario, 
+                    CASE WHEN u.nome THEN CONCAT(u.nome, ' - ', u.email) ELSE u.email END as usuario, 
+                    CASE WHEN u.telefone THEN u.telefone ELSE '-' END as telefone, 
                     DATE_FORMAT(r.data_hora_reserva,'%d/%m/%Y %H:%i') AS data_hora_reserva,
                     CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor
                 FROM reserva r
@@ -84,6 +85,22 @@ class ReservaModel extends MY_Model {
                 ORDER BY r.data_hora_reserva ASC";
 
         $query = $this->db->query($sql, array($idUsuario));
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+    
+    function buscarEmAbertoPorQuadra($idQuadra) {
+        $sql = "SELECT 
+                    r.id
+                FROM reserva r
+                WHERE r.id_quadra = ? 
+                AND r.data_hora_reserva >= CURDATE()";
+
+        $query = $this->db->query($sql, array($idQuadra));
 
         if ($query->num_rows() > 0) {
             return $query->result_array();

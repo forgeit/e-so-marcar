@@ -172,12 +172,6 @@ class Reserva extends MY_Controller {
         if ($horario == null) {
             $horario = $this->HorarioModel->buscarHorario($idQuadra, $idCliente, date('w', strtotime($dataHora)) + 1, date('H:i:s', strtotime($dataHora)));
         }
-        
-//        print_r( date('w', strtotime($dataHora)) + 1);
-//        print_r('   -   ');
-//        print_r(date('H:i:s', strtotime($dataHora)));
-//        print_r('   -   ');
-//        print_r($dataHora);
 
         if ($horario == null) {
             $this->gerarErro("Horário selecionado não disponível para esta quadra.");

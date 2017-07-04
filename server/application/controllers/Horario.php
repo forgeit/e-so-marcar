@@ -12,7 +12,7 @@ class Horario extends MY_Controller {
         $horario->id = $horarioBanco['id'];
         $horario->hora_inicial = $horario->hora_inicial . '00';
         $horario->hora_final = $horario->hora_final . '00';
-        
+
         $this->validaDados($horario);
 
         $response = array('exec' => $this->HorarioModel->atualizar($horario->id, $horario));
@@ -130,7 +130,7 @@ class Horario extends MY_Controller {
             $this->gerarErro("Valor deve ser numérico.");
         }
 
-        if(isset($horario->id)) {
+        if (isset($horario->id)) {
             $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $horario->id_quadra, $horario->dia_semana, $horario->hora_inicial, $horario->hora_final, $horario->id);
         } else {
             $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $horario->id_quadra, $horario->dia_semana, $horario->hora_inicial, $horario->hora_final);
@@ -139,6 +139,10 @@ class Horario extends MY_Controller {
         if ($horarios != null) {
             $this->gerarErro("Horário já existe.");
         }
+    }
+
+    public function buscarSomenteReservas() {
+        print_r(json_encode(array('data' => array('ArrayList' => $this->HorarioModel->buscarSomenteReservas($this->jwtController->id)))));
     }
 
 }

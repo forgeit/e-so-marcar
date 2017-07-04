@@ -28,7 +28,6 @@
 
         function atualizar(formulario) {
             vm.excecao.id_quadra = vm.quadra.id;
-            vm.excecao.dia_semana = vm.dia_semana.id;
 
             dataservice.atualizar(vm.excecao.id, vm.excecao).then(success).catch(error);
 
@@ -54,6 +53,7 @@
 
             function success(response) {
                 vm.excecao = controllerUtils.getData(response, 'dto');
+                vm.excecao.flag_pode_jogar = vm.excecao.flag_pode_jogar === '1';
 
                 if (vm.excecao.id_quadra) {
                     $scope.$watch('vm.quadraList', function () {

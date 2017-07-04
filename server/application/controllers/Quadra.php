@@ -9,11 +9,18 @@ class Quadra extends MY_Controller {
         $quadra = json_decode($data);
         $quadraBanco = $this->QuadraModel->buscarPorId($this->uri->segment(3));
 
+        if ($quadraBanco['id_cliente'] != $this->jwtController->id) {
+            $this->gerarErro("Você não pode alterar este registro.");
+        }
+        
         $quadra->id = $quadraBanco['id'];
         $this->validaDados($quadra);
 
-        if ($quadraBanco['id_cliente'] != $this->jwtController->id) {
-            $this->gerarErro("Você não pode alterar este registro.");
+        if(!$quadra->situacao) {
+            $reservas = $this->ReservaModel->buscarEmAbertoPorQuadra($quadra->id);
+            if($reservas != null) {
+                $this->gerarErro("Quadra possui reservas em aberto. Não pode ser desativada.");
+            }
         }
 
         if ($quadraBanco['imagem'] != $quadra->imagem) {

@@ -55,6 +55,7 @@
                 vm.tabela.colunas = tabelaUtils.criarColunas([
                     ['quadra', 'Quadra'],
                     ['usuario', 'Usuário'],
+                    ['telefone', 'Telefone'],
                     ['data_hora_reserva', 'Data e Hora'],
                     ['valor', 'Valor'],
                     ['id', 'Ações', tabelaUtils.criarBotaoPadrao]

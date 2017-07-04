@@ -73,7 +73,6 @@
                                 <p><b>Pode Jogar com Chuva:</b> {{vm.quadra.flag_dia_chuva == 1 && 'Sim' || 'Não'}}</p>
                                 <p><b>Reserva Mensal:</b> {{vm.quadra.flag_marcacao_mensal == 1 && 'Sim' || 'Não'}}</p>
                                 <p><b>Valor da Bola:</b> {{vm.quadra.valor_bola == 0 && 'Grátis' || 'R$ ' + vm.quadra.valor_bola}}</p>
-                                <p><b>Endereço:</b> {{vm.cliente.endereco}}</p>
                                 <p><b>Esportes:</b></p>
                                 <ul style="    padding-left: 30px;">
                                     <li ng-repeat="esporte in vm.quadra.esportes">{{esporte.nome}}</li>

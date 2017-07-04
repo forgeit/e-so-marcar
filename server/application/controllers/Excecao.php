@@ -14,8 +14,8 @@ class Excecao extends MY_Controller {
 
         $excecao->data_hora_inicial = $this->toDateTime($excecao->data_hora_inicial);
         $excecao->data_hora_final = $this->toDateTime($excecao->data_hora_final);
-        
-        if($excecao->data_hora_inicial >= $excecao->data_hora_final) {
+
+        if ($excecao->data_hora_inicial >= $excecao->data_hora_final) {
             $this->gerarErro("Data e Hora Inicial deve ser menor que Data e Hora Final.");
         }
 
@@ -88,10 +88,10 @@ class Excecao extends MY_Controller {
         $excecao->data_hora_inicial = $this->toDateTime($excecao->data_hora_inicial);
         $excecao->data_hora_final = $this->toDateTime($excecao->data_hora_final);
 
-        if($excecao->data_hora_inicial >= $excecao->data_hora_final) {
+        if ($excecao->data_hora_inicial >= $excecao->data_hora_final) {
             $this->gerarErro("Data e Hora Inicial deve ser menor que Data e Hora Final.");
         }
-        
+
         $response = $this->ExcecaoModel->inserir($excecao);
 
         $array = $this->gerarRetorno($response, $response ? "Sucesso ao salvar o registro." : "Erro ao salvar o registro.");
@@ -106,7 +106,7 @@ class Excecao extends MY_Controller {
         if (empty($excecao->data_hora_inicial)) {
             $this->gerarErro("Data Inicial é obrigatória.");
         }
-        
+
         if (empty($excecao->data_hora_final)) {
             $this->gerarErro("Data Final é obrigatória.");
         }
@@ -122,9 +122,18 @@ class Excecao extends MY_Controller {
         if ($excecao->flag_pode_jogar && !is_numeric($excecao->valor)) {
             $this->gerarErro("Valor deve ser numérico.");
         }
-                
+
         if ($this->validaClienteQuadra($excecao->id_quadra)) {
             $this->gerarErro("Você não pode inserir horários de exceção para esta quadra.");
+        }
+
+        $dataHora = $this->toDateTime($excecao->data_hora_inicial);
+
+        if ($excecao->flag_pode_jogar == 1) {
+            $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $excecao->id_quadra, date("w", strtotime($dataHora)) + 1, date("H:i", strtotime($dataHora)) . ':00', date("H:i", strtotime($this->toDateTime($excecao->data_hora_final))) . ':00');
+            if ($horarios != null) {
+                $this->gerarErro("Horário já existe.");
+            }
         }
     }
 
