@@ -11,8 +11,8 @@ class ReservaModel extends MY_Model {
         $sql = "SELECT 
                     r.id, 
                     q.titulo as quadra, 
-                    CASE WHEN u.nome THEN CONCAT(u.nome, ' - ', u.email) ELSE u.email END as usuario, 
-                    CASE WHEN u.telefone THEN u.telefone ELSE '-' END as telefone, 
+                    CASE WHEN u.nome IS NOT NULL THEN CONCAT(u.nome, ' - ', u.email) ELSE u.email END as usuario, 
+                    CASE WHEN u.telefone IS NOT NULL THEN u.telefone ELSE '-' END as telefone, 
                     DATE_FORMAT(r.data_hora_reserva,'%d/%m/%Y %H:%i') AS data_hora_reserva,
                     CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor
                 FROM reserva r
