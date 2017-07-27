@@ -12,6 +12,8 @@
             salvar: salvar,
             buscar: buscar,
             alterarSenha: alterarSenha,
+            estados: estados,
+            cidades: cidades,
             desativar: desativar
         };
 
@@ -31,6 +33,14 @@
 
         function buscar() {
             return $http.get(configuracaoREST.url + configuracaoREST.usuario + "buscar");
+        }
+        
+        function estados() {
+            return $http.get(configuracaoREST.url + "estado/buscarTodos");
+        }
+        
+        function cidades(estado) {
+            return $http.get(configuracaoREST.url + "cidade/buscar/" + estado);
         }
 
     }

@@ -44,33 +44,40 @@
                                     </form>
                                 </div>
                             </div>
-                            <!--                            <div class="col-md-6">
-                                                            <div class="kode-simple-form custom-simple-form">  					
-                                                                <form method="post" class="kickoff-form" >
-                                                                    <ul>
-                                                                        <li><p><span>Estado</span><input type="text" id="estado" name="estado" class="required" ng-model="vm.usuario.estado" placeholder="Estado "></p></li>
-                                                                        <li><p><span>Cidade</span><input type="text" id="cidade" name="cidade" class="required" ng-model="vm.usuario.cidade" placeholder="Cidade "></p></li>
-                                                                        <li><p><span>Bairro</span><input type="text" id="bairro" name="bairro" class="required" ng-model="vm.usuario.bairro" placeholder="Bairro "></p></li>
-                                                                        <li><p><span>Endereço</span><input type="text" id="endereco" name="endereco" class="required" ng-model="vm.usuario.endereco" placeholder="Endereço "></p></li>
-                                                                        <li><p><span>Endereço</span><input id="logo" type="file" nv-file-select="" uploader="vm.uploader" multiple required />
-                                                            <div ng-repeat="item in vm.uploader.queue">
-                                                                <div>
-                                                                    <div ng-show="vm.uploader.isHTML5" ng-thumb="{ file: item._file, height: 160 }"></div>
-                                                                </div>
-                                                                <div nowrap>
-                                                                    <button type="button" class="btn btn-success btn-xs btn-flat" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                                                        <span class="glyphicon glyphicon-upload"></span> Upload
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-danger btn-xs btn-flat" ng-click="item.remove()">
-                                                                        <span class="glyphicon glyphicon-trash"></span> Remover
-                                                                    </button>
-                                                                </div>
-                            
-                                                            </div></p></li>
-                                                                    </ul>
-                                                                </form>
-                                                            </div>
-                                                        </div>-->
+                            <div class="col-md-6">
+                                <div class="kode-simple-form custom-simple-form">  					
+                                    <form method="post" class="kickoff-form" >
+                                        <ul>
+                                            <li><p><span>Estado</span>
+                                                    <select type="text" id="estado" name="estado" class="required" ng-options="estado.nome for estado in vm.estados track by estado.id" ng-model="vm.usuario.estado" placeholder="Estado " ng-change="vm.buscarCidades()">
+                                                        <option value="">Selecione</option> 
+                                                    </select>
+                                                </p></li>
+                                            <li><p><span>Cidade</span>
+                                                    <select type="text" id="cidade" name="cidade" class="required" ng-options="cidade.nome for cidade in vm.cidades track by cidade.id" ng-model="vm.usuario.cidade" placeholder="Cidade ">
+                                                        <option value="">Selecione</option> 
+                                                    </select>
+                                                </p></li>
+                                            <!--<li><p><span>Bairro</span><input type="text" id="bairro" name="bairro" class="required" ng-model="vm.usuario.bairro" placeholder="Bairro "></p></li>-->
+                                            <li><p><span>Endereço</span><input type="text" id="endereco" name="endereco" class="required" ng-model="vm.usuario.endereco" placeholder="Endereço "></p></li>
+                                            <div ng-repeat="item in vm.uploader.queue">
+                                                <div>
+                                                    <div ng-show="vm.uploader.isHTML5" ng-thumb="{ file: item._file, height: 160 }"></div>
+                                                </div>
+                                                <div nowrap>
+                                                    <button type="button" class="btn btn-success btn-xs btn-flat" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs btn-flat" ng-click="item.remove()">
+                                                        <span class="glyphicon glyphicon-trash"></span> Remover
+                                                    </button>
+                                                </div>
+
+                                            </div></p></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

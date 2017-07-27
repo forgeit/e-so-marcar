@@ -2116,7 +2116,7 @@ blockquote {
     margin-bottom: 15px;
     width: 100%;
 }
-.kode-simple-form ul li input[type="text"], .kode-simple-form ul li textarea {
+.kode-simple-form ul li input[type="text"], .kode-simple-form ul li textarea, .kode-simple-form ul li select {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid #c4c4c4;
     color: #ffffff;
@@ -2125,6 +2125,13 @@ blockquote {
     padding: 6px 20px;
     width: 100%;
 }
+
+.kode-simple-form ul li select {
+    color: #666666;
+    font-size: 13px;
+    font-weight: normal;
+}
+
 .kode-simple-form ul li textarea {
     height: 155px;
 }

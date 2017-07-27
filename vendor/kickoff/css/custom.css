@@ -24,7 +24,8 @@ and open the template in the editor.
     margin-bottom: 0;
 }
 
-.custom-simple-form ul li input[type="text"] {
+.custom-simple-form ul li input[type="text"],
+.custom-simple-form ul li select {
     height: 35px;
 }
 

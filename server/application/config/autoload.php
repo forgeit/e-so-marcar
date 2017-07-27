@@ -138,6 +138,8 @@ $autoload['model'] = array(
     'ClienteModel',
     'ArquivoModel',
     'DadosModel',
+    'EstadoModel',
+    'CidadeModel',
     'UsuarioModel',
     'ReservaModel',
     'AnuncioModel',

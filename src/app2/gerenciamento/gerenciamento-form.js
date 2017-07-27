@@ -35,6 +35,7 @@
         };
 
         buscar();
+        buscarEstados();
 
         function buscar() {
             dataservice.buscar().then(success).catch(error);
@@ -46,6 +47,32 @@
 
             function error() {
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar as informações.');
+            }
+
+        }
+        
+        function buscarEstados() {
+            dataservice.estados().then(success).catch(error);
+
+            function success(response) {
+                vm.estados = controllerUtils.getData(response, 'ArrayList');
+            }
+
+            function error() {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar estados.');
+            }
+
+        }
+        
+        vm.buscarCidades = function buscarCidades(idEstado) {
+            dataservice.cidades(vm.usuario.estado.id).then(success).catch(error);
+
+            function success(response) {
+                vm.cidades = controllerUtils.getData(response, 'ArrayList');
+            }
+
+            function error() {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar cidades.');
             }
 
         }
