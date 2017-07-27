@@ -32,42 +32,29 @@
             <div class="logo">
                 <a href="/" class="logo"><img src="src/app2/layout/img/logo.png" width="" alt=""/></a>
             </div>
-            <div class="kode-navigation pull-left" style="padding-top: 5px;">
+            <div id="topnav" class="kode-navigation" style="padding-top: 5px;">
                 <ul>
                     <li><a href="/">Início</a></li>
                     <li><a href="publico/cliente">Marque Seu Jogo</a></li>
                     <li><a href="publico/galeria">Galeria</a></li>
                     <li><a href="publico/contato">Contato</a></li>
                     <li><a href="publico/sobre" >Sobre</a></li>
+                    <li class="icon"><a href="#" style="font-size:25px;" onclick="myFunction()" >&#9776;</a></li>
                 </ul>
             </div>
-            <div class="kode-navigation" style="padding-top: 5px;">
-                <ul>
-                    <li><a href="" ng-click="init.areaCliente()">Administrador</a></li>
-                </ul>
-            </div>
-
-            <!--                    NAVIGATION START
-                                <div class="kode-navigation pull-left">
-                                    <ul>
-                                        <li><a href="publico/reserva">Marque Seu Jogo</a></li>
-                                        <li><a href="publico/galeria">Galeria</a></li>
-                                    </ul>
-                                </div>
-                                NAVIGATION END 
-                                LOGO START	
-                                <div class="logo">
-                                    <a href="/" class="logo"><img src="vendor/kickoff/images/logo.png" alt=""></a>
-                                </div>
-                                LOGO END	
-                                NAVIGATION START
-                                <div class="kode-navigation pull-left">
-                                    <ul>
-                                        <li><a href="publico/contato">Contato</a></li>
-                                        <li><a href="publico/sobre">Sobre</a></li>
-                                    </ul>
-                                </div>
-                                NAVIGATION END  -->
         </div>
     </div>
+
+    <script>
+                function myFunction() {
+                    var x = document.getElementById("topnav");
+                    if (x.className === "kode-navigation") {
+                        x.className += " responsive";
+                    } else {
+                        x.className = "kode-navigation";
+                    }
+                }
+    </script>
 </header>
+
+

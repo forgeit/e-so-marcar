@@ -17,6 +17,57 @@
             [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
                 display: none !important;
             }
+
+            .kode-navigation .icon {
+                display: none;
+            }
+
+            @media screen and (max-width: 600px) {
+                .header-8 {
+                    background-color: rgba(0, 0, 0, 1) !important;
+                }
+                .kode-navigation ul li, 
+                .logo,
+                .kode_bg_white {
+                    display: none;
+                }
+                .kode-navigation li.icon {
+                    float: right;
+                    display: block;
+                }
+                .kode-topbar::after,
+                .kode-topbar,
+                .subheader-height:before,
+                .subheader-height:after{
+                    background-color: #009c00 !important;
+                    z-index: -100;
+                }
+                .kode-breadcrumb {
+                    float: left !important; 
+                    padding: 0 !important; 
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                .kode-navigation.responsive {
+                    position: relative;
+                    padding-top: 75px !important;
+                }
+
+                .kode-navigation.responsive .icon {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+                .kode-navigation.responsive ul li {
+                    float: none;
+                    display: block;
+                    text-align: left;
+                    left: -100px;
+                }
+            }
+
+
         </style>
         <!-- Css Files -->
         <link href="vendor/kickoff/css/bootstrap.css" rel="stylesheet">
