@@ -46,6 +46,8 @@ class Home extends MY_Controller {
         $usuario = json_decode($data);
 
         $this->validaDados($usuario);
+        
+        $usuarioCadastrado = 0;
 
         $emailUnico = $this->UsuarioModel->buscarPorColuna('email', $usuario->email);
         if ($emailUnico != null) {
