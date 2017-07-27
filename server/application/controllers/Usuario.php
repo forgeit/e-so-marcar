@@ -83,10 +83,19 @@ class Usuario extends MY_Controller {
         $usuarioBanco['nome'] = $usuario->nome;
         $usuarioBanco['telefone'] = $usuario->telefone;
         $usuarioBanco['biogradia'] = $usuario->biogradia;
+        $usuarioBanco['endereco'] = $usuario->endereco;
+        if (isset($usuario->cidade)) {
+            $usuarioBanco['id_cidade'] = $usuario->cidade->id;
+        } else {
+            $usuarioBanco['id_cidade'] = NULL;
+        }
         if (empty($usuario->data_nascimento)) {
             $usuarioBanco['data_nascimento'] = NULL;
         } else {
             $usuarioBanco['data_nascimento'] = $this->toDate($usuario->data_nascimento);
+        }
+        if (isset($usuario->imagem) && $usuario->imagem != $usuarioBanco['imagem']) {
+            $usuarioBanco['imagem'] = $this->uploadArquivo($usuario->imagem, 'imagem');
         }
 
         $this->UsuarioModel->atualizar($this->jwtController->id, $usuarioBanco);
@@ -141,9 +150,9 @@ class Usuario extends MY_Controller {
         if ($usuarioBanco['senha'] != md5($senha)) {
             $this->gerarErro("Senha incorreta.");
         }
-        
+
         $reservas = $this->ReservaModel->buscarEmAberto($this->jwtController->id);
-        if($reservas == null) {
+        if ($reservas == null) {
             $this->gerarErro("Não é possível desativar a conta enquanto houverem reservas em aberto.");
         }
 
@@ -165,7 +174,7 @@ class Usuario extends MY_Controller {
         if ($reserva['id_usuario'] != $this->jwtController->id) {
             $this->gerarErro("Você não pode cancelar esta reserva.");
         }
-        
+
         if ($reserva['data_hora_reserva'] < date('Y-m-d H:i:s')) {
             $this->gerarErro("Não pode ser cancelada. Reserva já utilizada.");
         }
@@ -173,7 +182,7 @@ class Usuario extends MY_Controller {
         if ($reserva['data_possivel_cancelamento'] < date('Y-m-d H:i:s')) {
             $this->gerarErro("Não pode ser cancelada. Antecedência de " . $reserva['horas_antecedencia_cancelamento'] . " para cancelamentos.");
         }
-        
+
         $this->ReservaModel->excluir($reserva['id']);
         $array = $this->gerarRetorno(TRUE, "Reserva cancelada com sucesso.");
         print_r(json_encode($array));

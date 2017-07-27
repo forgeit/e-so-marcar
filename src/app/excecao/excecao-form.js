@@ -126,6 +126,7 @@
             }
 
             return controllerUtils.ready(promises).then(function (values) {
+                console.log(values);
                 inicializarObjetos(values);
             });
         }

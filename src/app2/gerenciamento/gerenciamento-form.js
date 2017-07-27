@@ -25,6 +25,22 @@
             queueLimit: 1
         });
 
+        iniciar();
+
+        vm.buscarCidades = function buscarCidades(idEstado) {
+
+            dataservice.cidades(idEstado).then(success).catch(error);
+
+            function success(response) {
+                vm.cidades = controllerUtils.getData(response, 'ArrayList');
+            }
+
+            function error() {
+                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar cidades.');
+            }
+
+        };
+
         vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
             if (response.exec) {
                 controllerUtils.feed(controllerUtils.messageType.SUCCESS, response.message);
@@ -34,45 +50,61 @@
             vm.usuario.imagem = response.nome;
         };
 
-        buscar();
-        buscarEstados();
+        function iniciar() {
+            var promises = [];
+
+            promises.push(buscar());
+            promises.push(buscarEstados());
+
+            return controllerUtils.ready(promises).then(function (values) {
+                if (values[0].exec) {
+                    vm.usuario = values[0].objeto;
+                    vm.preview = vm.usuario.imagem;
+                } else {
+                    controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar dados.');
+                }
+                if (values[1].exec) {
+                    vm.estados = values[1].objeto;
+                } else {
+                    controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar estados.');
+                }
+
+                vm.buscarCidades(vm.usuario.id_uf);
+                vm.usuario.cidade = {id: vm.usuario.id_cidade};
+
+                angular.forEach(vm.estados, function (value, index) {
+                    if (value.id === vm.usuario.id_uf) {
+                        vm.usuario.estado = value;
+                    }
+                });
+                
+            });
+        }
 
         function buscar() {
-            dataservice.buscar().then(success).catch(error);
+            return dataservice.buscar().then(success).catch(error);
 
             function success(response) {
-                vm.usuario = controllerUtils.getData(response, 'dto');
-                vm.preview = vm.usuario.imagem;
+                var array = controllerUtils.getData(response, 'dto');
+                return controllerUtils.promise.criar(true, array);
             }
 
             function error() {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar as informações.');
+                return controllerUtils.promise.criar(false, []);
             }
 
         }
-        
+
         function buscarEstados() {
-            dataservice.estados().then(success).catch(error);
+            return dataservice.estados().then(success).catch(error);
 
             function success(response) {
-                vm.estados = controllerUtils.getData(response, 'ArrayList');
+                var array = controllerUtils.getData(response, 'ArrayList');
+                return controllerUtils.promise.criar(true, array);
             }
 
             function error() {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar estados.');
-            }
-
-        }
-        
-        vm.buscarCidades = function buscarCidades(idEstado) {
-            dataservice.cidades(vm.usuario.estado.id).then(success).catch(error);
-
-            function success(response) {
-                vm.cidades = controllerUtils.getData(response, 'ArrayList');
-            }
-
-            function error() {
-                controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar cidades.');
+                return controllerUtils.promise.criar(false, []);
             }
 
         }

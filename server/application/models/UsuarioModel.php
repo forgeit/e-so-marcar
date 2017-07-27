@@ -43,8 +43,10 @@ class UsuarioModel extends MY_Model {
     function buscarPorIdNativo($id) {
         $sql = "SELECT 
                     p.*, 
-                    DATE_FORMAT(p.data_nascimento,'%d/%m/%Y') AS data_nascimento
+                    DATE_FORMAT(p.data_nascimento,'%d/%m/%Y') AS data_nascimento,
+                    c.id_uf 
                 FROM usuario p
+                LEFT JOIN cidade c ON c.id = p.id_cidade
                 WHERE p.id = ?";
 
         $query = $this->db->query($sql, array($id));
