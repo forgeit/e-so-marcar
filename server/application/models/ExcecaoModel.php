@@ -92,5 +92,27 @@ class ExcecaoModel extends MY_Model {
             return null;
         }
     }
+    
+    function horarioExiste($idCliente, $idQuadra, $dataHoraIni, $dataHoraFim, $idHorario = null) {
+        $sql = "SELECT * FROM horario_excecao
+                    WHERE id_cliente = ?
+                    AND id_quadra = ?
+                    AND (
+                         (data_hora_inicial < ? AND data_hora_final > ?)
+                    )";
+        
+        if ($idHorario == null) {
+            $query = $this->db->query($sql, array($idCliente, $idQuadra, $dataHoraFim, $dataHoraIni));
+        } else {
+            $sql .= " AND id <> ?";
+            $query = $this->db->query($sql, array($idCliente, $idQuadra, $dataHoraFim, $dataHoraIni, $idHorario));
+        }
+        
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
 
 }

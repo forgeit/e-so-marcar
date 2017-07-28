@@ -23,7 +23,7 @@ class HorarioModel extends MY_Model {
         }
     }
 
-    function horarioExiste($idCliente, $idUsuario, $diaSemana, $dataHoraIni, $dataHoraFim, $idHorario = null) {
+    function horarioExiste($idCliente, $idQuadra, $diaSemana, $dataHoraIni, $dataHoraFim, $idHorario = null) {
         $sql = "SELECT * FROM horario
                     WHERE id_cliente = ?
                     AND id_quadra = ?
@@ -33,10 +33,10 @@ class HorarioModel extends MY_Model {
                     )";
         
         if ($idHorario == null) {
-            $query = $this->db->query($sql, array($idCliente, $idUsuario, $diaSemana, $dataHoraFim, $dataHoraIni));
+            $query = $this->db->query($sql, array($idCliente, $idQuadra, $diaSemana, $dataHoraFim, $dataHoraIni));
         } else {
             $sql .= " AND id <> ?";
-            $query = $this->db->query($sql, array($idCliente, $idUsuario, $diaSemana, $dataHoraFim, $dataHoraIni, $idHorario));
+            $query = $this->db->query($sql, array($idCliente, $idQuadra, $diaSemana, $dataHoraFim, $dataHoraIni, $idHorario));
         }
         
         if ($query->num_rows() > 0) {
@@ -118,38 +118,60 @@ class HorarioModel extends MY_Model {
 
     function buscarReservas($idQuadra) {
         $sql = '
-             SELECT 
-                CASE WHEN r.id IS NULL THEN "Livre" ELSE "Reservado" END as "title",
-                CONCAT(dias.d, "T", hora_inicial) as "start",
-                CONCAT(dias.d, "T", hora_final) as "end",
-                CASE WHEN r.id IS NULL THEN "livre" ELSE "reservado" END as "className",
-                CONCAT("R$ ", REPLACE(h.valor, ".", ",")) as valor
+            SELECT 
+                r.title,
+                r.start,
+                r.end,
+                r.className,
+                CASE WHEN min(r.horario) > 0 THEN min(valor) ELSE max(valor) END as valor
+            FROM 
+            (SELECT 
+                    CASE WHEN r.id IS NULL THEN "Livre" ELSE "Reservado" END as "title",
+                    CONCAT(dias.d, "T", hora_inicial) as "start",
+                    CONCAT(dias.d, "T", hora_final) as "end",
+                    CASE WHEN r.id IS NULL THEN "livre" ELSE "reservado" END as "className",
+                    CONCAT("R$ ", REPLACE(h.valor, ".", ",")) as valor,
+                true as horario
             FROM (
-                SELECT 
-                        CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date) as d,
-                        CASE WHEN WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) = 6 THEN 1 ELSE WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) + 2 END as dow
-                FROM ( SELECT 0 H
-                    UNION ALL SELECT 100 UNION ALL SELECT 200 UNION ALL SELECT 300
-                  ) H CROSS JOIN ( SELECT 0 T
-                    UNION ALL SELECT  10 UNION ALL SELECT  20 UNION ALL SELECT  30
-                    UNION ALL SELECT  40 UNION ALL SELECT  50 UNION ALL SELECT  60
-                    UNION ALL SELECT  70 UNION ALL SELECT  80 UNION ALL SELECT  90
-                  ) T CROSS JOIN ( SELECT 0 U
-                    UNION ALL SELECT   1 UNION ALL SELECT   2 UNION ALL SELECT   3
-                    UNION ALL SELECT   4 UNION ALL SELECT   5 UNION ALL SELECT   6
-                    UNION ALL SELECT   7 UNION ALL SELECT   8 UNION ALL SELECT   9
-                  ) U
-                WHERE
-                  (SYSDATE()+INTERVAL (H+T+U) DAY) <= (SYSDATE()+INTERVAL 3 MONTH)) as dias 
+                    SELECT 
+                                    CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date) as d,
+                                    CASE WHEN WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) = 6 THEN 1 ELSE WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) + 2 END as dow
+                    FROM ( SELECT 0 H
+                            UNION ALL SELECT 100 UNION ALL SELECT 200 UNION ALL SELECT 300
+                      ) H CROSS JOIN ( SELECT 0 T
+                            UNION ALL SELECT  10 UNION ALL SELECT  20 UNION ALL SELECT  30
+                            UNION ALL SELECT  40 UNION ALL SELECT  50 UNION ALL SELECT  60
+                            UNION ALL SELECT  70 UNION ALL SELECT  80 UNION ALL SELECT  90
+                      ) T CROSS JOIN ( SELECT 0 U
+                            UNION ALL SELECT   1 UNION ALL SELECT   2 UNION ALL SELECT   3
+                            UNION ALL SELECT   4 UNION ALL SELECT   5 UNION ALL SELECT   6
+                            UNION ALL SELECT   7 UNION ALL SELECT   8 UNION ALL SELECT   9
+                      ) U
+                    WHERE
+                      (SYSDATE()+INTERVAL (H+T+U) DAY) <= (SYSDATE()+INTERVAL 3 MONTH)) as dias 
             JOIN horario h ON dias.dow = h.dia_semana
             LEFT JOIN reserva r ON r.id_quadra = h.id_quadra AND CONCAT(dias.d, "T", hora_inicial) = r.data_hora_reserva
             LEFT JOIN horario_excecao e ON e.id_quadra = h.id_quadra AND NOT e.flag_pode_jogar AND
-                (
-                    (CONCAT(dias.d, "T", hora_inicial) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_inicial) <= e.data_hora_final)
-                    OR (CONCAT(dias.d, "T", hora_final) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_final) <= e.data_hora_final)
-                )
-            WHERE h.id_quadra = ?
-            AND e.id IS NULL';
+                    (
+                            (CONCAT(dias.d, "T", hora_inicial) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_inicial) <= e.data_hora_final)
+                            OR (CONCAT(dias.d, "T", hora_final) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_final) <= e.data_hora_final)
+                    )
+            WHERE h.id_quadra = 4
+            AND e.id IS NULL
+            UNION
+            SELECT 
+                    "Livre" as "title",
+                    DATE_FORMAT(e.data_hora_inicial ,"%Y-%m-%dT%H:%i:00") as "start",
+                    DATE_FORMAT(e.data_hora_final ,"%Y-%m-%dT%H:%i:00") as "end",
+                    "livre" as "className",
+                    CONCAT("R$ ", REPLACE(e.valor, ".", ",")) as valor,
+                false as horario
+            FROM horario_excecao e
+            WHERE e.flag_pode_jogar
+
+            ) as r
+            GROUP BY 1,2,3,4
+            ORDER BY start';
 
         $query = $this->db->query($sql, array($idQuadra));
 

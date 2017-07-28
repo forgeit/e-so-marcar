@@ -128,11 +128,17 @@ class Excecao extends MY_Controller {
         }
 
         $dataHora = $this->toDateTime($excecao->data_hora_inicial);
+        $dataHoraFinal = $this->toDateTime($excecao->data_hora_final);
 
         if ($excecao->flag_pode_jogar == 1) {
             $horarios = $this->HorarioModel->horarioExiste($this->jwtController->id, $excecao->id_quadra, date("w", strtotime($dataHora)) + 1, date("H:i", strtotime($dataHora)) . ':00', date("H:i", strtotime($this->toDateTime($excecao->data_hora_final))) . ':00');
             if ($horarios != null) {
                 $this->gerarErro("Horário já existe.");
+            }
+            
+            $horarios = $this->ExcecaoModel->horarioExiste($this->jwtController->id, $excecao->id_quadra, $dataHora, $dataHoraFinal);
+            if ($horarios != null) {
+                $this->gerarErro("Horário exceção já existe.");
             }
         }
     }
