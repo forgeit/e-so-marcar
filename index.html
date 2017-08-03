@@ -203,6 +203,7 @@
                     <form class="kode-loginform" name="formularioLogin" ng-submit="init.submit()">
                         <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.login.login" required></p>
                         <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.login.senha" required></p>
+                        <a href="" style="font-size: small" ng-click="init.senha(init.login.login)">Esqueceu sua senha?</a>
                         <p><div
                             vc-recaptcha
                             class="g-recaptcha"
@@ -211,8 +212,12 @@
                             on-success="init.setResponse(response)"
                             on-expire="init.cbExpiration()"></div></p>
                         <p class="kode-submit">
-                            <a href="" ng-click="init.senha(init.login.login)">Esqueci Minha Senha</a> 
+                            <!--<button type="button" class="btn btn-primary btn-flat" style="padding: 11px;" ng-click="init.IntentLogin()" >Logar com Facebook</button>-->
+
+                            <a class="btn btn-primary btn-flat" style="padding: 12px; margin: 0; font-size: small; font-weight: normal; color: white" href="#" ng-click="init.IntentLogin()">
+                                <i class="fa fa-facebook-official" ></i> Acessar com Facebook</a>
                             <input class="btn thbg-colortwo" type="submit" value="Acessar" ng-disabled="formularioLogin.$invalid"></button></p>
+                        
                     </form>
                 </div>
             </div>
@@ -234,7 +239,8 @@
                         <!--<p><label><input type="checkbox"><span>Remember Me</span></label></p>-->
                         <!--{{init.user}}-->
                         <p class="kode-submit">
-                            <!--<button type="button" class="btn btn-primary btn-flat" style="padding: 11px;" data-ng-click="init.IntentLogin()" data-scope="email">Cadastrar com Facebook</button>-->
+                            <a class="btn btn-primary btn-flat" style="padding: 12px; margin: 0; font-size: small; font-weight: normal; color: white" href="#" ng-click="init.IntentLogin()">
+                                <i class="fa fa-facebook-official" ></i> Continuar com Facebook</a>
                             <!--<button type="button" class="btn btn-primary btn-flat" style="padding: 11px;" data-ng-click="init.logout()">SAIR</button>-->
                             <input class="btn thbg-colortwo" type="submit" value="Cadastrar" ng-disabled="formularioCadastro.$invalid"></p>
                     </form>

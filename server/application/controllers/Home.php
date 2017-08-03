@@ -46,7 +46,7 @@ class Home extends MY_Controller {
         $usuario = json_decode($data);
 
         $this->validaDados($usuario);
-        
+
         $usuarioCadastrado = 0;
 
         $emailUnico = $this->UsuarioModel->buscarPorColuna('email', $usuario->email);
@@ -97,8 +97,6 @@ class Home extends MY_Controller {
 
         $this->recaptcha($usuario);
 
-        $this->load->library("JWT");
-
         if (!isset($usuario->login) || !isset($usuario->senha)) {
             print_r(json_encode($this->gerarRetorno(FALSE, "Email e senha são obrigatórios.")));
             die();
@@ -129,13 +127,20 @@ class Home extends MY_Controller {
     }
 
     public function generate_token($usuario) {
-        //$this->load->library("JWT");
+        $this->load->library("JWT");
         $CONSUMER_SECRET = 'sistema_mathias_2016';
         $CONSUMER_TTL = 28800;
+        
+        $email = "";
+        
+        if(isset($usuario['email'])) {
+            $email = $usuario['email'];
+        }
+        
         return $this->jwt->encode(array(
                     'id' => $usuario['id'],
                     'nome' => $usuario['nome'],
-                    'email' => $usuario['email'],
+                    'email' => $email,
                     'issuedAt' => date(DATE_ISO8601, strtotime("now")),
                     'dtBegin' => strtotime("now"),
                     'ttl' => $CONSUMER_TTL
@@ -253,6 +258,37 @@ class Home extends MY_Controller {
 
         $array = $this->gerarRetorno(TRUE, "Uma confirmação de pedido de senha foi enviada ao seu email.");
         print_r(json_encode($array));
+    }
+
+    public function logarFace() {
+        $data = $this->security->xss_clean($this->input->raw_input_stream);
+        $face = json_decode($data);
+
+        $usuarioFace = $this->UsuarioModel->buscarPorColuna('id_facebook', $face->id);
+
+        if ($usuarioFace == null) {
+            $usuarioFace['id_facebook'] = $face->id;
+            $usuarioFace['nome'] = $face->name;
+            if (isset($face->email)) {
+                $usuarioFace['email'] = $face->email;
+            }
+
+            $usuarioFace['data_cadastro'] = date('Y-m-d');
+            $usuarioFace['flag_email_confirmado'] = 1;
+            $usuarioFace['flag_ativo'] = 1;
+
+            $id = $this->UsuarioModel->inserirRetornaId($usuarioFace);
+            
+            $usuario = $this->UsuarioModel->buscarPorId($id);
+        } else {
+            $usuario = $usuarioFace[0];
+        }
+        
+        $array = $this->gerarRetorno(TRUE, "Bem-vindo, ao É Só Marcar.");
+        $array['data'] = array('token' => $this->generate_token($usuario));
+
+        print_r(json_encode($array));
+        die();
     }
 
 }

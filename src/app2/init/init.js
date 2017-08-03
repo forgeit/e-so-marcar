@@ -146,56 +146,75 @@
                 }
         );
 
-//        var userIsConnected = false;
-//
-//        Facebook.getLoginStatus(function (response) {
-//            if (response.status == 'connected') {
-//                userIsConnected = true;
-//                console.log('iniciou logado');
-//                vm.me();
-//            }
-//        });
-//
-//        vm.IntentLogin = function () {
-//            if (!userIsConnected) {
-//                vm.login();
-//            } else {
-//                console.log('ja logado');
-//            }
-//        };
-//
-//        vm.login = function () {
-//            Facebook.login(function (response) {
-//                if (response.status == 'connected') {
-//                    vm.logged = true;
-//                    vm.me();
-//                }
-//
-//            });
-//        };
-//
-//        vm.me = function () {
-//            Facebook.api('/me', function (response) {
-//                /**
-//                 * Using $scope.$apply since this happens outside angular framework.
-//                 */
-//                $scope.$apply(function () {
-//                    vm.user = response;
-//                    
-//                });
-//
-//            });
-//        };
-//
-//        vm.logout = function () {
-//            Facebook.logout(function () {
-//                $scope.$apply(function () {
-//                    vm.user = {};
-//                    vm.logged = false;
-//                    userIsConnected = false;
-//                });
-//            });
-//        };
+        $rootScope.userIsConnected = false;
 
+        Facebook.getLoginStatus(function (response) {
+            if (response.status == 'connected') {
+                $rootScope.userIsConnected = true;
+            }
+        });
+
+        vm.IntentLogin = function () {
+            if (!$rootScope.userIsConnected) {
+                login();
+            } else {
+                me();
+            }
+        };
+
+        function login() {
+            Facebook.login(function (response) {
+                if (response.status == 'connected') {
+                    me();
+                }
+            });
+        };
+
+        function me() {
+            Facebook.api('/me', function (response) {
+                /**
+                 * Using $scope.$apply since this happens outside angular framework.
+                 */
+                
+                $scope.$apply(function () {
+                    vm.user = response;
+
+                    dataService.logarFace(response).then(success).catch(error);
+
+                    function success(response) {
+                        if (response.data.status === 'true') {
+                            AuthTokenApp2.setar(response.data.data.token);
+
+                            var payload = jwtHelper.decodeToken(response.data.data.token);
+                            $rootScope.userIsConnected = true;
+                            $rootScope.usuarioSistema = {};
+                            $rootScope.usuarioSistema.id = payload.id;
+                            $rootScope.usuarioSistema.nome = payload.nome;
+                            $rootScope.usuarioSistema.email = payload.email;
+                            $rootScope.usuarioSistema.nomeExibir = ((payload.nome) ? payload.nome : payload.email);
+
+                            vm.login = {};
+
+                            $('#myModal').modal('hide');
+                        }
+
+
+                        $('#loading-bar-container').html('<div id="loader-wrapper"><h4><img style="width: 150px;" src="src/app2/layout/img/logo-lg.png" /><br/><img src="src/app2/layout/img/loader.gif"/></h4></div>');
+                        setTimeout(function () {
+                            $('#loading-bar-container').html('');
+                        }, 500);
+                        setTimeout(function () {
+                            controllerUtils.feedMessage(response);
+                        }, 600);
+                    }
+
+                    function error(response) {
+                        controllerUtils.feed(controllerUtils.messageType.ERROR, 'Ocorreu um erro ao acessar o sistema com o facebook.');
+                    }
+                });
+
+            });
+        };
+        
     }
 })();
