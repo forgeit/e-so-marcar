@@ -156,7 +156,7 @@ class HorarioModel extends MY_Model {
                             (CONCAT(dias.d, "T", hora_inicial) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_inicial) <= e.data_hora_final)
                             OR (CONCAT(dias.d, "T", hora_final) >= e.data_hora_inicial AND CONCAT(dias.d, "T", hora_final) <= e.data_hora_final)
                     )
-            WHERE h.id_quadra = 4
+            WHERE h.id_quadra = ?
             AND e.id IS NULL
             UNION
             SELECT 
