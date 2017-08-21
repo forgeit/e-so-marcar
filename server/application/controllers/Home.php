@@ -66,6 +66,11 @@ class Home extends MY_Controller {
 
             $this->UsuarioModel->atualizar($usuarioCadastrado['id'], $usuarioCadastrado);
         } else {
+            
+            $cpfUnico = $this->UsuarioModel->buscarPorColuna('cpf_cnpj', $usuario->cpf_cnpj);
+            if($cpfUnico != null) {
+                $this->gerarErro("CPF já cadastrado.");
+            }
 
             $usuario->data_cadastro = date('Y-m-d');
             $usuario->flag_email_confirmado = 0;
@@ -130,13 +135,13 @@ class Home extends MY_Controller {
         $this->load->library("JWT");
         $CONSUMER_SECRET = 'sistema_mathias_2016';
         $CONSUMER_TTL = 28800;
-        
+
         $email = "";
-        
-        if(isset($usuario['email'])) {
+
+        if (isset($usuario['email'])) {
             $email = $usuario['email'];
         }
-        
+
         return $this->jwt->encode(array(
                     'id' => $usuario['id'],
                     'nome' => $usuario['nome'],
@@ -209,6 +214,17 @@ class Home extends MY_Controller {
     }
 
     private function validaDados($usuario) {
+        if (empty($usuario->cpf_cnpj)) {
+            $this->gerarErro("CPF é obrigatório.");
+            die();
+        }
+
+        $cpf_cnpj = new ValidaCpfCnpj($usuario->cpf_cnpj);
+        if (!$cpf_cnpj->valida()) {
+            $this->gerarErro("CPF é inválido.");
+            die();
+        }
+
         if (empty($usuario->email)) {
             $this->gerarErro("E-mail é obrigatório.");
         }
@@ -278,12 +294,12 @@ class Home extends MY_Controller {
             $usuarioFace['flag_ativo'] = 1;
 
             $id = $this->UsuarioModel->inserirRetornaId($usuarioFace);
-            
+
             $usuario = $this->UsuarioModel->buscarPorId($id);
         } else {
             $usuario = $usuarioFace[0];
         }
-        
+
         $array = $this->gerarRetorno(TRUE, "Bem-vindo, ao É Só Marcar.");
         $array['data'] = array('token' => $this->generate_token($usuario));
 

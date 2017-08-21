@@ -46,7 +46,7 @@
     }
 
     function facebook(FacebookProvider) {
-        FacebookProvider.init('852872601425007');
+        FacebookProvider.init('688613151339256');
     }
 
     function recaptcha(vcRecaptchaServiceProvider) {

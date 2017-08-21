@@ -233,6 +233,7 @@
                 </div>
                 <div class="modal-body">
                     <form novalidate class="kode-loginform" name="formularioCadastro" ng-submit="init.cadastrar()" >
+                        <p><span>CPF</span> <input type="text" ng-model="init.cadastro.cpf_cnpj" ui-br-cpfcnpj-mask></p>
                         <p><span>E-mail</span> <input type="text" placeholder="E-mail" ng-model="init.cadastro.email" required></p>
                         <p><span>Senha</span> <input type="password" placeholder="Senha" ng-model="init.cadastro.senha" required></p>
                         <p><span>Repetir Senha</span> <input type="password" placeholder="Repetir Senha" ng-model="init.cadastro.senha_denovo" required></p>
