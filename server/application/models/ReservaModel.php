@@ -64,6 +64,52 @@ class ReservaModel extends MY_Model {
         }
     }
     
+    function buscarEmAbertoMensal($idUsuario) {
+        $sql = "SELECT 
+                        r.id,
+                        r.id_cliente,
+                        c.nome_fantasia as cliente,
+                        c.logo as logo_cliente,
+                        r.id_quadra,
+                        q.titulo as quadra, 
+
+                        CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor,
+                        CONCAT('Toda(o) ', d.nome, ' as ', DATE_FORMAT(r.hora_inicial,'%Hh%i')) as dia_semana,
+                    DATE_FORMAT(dias.d,'%d/%m/%Y') AS proximo
+                FROM horario r
+                LEFT JOIN quadra q ON q.id = r.id_quadra
+                LEFT JOIN cliente c ON c.id = r.id_cliente
+                LEFT JOIN usuario u ON u.id = r.id_usuario
+                LEFT JOIN dia_semana d ON d.id = r.dia_semana
+                JOIN 
+                (SELECT 
+                                        CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date) as d,
+                                        CASE WHEN WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) = 6 THEN 1 ELSE WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) + 2 END as dow
+                        FROM ( SELECT 0 H
+                                UNION ALL SELECT 100 UNION ALL SELECT 200 UNION ALL SELECT 300
+                          ) H CROSS JOIN ( SELECT 0 T
+                                UNION ALL SELECT  10 UNION ALL SELECT  20 UNION ALL SELECT  30
+                                UNION ALL SELECT  40 UNION ALL SELECT  50 UNION ALL SELECT  60
+                                UNION ALL SELECT  70 UNION ALL SELECT  80 UNION ALL SELECT  90
+                          ) T CROSS JOIN ( SELECT 0 U
+                                UNION ALL SELECT   1 UNION ALL SELECT   2 UNION ALL SELECT   3
+                                UNION ALL SELECT   4 UNION ALL SELECT   5 UNION ALL SELECT   6
+                                UNION ALL SELECT   7 UNION ALL SELECT   8 UNION ALL SELECT   9
+                          ) U
+                        WHERE
+                          (SYSDATE()+INTERVAL (H+T+U) DAY) <= (SYSDATE()+INTERVAL 1 WEEK)) as dias ON dias.dow = r.dia_semana
+                WHERE r.id_usuario = ?
+                ORDER BY proximo ASC ";
+
+        $query = $this->db->query($sql, array($idUsuario));
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+    
     function buscarEmAberto($idUsuario) {
         $sql = "SELECT 
                     r.id,

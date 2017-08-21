@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="kode-section-title"> <h2>Reservas Em Aberto</h2> </div>
+                    <div class="kode-section-title"> <h2>Reservas Em Aberto - Diário</h2> </div>
                     <div class="kode-fixer-list">
                         <ul class="table-head thbg-color">
                             <li><h5>Cliente</h5></li>
@@ -52,12 +52,45 @@
                             <li style="background-color: #404040;"><small></small></li>
                         </ul>   
                     </div>
-<!--                    <div class="kode-fixer-list" ng-show="vm.reservas.length == null">
-                        <span>Nenhuma reserva em aberto.</span>
-                    </div>-->
+                    <br/>
                 </div>
-                <br/>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="kode-section-title"> <h2>Reservas Em Aberto - Mensal</h2> </div>
+                    <div class="kode-fixer-list">
+                        <ul class="table-head thbg-color">
+                            <li><h5>Cliente</h5></li>
+                            <li><h5>Quadra</h5></li>
+                            <li><h5>Dia e Hora</h5></li>
+                            <li><h5>Valor</h5></li>
+                            <li><h5></h5></li>
+                            <!--<li class="fixer-pagination"> <a href="#" class="fa fa-angle-right"></a> <a href="#" class="fa fa-angle-left"></a> </li>-->
+                        </ul>
+                        <ul class="table-body" ng-repeat="reserva in vm.reservasMensal track by reserva.id">
+                            <li>
+                                <a href="/publico/quadra/cliente/{{reserva.id_cliente}}" class="list-thumb"><img ng-src="server/arquivo/buscar/{{ reserva.logo_cliente}}" class="img-circle" height="75px" alt="Logo Cliente"> {{reserva.cliente}}</a>
+                            </li>
+                            <li> <a href="/publico/quadra/{{reserva.id_quadra}}/cliente/{{reserva.id_cliente}}" class="list-thumb"><small>{{reserva.quadra}}</small></a></li>
+                            <li><small>{{reserva.dia_semana}}<p>Próxima data: {{reserva.proximo}}</p></small></li>
+                            
+                            <li><small>{{reserva.valor}}</small></li>
+                            <li class="fixer-btn">
+                                <a href="#" ng-click="vm.confirmarMensal(reserva.id)">Cancelar Mensal</a>
+                            </li>
+                        </ul>
+                        <ul class="table-body" ng-show="vm.reservasMensal.length == null">
+                            <li style="background-color: #404040;"><small>{{vm.mensagemVazioMensal}}</small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                            <li style="background-color: #404040;"><small></small></li>
+                        </ul>   
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
     </section>
     <!--// Page Content //-->
 

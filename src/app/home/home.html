@@ -92,6 +92,9 @@
             },
             editable: false,
             droppable: false,
+            eventRender: function (event, element) {
+                element[0].setAttribute('title', event.tooltip);
+            },
             eventClick: function (calEvent, jsEvent, view) {
                 $('html, body').animate({
                     scrollTop: $("#headerReservas").offset().top - 50

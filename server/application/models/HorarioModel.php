@@ -97,17 +97,49 @@ class HorarioModel extends MY_Model {
     
     function buscarSomenteReservas($idCliente) {
         $sql = '
-                        SELECT 
-                   q.titulo as "title",
-                   CONCAT(DATE(data_hora_reserva), "T", TIME(data_hora_reserva)) as "start",
-                   CASE WHEN r.id IS NULL THEN "livre" ELSE "reservado" END as "className",
-                   CONCAT("R$ ", REPLACE(r.valor, ".", ",")) as valor
-           FROM reserva r
-           JOIN quadra q ON q.id = r.id_quadra
-           WHERE r.id_cliente = ?
-           AND r.data_hora_reserva >= CURDATE()';
+        SELECT * FROM (
+            SELECT 
+               q.titulo as "title",
+               CONCAT(DATE(data_hora_reserva), "T", TIME(data_hora_reserva)) as "start",
+               CASE WHEN r.id IS NULL THEN "livre" ELSE "reservado" END as "className",
+               CONCAT("R$ ", REPLACE(r.valor, ".", ",")) as valor,
+               CONCAT(u.nome, " (", u.email, ")") as tooltip
+            FROM reserva r
+            JOIN quadra q ON q.id = r.id_quadra
+            JOIN usuario u ON u.id = r.id_usuario
+            WHERE r.id_cliente = ?
+            AND r.data_hora_reserva >= CURDATE()
+            UNION
+            SELECT 
+                            CASE WHEN h.id_usuario IS NULL THEN "Livre" ELSE "Reservado" END as "title",
+                            CONCAT(dias.d, "T", hora_inicial) as "start",
+                            CASE WHEN h.id_usuario IS NULL THEN "livre" ELSE "reservado" END as "className",
+                            CONCAT("R$ ", REPLACE(h.valor, ".", ",")) as valor,
+                    CONCAT(u.nome, " (", u.email, ")") as tooltip
+            FROM (
+                            SELECT 
+                                                            CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date) as d,
+                                                            CASE WHEN WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) = 6 THEN 1 ELSE WEEKDAY(CAST((SYSDATE()+INTERVAL (H+T+U) DAY) AS date)) + 2 END as dow
+                            FROM ( SELECT 0 H
+                                            UNION ALL SELECT 100 UNION ALL SELECT 200 UNION ALL SELECT 300
+                              ) H CROSS JOIN ( SELECT 0 T
+                                            UNION ALL SELECT  10 UNION ALL SELECT  20 UNION ALL SELECT  30
+                                            UNION ALL SELECT  40 UNION ALL SELECT  50 UNION ALL SELECT  60
+                                            UNION ALL SELECT  70 UNION ALL SELECT  80 UNION ALL SELECT  90
+                              ) T CROSS JOIN ( SELECT 0 U
+                                            UNION ALL SELECT   1 UNION ALL SELECT   2 UNION ALL SELECT   3
+                                            UNION ALL SELECT   4 UNION ALL SELECT   5 UNION ALL SELECT   6
+                                            UNION ALL SELECT   7 UNION ALL SELECT   8 UNION ALL SELECT   9
+                              ) U
+                            WHERE
+                              (SYSDATE()+INTERVAL (H+T+U) DAY) <= (SYSDATE()+INTERVAL 3 MONTH)) as dias 
+            JOIN horario h ON dias.dow = h.dia_semana
+            JOIN usuario u ON u.id = h.id_usuario
+            WHERE h.id_cliente = ?
+            ) as foo
+            GROUP BY 1,2,3,4,5';
 
-        $query = $this->db->query($sql, array($idCliente));
+        $query = $this->db->query($sql, array($idCliente, $idCliente));
 
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -123,13 +155,14 @@ class HorarioModel extends MY_Model {
                 r.start,
                 r.end,
                 r.className,
-                CASE WHEN min(r.horario) > 0 THEN min(valor) ELSE max(valor) END as valor
+                CASE WHEN min(r.horario) > 0 THEN min(valor) ELSE max(valor) END as valor,
+                horario as marcacao_mensal
             FROM 
             (SELECT 
-                    CASE WHEN r.id IS NULL THEN "Livre" ELSE "Reservado" END as "title",
+                    CASE WHEN r.id IS NULL AND h.id_usuario IS NULL THEN "Livre" ELSE "Reservado" END as "title",
                     CONCAT(dias.d, "T", hora_inicial) as "start",
                     CONCAT(dias.d, "T", hora_final) as "end",
-                    CASE WHEN r.id IS NULL THEN "livre" ELSE "reservado" END as "className",
+                    CASE WHEN r.id IS NULL AND h.id_usuario IS NULL THEN "livre" ELSE "reservado" END as "className",
                     CONCAT("R$ ", REPLACE(h.valor, ".", ",")) as valor,
                 true as horario
             FROM (

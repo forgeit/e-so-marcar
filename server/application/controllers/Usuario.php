@@ -167,6 +167,10 @@ class Usuario extends MY_Controller {
     public function buscarReservas() {
         print_r(json_encode(array('data' => array('ArrayList' => $this->ReservaModel->buscarEmAberto($this->jwtController->id)))));
     }
+    
+    public function buscarReservasMensal() {
+        print_r(json_encode(array('data' => array('ArrayList' => $this->ReservaModel->buscarEmAbertoMensal($this->jwtController->id)))));
+    }
 
     public function cancelarReserva() {
         $reserva = $this->ReservaModel->buscarParaCancelamento($this->uri->segment(3));
@@ -185,6 +189,20 @@ class Usuario extends MY_Controller {
 
         $this->ReservaModel->excluir($reserva['id']);
         $array = $this->gerarRetorno(TRUE, "Reserva cancelada com sucesso.");
+        print_r(json_encode($array));
+    }
+    
+    public function cancelarReservaMensal() {
+        $horario = $this->HorarioModel->buscarPorId($this->uri->segment(3));
+
+        if ($horario['id_usuario'] != $this->jwtController->id) {
+            $this->gerarErro("Você não pode cancelar esta reserva.");
+        }
+        
+        $horario['id_usuario'] = NULL;
+
+        $this->HorarioModel->atualizar($horario['id'], $horario);
+        $array = $this->gerarRetorno(TRUE, "Reserva mensal cancelada com sucesso.");
         print_r(json_encode($array));
     }
 

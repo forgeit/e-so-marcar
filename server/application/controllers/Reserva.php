@@ -97,11 +97,18 @@ class Reserva extends MY_Controller {
         $reserva->data_hora_reserva = $this->toDateTimeSemZero($reserva->data_hora_reserva);
         $reserva->id_usuario = $this->jwtController->id;
 
-        $this->validaDados($reserva);
+        $horario = $this->validaDados($reserva);
 
-        $reserva->data_hora_insercao = date('Y-m-d H:i:s');
+        if ($reserva->marcacao_mensal) {
+            $horario['id_usuario'] = $this->jwtController->id;
 
-        $response = array('exec' => $this->ReservaModel->inserir($reserva));
+            $response = array('exec' => $this->HorarioModel->atualizar($horario['id'], $horario));
+        } else {
+            $reserva->data_hora_insercao = date('Y-m-d H:i:s');
+
+            $response = array('exec' => $this->ReservaModel->inserir($reserva));
+        }
+
 
         $array = $this->gerarRetorno($response, $response ? "Reserva efetuada com sucesso!" : "Erro ao reservar.");
         print_r(json_encode($array));
@@ -127,6 +134,8 @@ class Reserva extends MY_Controller {
         $horario = $this->horarioReserva($reserva->id_cliente, $reserva->id_quadra, $reserva->data_hora_reserva);
 
         $reserva->valor = $horario['valor'];
+
+        return $horario;
     }
 
     public function buscarHorarioReserva() {

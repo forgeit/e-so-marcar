@@ -7,7 +7,7 @@
         'controllerUtils',
         'reservaRest',
         'configuracaoREST',
-    '$window'];
+        '$window'];
     function ReservaForm(controllerUtils, dataservice, configuracaoREST, $window) {
         /* jshint validthis: true */
         var vm = this;
@@ -63,7 +63,7 @@
                 controllerUtils.feed(controllerUtils.messageType.ERROR, 'Não foi possível carregar os reserva.');
             }
         }
-        
+
         function buscarBanner() {
             return dataservice.buscarBanner(controllerUtils.$routeParams.idCliente).then(success).catch(error);
 
