@@ -120,7 +120,8 @@ class ReservaModel extends MY_Model {
                     q.titulo as quadra, 
                     DATE_FORMAT(r.data_hora_reserva,'%d/%m/%Y %H:%i') AS data_hora_reserva,
                     CONCAT('R$ ', REPLACE(r.valor, '.', ',')) as valor,
-                    d.nome as dia_semana
+                    CASE WHEN d.nome IS NULL THEN 'Domingo' ELSE d.nome END as dia_semana,
+                    r.marcacao_mensal
                 FROM reserva r
 		LEFT JOIN quadra q ON q.id = r.id_quadra
                 LEFT JOIN cliente c ON c.id = r.id_cliente

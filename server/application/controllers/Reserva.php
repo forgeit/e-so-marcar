@@ -101,14 +101,12 @@ class Reserva extends MY_Controller {
 
         if ($reserva->marcacao_mensal) {
             $horario['id_usuario'] = $this->jwtController->id;
-
-            $response = array('exec' => $this->HorarioModel->atualizar($horario['id'], $horario));
-        } else {
-            $reserva->data_hora_insercao = date('Y-m-d H:i:s');
-
-            $response = array('exec' => $this->ReservaModel->inserir($reserva));
+            $this->HorarioModel->atualizar($horario['id'], $horario);
         }
+        
+        $reserva->data_hora_insercao = date('Y-m-d H:i:s');
 
+        $response = array('exec' => $this->ReservaModel->inserir($reserva));
 
         $array = $this->gerarRetorno($response, $response ? "Reserva efetuada com sucesso!" : "Erro ao reservar.");
         print_r(json_encode($array));
