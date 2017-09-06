@@ -52,7 +52,7 @@ class Publico extends MY_Controller {
         if (empty($contato->mensagem)) {
             $this->gerarErro("Mensagem é obrigatório.");
         }
-        
+
         if (empty($contato->telefone)) {
             $contato->telefone = "";
         }
@@ -81,5 +81,9 @@ class Publico extends MY_Controller {
 
         print_r(json_encode($array));
     }
-    
+
+    public function atualizarMensal() {
+        print_r(date('Y-m-d H:i:s') . " = " . $this->ReservaModel->atualizarMensal());
+    }
+
 }
