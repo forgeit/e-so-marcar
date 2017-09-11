@@ -189,7 +189,7 @@ class ReservaModel extends MY_Model {
                   ) U
                 WHERE
                   (SYSDATE()+INTERVAL (H+T+U) DAY) <= (SYSDATE()+INTERVAL 1 WEEK)) as dias ON dias.dow = r.dia_semana
-                WHERE r.id_usuario IN (SELECT h.id_usuario FROM semnomedb.horario h WHERE h.id_usuario IS NOT NULL))
+                WHERE r.id_usuario IN (SELECT h.id_usuario FROM horario h WHERE h.id_usuario IS NOT NULL))
                 as rm
                 LEFT JOIN reserva r ON r.data_hora_reserva = rm.data_hora_reserva AND r.id_quadra = rm.id_quadra
                 WHERE r.id is null";
